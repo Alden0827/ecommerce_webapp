@@ -12,16 +12,16 @@
     <title><?=app_name?> | Category: category name</title>
 
     <!-- Bootstrap -->
-    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo base_url()?>/assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
-    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="<?php echo base_url()?>/assets/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- NProgress -->
-    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <link href="<?php echo base_url()?>/assets/vendors/nprogress/nprogress.css" rel="stylesheet">
     <!-- bootstrap-progressbar -->
-    <link href="../vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+    <link href="<?php echo base_url()?>/assets/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
 
     <!-- Custom Theme Style -->
-    <link href="../build/css/custom.min.css" rel="stylesheet">
+    <link href="<?php echo base_url()?>/assets/build/css/custom.min.css" rel="stylesheet">
   </head>
 
   <body class="nav-sm">
@@ -108,315 +108,6 @@
                       
 
                       
-                     <!-- start of card -->
-                     <a href="item_view.php">
-                      <div class="col-md-3   widget widget_tally_box">
-                        <div class="x_panel ui-ribbon-container fixed_height_item_card">
-                          <div class="ui-ribbon-wrapper">
-                            <div class="ui-ribbon">
-                              10% Off
-                            </div>
-                          </div>
-                          <div class="x_title">
-                            <h2>12v Battery Charger</h2>
-                            <div class="clearfix"></div>
-                          </div>
-                          <div class="x_content">
-
-                            <div style="text-align: center; margin-bottom: 17px">
-                            	<img src="./images/item2.jpg" width="240" height="240">
-                            </div>
-                            <div class="flex">
-                              <ul class="list-inline count2">
-                                <li>
-                                  <h3>$156.00</h3>
-                                  <span>Price</span>
-                                </li>
-                                <li>
-                                  <h3>&nbsp;</h3>
-                                  <span>&nbsp;</span>
-                                </li>
-                                <li>
-                                  <h3>******</h3>
-                                  <span>Rating</span>
-                                </li>
-                              </ul>
-                            </div>
-
-                            <p>Sample description of the product! Sample description of the product! Sample description of the product!</p>
-
-                          </div>
-                        </div>
-                      </div>
-                     </a>
-                      <!-- end of card -->                   
-                      
-
-                      
-                     <!-- start of card -->
-                     <a href="item_view.php">
-                      <div class="col-md-3   widget widget_tally_box">
-                        <div class="x_panel ui-ribbon-container fixed_height_item_card">
-                          <div class="ui-ribbon-wrapper">
-                            <div class="ui-ribbon">
-                              5% Off
-                            </div>
-                          </div>
-                          <div class="x_title">
-                            <h2>19" laptop bag</h2>
-                            <div class="clearfix"></div>
-                          </div>
-                          <div class="x_content">
-
-                            <div style="text-align: center; margin-bottom: 17px">
-                            	<img src="./images/item3.jpg" width="240" height="240">
-                            </div>
-                            <div class="flex">
-                              <ul class="list-inline count2">
-                                <li>
-                                  <h3>$16.00</h3>
-                                  <span>Price</span>
-                                </li>
-                                <li>
-                                  <h3>&nbsp;</h3>
-                                  <span>&nbsp;</span>
-                                </li>
-                                <li>
-                                  <h3>******</h3>
-                                  <span>Rating</span>
-                                </li>
-                              </ul>
-                            </div>
-
-                            <p>Sample description of the product! Sample description of the product! Sample description of the product!</p>
-
-                          </div>
-                        </div>
-                      </div>
-                     </a>
-                      <!-- end of card -->                   
-                      
-
-                      
-                     <!-- start of card -->
-                     <a href="item_view.php">
-                      <div class="col-md-3   widget widget_tally_box">
-                        <div class="x_panel ui-ribbon-container fixed_height_item_card">
-                          <div class="ui-ribbon-wrapper">
-                            <div class="ui-ribbon">
-                              10% Off
-                            </div>
-                          </div>
-                          <div class="x_title">
-                            <h2>Phone Stand</h2>
-                            <div class="clearfix"></div>
-                          </div>
-                          <div class="x_content">
-
-                            <div style="text-align: center; margin-bottom: 17px">
-                            	<img src="./images/item4.jpg" width="240" height="240">
-                            </div>
-                            <div class="flex">
-                              <ul class="list-inline count2">
-                                <li>
-                                  <h3>$3.00</h3>
-                                  <span>Price</span>
-                                </li>
-                                <li>
-                                  <h3>&nbsp;</h3>
-                                  <span>&nbsp;</span>
-                                </li>
-                                <li>
-                                  <h3>******</h3>
-                                  <span>Rating</span>
-                                </li>
-                              </ul>
-                            </div>
-
-                            <p>Sample description of the product! Sample description of the product! Sample description of the product!</p>
-
-                          </div>
-                        </div>
-                      </div>
-                     </a>
-                      <!-- end of card -->                   
-                      
-
-                      
-                     <!-- start of card -->
-                     <a href="item_view.php">
-                      <div class="col-md-3   widget widget_tally_box">
-                        <div class="x_panel ui-ribbon-container fixed_height_item_card">
-                          <div class="ui-ribbon-wrapper">
-                            <div class="ui-ribbon">
-                              30% Off
-                            </div>
-                          </div>
-                          <div class="x_title">
-                            <h2>Bag Hook</h2>
-                            <div class="clearfix"></div>
-                          </div>
-                          <div class="x_content">
-
-                            <div style="text-align: center; margin-bottom: 17px">
-                            	<img src="./images/item5.jpg" width="240" height="240"> 
-                            </div>
-                            <div class="flex">
-                              <ul class="list-inline count2">
-                                <li>
-                                  <h3>$1.00</h3>
-                                  <span>Price</span>
-                                </li>
-                                <li>
-                                  <h3>&nbsp;</h3>
-                                  <span>&nbsp;</span>
-                                </li>
-                                <li>
-                                  <h3>******</h3>
-                                  <span>Rating</span>
-                                </li>
-                              </ul>
-                            </div>
-
-                            <p>Sample description of the product! Sample description of the product! Sample description of the product!</p>
-
-                          </div>
-                        </div>
-                      </div>
-                     </a>
-                      <!-- end of card -->                   
-                      
-
-                      
-                     <!-- start of card -->
-                     <a href="item_view.php">
-                      <div class="col-md-3   widget widget_tally_box">
-                        <div class="x_panel ui-ribbon-container fixed_height_item_card">
-                          <div class="ui-ribbon-wrapper">
-                            <div class="ui-ribbon">
-                              30% Off
-                            </div>
-                          </div>
-                          <div class="x_title">
-                            <h2>Baby Kit bag</h2>
-                            <div class="clearfix"></div>
-                          </div>
-                          <div class="x_content">
-
-                            <div style="text-align: center; margin-bottom: 17px">
-                            	<img src="./images/item6.jpg" width="240" height="240">
-                            </div>
-                            <div class="flex">
-                              <ul class="list-inline count2">
-                                <li>
-                                  <h3>$8.00</h3>
-                                  <span>Price</span>
-                                </li>
-                                <li>
-                                  <h3>&nbsp;</h3>
-                                  <span>&nbsp;</span>
-                                </li>
-                                <li>
-                                  <h3>******</h3>
-                                  <span>Rating</span>
-                                </li>
-                              </ul>
-                            </div>
-
-                            <p>Sample description of the product! Sample description of the product! Sample description of the product!</p>
-
-                          </div>
-                        </div>
-                      </div>
-                     </a>
-                      <!-- end of card -->                   
-                      
-
-                      
-                     <!-- start of card -->
-                     <a href="item_view.php">
-                      <div class="col-md-3   widget widget_tally_box">
-                        <div class="x_panel ui-ribbon-container fixed_height_item_card">
-                          <div class="ui-ribbon-wrapper">
-                            <div class="ui-ribbon">
-                              15% Off
-                            </div>
-                          </div>
-                          <div class="x_title">
-                            <h2>Car umbrella</h2>
-                            <div class="clearfix"></div>
-                          </div>
-                          <div class="x_content">
-
-                            <div style="text-align: center; margin-bottom: 17px">
-                            	<img src="./images/item7.jpg" width="240" height="240">
-                            </div>
-                            <div class="flex">
-                              <ul class="list-inline count2">
-                                <li>
-                                  <h3>$100.00</h3>
-                                  <span>Price</span>
-                                </li>
-                                <li>
-                                  <h3>&nbsp;</h3>
-                                  <span>&nbsp;</span>
-                                </li>
-                                <li>
-                                  <h3>******</h3>
-                                  <span>Rating</span>
-                                </li>
-                              </ul>
-                            </div>
-
-                            <p>Sample description of the product! Sample description of the product! Sample description of the product!</p>
-
-                          </div>
-                        </div>
-                      </div>
-                     </a>
-                      <!-- end of card -->                   
-                      
-
-                      
-                     <!-- start of card -->
-                     <a href="item_view.php">
-                      <div class="col-md-3   widget widget_tally_box">
-                        <div class="x_panel ui-ribbon-container fixed_height_item_card">
-                          
-                          <div class="x_title">
-                            <h2>Car Humidifier</h2>
-                            <div class="clearfix"></div>
-                          </div>
-                          <div class="x_content">
-
-                            <div style="text-align: center; margin-bottom: 17px">
-                            	<img src="./images/item8.jpg" width="240" height="240">
-                            </div>
-                            <div class="flex">
-                              <ul class="list-inline count2">
-                                <li>
-                                  <h3>$59.00</h3>
-                                  <span>Price</span>
-                                </li>
-                                <li>
-                                  <h3>&nbsp;</h3>
-                                  <span>&nbsp;</span>
-                                </li>
-                                <li>
-                                  <h3>******</h3>
-                                  <span>Rating</span>
-                                </li>
-                              </ul>
-                            </div>
-
-                            <p>Sample description of the product! Sample description of the product! Sample description of the product!</p>
-
-                          </div>
-                        </div>
-                      </div>
-                     </a>
-                      <!-- end of card -->                   
-
                     </div>
                   </div>
                 </div>
@@ -439,24 +130,24 @@
 
 
     <!-- jQuery -->
-    <script src="../vendors/jquery/dist/jquery.min.js"></script>
+    <script src="<?php echo base_url()?>/assets/vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
-   <script src="../vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+   <script src="<?php echo base_url()?>/assets/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <!-- FastClick -->
-    <script src="../vendors/fastclick/lib/fastclick.js"></script>
+    <script src="<?php echo base_url()?>/assets/vendors/fastclick/lib/fastclick.js"></script>
     <!-- NProgress -->
-    <script src="../vendors/nprogress/nprogress.js"></script>    
+    <script src="<?php echo base_url()?>/assets/vendors/nprogress/nprogress.js"></script>    
     <!-- Chart.js -->
-    <script src="../vendors/Chart.js/dist/Chart.min.js"></script>
+    <script src="<?php echo base_url()?>/assets/vendors/Chart.js/dist/Chart.min.js"></script>
     <!-- jQuery Sparklines -->
-    <script src="../vendors/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
+    <script src="<?php echo base_url()?>/assets/vendors/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
     <!-- easy-pie-chart -->
-    <script src="../vendors/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
+    <script src="<?php echo base_url()?>/assets/vendors/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
     <!-- bootstrap-progressbar -->
-    <script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <script src="<?php echo base_url()?>/assets/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
 
     <!-- Custom Theme Scripts -->
-    <script src="../build/js/custom.min.js"></script>
+    <script src="<?php echo base_url()?>/assets/build/js/custom.min.js"></script>
 
     <script type="text/javascript">
     	$(document).ready(function(){

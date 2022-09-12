@@ -1,6 +1,6 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-class category extends CI_Controller {
+// defined('BASEPATH') OR exit('No direct script access allowed');
+class Category extends CI_Controller {
 	public function index()
 	{
 		$this->load->model('model_users');
