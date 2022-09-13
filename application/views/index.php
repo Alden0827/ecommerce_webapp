@@ -35,103 +35,64 @@
                     <br />
                     <div class="row" rem="card container">
 
-                     <!-- start of card -->
-                     <a href="item_view.php">
-                      <div class="col-md-3   widget widget_tally_box">
-                        <div class="x_panel ui-ribbon-container fixed_height_item_card">
-                          <div class="ui-ribbon-wrapper">
-                            <div class="ui-ribbon">
-                              30% Off
+
+
+                        <?php  foreach ($item_listing->result() as $item): ?>
+                                
+                           <!-- start of card -->
+                           <a href="<?php echo site_url("Products/detail/$item->uid") ?>">
+                            <div class="col-md-3   widget widget_tally_box">
+                              <div class="x_panel ui-ribbon-container fixed_height_item_card">
+                                
+                                <?php if ($item->discount > 0): ?>
+                                  <div class="ui-ribbon-wrapper">
+                                    <div class="ui-ribbon">
+                                      <?=$item->discount*100;?>% Off
+                                    </div>
+                                  </div>
+                                <?php endif; ?>
+
+                                <div class="x_title">
+                                  <h2><?=$item->item_title;?></h2>
+                                  <div class="clearfix"></div>
+                                </div>
+                                <div class="x_content">
+
+                                  <div style="text-align: center; margin-bottom: 17px">
+                                    <img src="<?php echo base_url()?>/uploads/<?=$item->uid;?>_cp.jpg" width="240" height="240">
+                                  </div>
+
+                                  <div class="flex">
+                                    <ul class="list-inline count2">
+                                      <li>
+                                        <h3><?=$item->unit_price;?></h3>
+                                        <span>Price</span>
+                                      </li>
+                                      <li>
+                                        <h3>&nbsp;</h3>
+                                        <span>&nbsp;</span>
+                                      </li>
+                                      <li>
+                                        <h3>******</h3>
+                                        <span>Rating</span>
+                                      </li>
+                                    </ul>
+                                  </div>
+
+                                  <p><?=$item->item_desc;?></p>
+
+                                </div>
+                              </div>
                             </div>
-                          </div>
-                          <div class="x_title">
-                            <h2>MVP Shoe</h2>
-                            <div class="clearfix"></div>
-                          </div>
-                          <div class="x_content">
-
-                            <div style="text-align: center; margin-bottom: 17px">
-                            	<img src="<?php echo base_url()?>/uploads/sample1.jpg" width="240" height="240">
-                            </div>
-                            <div class="flex">
-                              <ul class="list-inline count2">
-                                <li>
-                                  <h3>$59.00</h3>
-                                  <span>Price</span>
-                                </li>
-                                <li>
-                                  <h3>&nbsp;</h3>
-                                  <span>&nbsp;</span>
-                                </li>
-                                <li>
-                                  <h3>******</h3>
-                                  <span>Rating</span>
-                                </li>
-                              </ul>
-                            </div>
-
-                            <p>Sample description of the product! Sample description of the product! Sample description of the product!</p>
-
-                          </div>
-                        </div>
-                      </div>
-                     </a>
-                      <!-- end of card -->
+                           </a>
+                            <!-- end of card -->
+                            
+                        <?php endforeach; ?>
 
 
 
-            <div class="page-title">
-              <div class="title_left">
-                <h3>Popular Products</h3>
-              </div>
-            </div>
-<br><br><br><br>
-            <div class="clearfix"></div>
 
 
-
-                     <!-- start of card -->
-                     <a href="item_view.php">
-                      <div class="col-md-3   widget widget_tally_box">
-                        <div class="x_panel ui-ribbon-container fixed_height_item_card">
-                          <div class="ui-ribbon-wrapper">
-                            <div class="ui-ribbon">
-                              30% Off
-                            </div>
-                          </div>
-                          <div class="x_title">
-                            <h2>Baby Kit bag</h2>
-                            <div class="clearfix"></div>
-                          </div>
-                          <div class="x_content">
-
-                            <div style="text-align: center; margin-bottom: 17px">
-                            	<img src="<?php echo base_url()?>/uploads/sample1.jpg" width="240" height="240">
-                            </div>
-                            <div class="flex">
-                              <ul class="list-inline count2">
-                                <li>
-                                  <h3>$8.00</h3>
-                                  <span>Price</span>
-                                </li>
-                                <li>
-                                  <h3>&nbsp;</h3>
-                                  <span>&nbsp;</span>
-                                </li>
-                                <li>
-                                  <h3>******</h3>
-                                  <span>Rating</span>
-                                </li>
-                              </ul>
-                            </div>
-
-                            <p>Sample description of the product! Sample description of the product! Sample description of the product!</p>
-
-                          </div>
-                        </div>
-                      </div>
-                     </a>
-                      <!-- end of card -->
 
 
 

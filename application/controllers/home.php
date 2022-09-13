@@ -31,7 +31,7 @@ class Home extends CI_Controller {
 
         $google_client->setClientId('214666749439-69v4ja5gjgjsiasanivhe646a60v0nqr.apps.googleusercontent.com'); //Define your ClientID
         $google_client->setClientSecret('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'); //Define your Client Secret Key
-        $google_client->setRedirectUri('http://localhost/ci2'); //Define your Redirect Uri
+        $google_client->setRedirectUri('http://localhost/ec_ci/'); //Define your Redirect Uri
         $google_client->addScope('email');
 
         $google_client->addScope('profile');
@@ -78,16 +78,25 @@ class Home extends CI_Controller {
             }
         }
         $login_button = '';
+
+        $this->load->model('m_products');
+        $item_listing = $this->m_products->get_posted_items();
+        // print_r($item_listing->result());
+        $data['item_listing'] = $item_listing;
+
         if (!$this->session->userdata('access_token')) {
             $login_button = '<a href="' . $google_client->createAuthUrl() . '"  class="btn btn-outline-success" role="button"> SIGN-IN</a>';
             $data['login_button'] = $login_button;
+
+
             $this->load->view('header', $data);
-            $this->load->view('index', $data);
+            // $this->load->view('sidebar', $data);
+            $this->load->view('index');
         }
         else {
-            $this->load->view('header');
+            $this->load->view('header', $data);
+            // $this->load->view('sidebar', $data);
             $this->load->view('index');
-            // $this->load->view('google_login');
         }
     }
 
