@@ -521,3 +521,9 @@ $config['rewrite_short_tags'] = FALSE;
 | Array:		array('10.0.1.200', '192.168.5.0/24')
 */
 $config['proxy_ips'] = '';
+
+
+
+$config['google_client_id'] = '214666749439-69v4ja5gjgjsiasanivhe646a60v0nqr.apps.googleusercontent.com';
+$config['google_secret_id'] = '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';
+$config['google_redirect_url'] = 'http://localhost/ci2';

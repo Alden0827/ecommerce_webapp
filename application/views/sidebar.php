@@ -68,50 +68,6 @@
                   </li>
                 </ul>
               </div>
-
-              <!-- <div class="menu_section">
-                <h3>Live On</h3>
-                <ul class="nav side-menu">
-                  <li><a><i class="fa fa-bug"></i> Additional Pages <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="e_commerce.php">E-commerce</a></li>
-                      <li><a href="projects.php">Projects</a></li>
-                      <li><a href="project_detail.php">Project Detail</a></li>
-                      <li><a href="contacts.php">Contacts</a></li>
-                      <li><a href="profile.php">Profile</a></li>
-                    </ul>
-                  </li>
-                  <li><a><i class="fa fa-windows"></i> Extras <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="page_403.php">403 Error</a></li>
-                      <li><a href="page_404.php">404 Error</a></li>
-                      <li><a href="page_500.php">500 Error</a></li>
-                      <li><a href="plain_page.php">Plain Page</a></li>
-                      <li><a href="login.php">Login Page</a></li>
-                      <li><a href="pricing_tables.php">Pricing Tables</a></li>
-                    </ul>
-                  </li>
-                  <li><a><i class="fa fa-sitemap"></i> Multilevel Menu <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                        <li><a href="#level1_1">Level One</a>
-                        <li><a>Level One<span class="fa fa-chevron-down"></span></a>
-                          <ul class="nav child_menu">
-                            <li class="sub_menu"><a href="level2.php">Level Two</a>
-                            </li>
-                            <li><a href="#level2_1">Level Two</a>
-                            </li>
-                            <li><a href="#level2_2">Level Two</a>
-                            </li>
-                          </ul>
-                        </li>
-                        <li><a href="#level1_2">Level One</a>
-                        </li>
-                    </ul>
-                  </li>                  
-                  <li><a href="javascript:void(0)"><i class="fa fa-laptop"></i> Landing Page <span class="label label-success pull-right">Coming Soon</span></a></li>
-                </ul>
-              </div> -->
-
             </div>
             <!-- /sidebar menu -->
 
@@ -157,8 +113,8 @@
 
                 <?php } else { 
                   $user_data = $this->session->userdata('user_data');
+                  print_r($user_data);
                 ?>
-
                 <!-- START: LOGGED-IN NAVBAR -->
                 <nav class="nav navbar-nav">
                   <ul class=" navbar-right">

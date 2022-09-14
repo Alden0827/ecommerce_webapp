@@ -5,4 +5,4 @@ $route['default_controller'] = 'Home';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['logout'] = 'Google_login/logout';
+$route['logout'] = 'Home/logout';

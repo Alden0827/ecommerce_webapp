@@ -12,7 +12,7 @@ Class m_products extends CI_Model{
                          ->from('tbl_items')
                          ->where('is_posted', 1)
                          ->order_by('date_posted DESC')
-                         ->get();
+                         ->get()->result();
 
    }
    // public function get_id_by_uid($uid){

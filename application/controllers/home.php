@@ -81,21 +81,22 @@ class Home extends CI_Controller {
 
         $this->load->model('m_products');
         $item_listing = $this->m_products->get_posted_items();
-        // print_r($item_listing->result());
+        // print_r($item_listing);
         $data['item_listing'] = $item_listing;
+        print_r($data);
 
         if (!$this->session->userdata('access_token')) {
             $login_button = '<a href="' . $google_client->createAuthUrl() . '"  class="btn btn-outline-success" role="button"> SIGN-IN</a>';
             $data['login_button'] = $login_button;
 
-
             $this->load->view('header', $data);
-            // $this->load->view('sidebar', $data);
+            $this->load->view('sidebar', $data);
             $this->load->view('index');
         }
         else {
+            //logged_in
             $this->load->view('header', $data);
-            // $this->load->view('sidebar', $data);
+            $this->load->view('sidebar', $data);
             $this->load->view('index');
         }
     }
@@ -103,8 +104,8 @@ class Home extends CI_Controller {
     function logout() {
         $this->session->unset_userdata('access_token');
         $this->session->unset_userdata('user_data');
-        // redirect(site_url());
-        redirect('https://accounts.google.com/logout');
+        redirect(site_url());
+        // redirect('https://accounts.google.com/logout');
     }
 
 }

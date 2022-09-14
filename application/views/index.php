@@ -1,6 +1,4 @@
 
-        <?php include_once("sidebar.php");?>
-
 
         <!-- page content -->
         <div class="right_col" role="main">
@@ -37,7 +35,7 @@
 
 
 
-                        <?php  foreach ($item_listing->result() as $item): ?>
+                        <?php  foreach ($item_listing as $item): ?>
                                 
                            <!-- start of card -->
                            <a href="<?php echo site_url("Products/detail/$item->uid") ?>">
