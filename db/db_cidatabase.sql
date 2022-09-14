@@ -118,7 +118,7 @@ CREATE TABLE `users` (
 
 /*Data for the table `users` */
 
-insert  into `users`(`user_id`,`oauth_provider`,`login_oauth_uid`,`first_name`,`last_name`,`email_address`,`gender`,`locale`,`profile_picture`,`link`,`created_at`,`updated_at`) values (1,'','104643403242055778893','Alden','Quiñones','alden.roxy@gmail.com',NULL,NULL,'https://lh3.googleusercontent.com/a-/AFdZucrCP2k7FUd0HFIdpVY-zBP4y6uOws40msTU-njNdA=s96-c','','2022-09-09 10:01:13','2022-09-13 03:38:44');
+insert  into `users`(`user_id`,`oauth_provider`,`login_oauth_uid`,`first_name`,`last_name`,`email_address`,`gender`,`locale`,`profile_picture`,`link`,`created_at`,`updated_at`) values (1,'','104643403242055778893','Alden','Quiñones','alden.roxy@gmail.com',NULL,NULL,'https://lh3.googleusercontent.com/a/AItbvmlO4sCcF1wPGvZXjNvnqb66xZe0WkVftXmVjw5wSg=s96-c','','2022-09-09 10:01:13','2022-09-14 11:12:01');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
