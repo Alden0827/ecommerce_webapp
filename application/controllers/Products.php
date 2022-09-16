@@ -3,10 +3,14 @@
 class Products extends CI_Controller {
 	public function index()
 	{
-		$this->load->model('model_users');
-		$res = $this->model_users->read();
-		$data['dataset'] = $res;
-		$this->load->view('category',$data);
+	    $this->load->model('m_products');
+	    $item_listing = $this->m_products->get_posted_items();
+	    $data['product_listing'] = $item_listing;
+
+		$this->load->view('header');
+		$this->load->view('sidebar');
+		$this->load->view('index',$data);
+		$this->load->view('footer');
 	}
 	public function category()
 	{
@@ -27,8 +31,10 @@ class Products extends CI_Controller {
 
 		$data["item_detail"] = $res_detail->result();
 
-		$this->load->view('header');
-		$this->load->view('item_detail',$data);
+		$this->load->view('header',$data);
+		$this->load->view('sidebar');
+		$this->load->view('item_detail');
+		$this->load->view('footer');	
 
 	}
 

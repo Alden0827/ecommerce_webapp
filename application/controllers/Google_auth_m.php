@@ -1,22 +1,6 @@
 <?php
 // defined('BASEPATH') OR exit('No direct script access allowed');
-class Home extends CI_Controller {
-	// public function index()
-	// {
-	// 	// $this->load->model('model_users');
-	// 	// $res = $this->model_users->read();
-	// 	// $data['dataset'] = $res;
-	
-	// 	// print_r($res);
-	// 	// $this->load->view('constantv');
-	// 	$this->load->view('header.php',$data);
-	// 	$this->load->view('index');
-
-
-
-	// }
-
-
+class Google_auth_m extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('google_login_model');
@@ -27,16 +11,12 @@ class Home extends CI_Controller {
 
         $google_client = new Google_Client();
 
-
-
-        $google_client->setClientId('214666749439-69v4ja5gjgjsiasanivhe646a60v0nqr.apps.googleusercontent.com'); //Define your ClientID
-        $google_client->setClientSecret('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'); //Define your Client Secret Key
-        $google_client->setRedirectUri('http://localhost/ec_ci/'); //Define your Redirect Uri
+        $google_client->setClientId($this->config->item("google_client_id")); //Define your ClientID
+        $google_client->setClientSecret($this->config->item("google_secret_id")); //Define your Client Secret Key
+        $google_client->setRedirectUri($this->config->item("google_redirect_url")); //Define your Redirect Uri
         $google_client->addScope('email');
 
         $google_client->addScope('profile');
-
-
 
         if (isset($_GET["code"])) {
             $token = $google_client->fetchAccessTokenWithAuthCode($_GET["code"]);
@@ -79,15 +59,15 @@ class Home extends CI_Controller {
         }
         $login_button = '';
 
-        $this->load->model('m_products');
-        $item_listing = $this->m_products->get_posted_items();
-        // print_r($item_listing);
-        $data['item_listing'] = $item_listing;
-        print_r($data);
 
         if (!$this->session->userdata('access_token')) {
             $login_button = '<a href="' . $google_client->createAuthUrl() . '"  class="btn btn-outline-success" role="button"> SIGN-IN</a>';
             $data['login_button'] = $login_button;
+
+            $this->load->model('m_products');
+            $item_listing = $this->m_products->get_posted_items();
+            // print_r($item_listing);
+            $data['product_listing'] = $item_listing;
 
             $this->load->view('header', $data);
             $this->load->view('sidebar', $data);
@@ -95,9 +75,10 @@ class Home extends CI_Controller {
         }
         else {
             //logged_in
-            $this->load->view('header', $data);
-            $this->load->view('sidebar', $data);
-            $this->load->view('index');
+            // $this->load->view('header', $data);
+            // $this->load->view('sidebar', $data);
+            // $this->load->view('index');
+            redirect(site_url('products'));
         }
     }
 

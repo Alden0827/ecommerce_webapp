@@ -1,7 +1,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="<?php echo base_url('')?>" class="site_title"><i class="fa fa-paw"></i> <span>Application Name</span></a>
+              <a href="<?php echo base_url('')?>" class="site_title"><i class="fa fa-paw"></i> <span>SELLER CENTER</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -25,45 +25,25 @@
               <div class="menu_section">
                 <h3>General</h3>
                 <ul class="nav side-menu">
-                  <li ><a href="<?php echo site_url(); ?>"><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
-<!--                <ul class="nav child_menu">
+                  <li ><a href="<?php echo site_url('seller_center/dashboard'); ?>"><i class="fa fa-bar-chart"></i> DASHBOARD </a>
+<!--
+                    <ul class="nav child_menu">
                       <li><a href="index.php">Explore</a></li>
                     </ul>
- -->                  
+ -->
 				          </li>
-                  
-                  <li><a><i class="fa fa-edit"></i> Category <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu " style="display: none;">
-                      <li><a href="category.php">Car Accessories</a></li>
-                      <li><a href="category.php">Home Care</a></li>
-                      <li><a href="category.php">Home Appliances</a></li>
-                      <li><a href="category.php">Mobile Phones</a></li>
-                      <li><a href="category.php">Furnitures</a></li>
-                      <li><a href="category.php">Toys and baby Equipment</a></li>
-                      <li><a href="category.php">Electronics</a></li>
-                      <li><a href="category.php">Books, CDs, and Other Phisical Media</a></li>
-                      <li><a href="category.php">Grocery Food and Drinks</a></li>
-                      <li><a href="category.php">Fashion, Clothos, and Accessories</a></li>
-                      <li><a href="category.php">Health and Beauty</a></li>
-                    </ul>
-                  </li>
 
-                  <li><a href="cart.php"><i class="fa fa-shopping-cart"></i> Cart <span class="fa fa-chevron-down"></span></a>
+                  <li><a href="<?php echo site_url('seller_center/listing'); ?>"><i class="fa fa-shopping-cart"></i> PRODUCT LISTING </a>
                   </li>
 
 
-                  <li><a href="Wishlist.php"><i class="fa fa-list"></i> Wishlist <span class="fa fa-chevron-down"></span></a>
+                  <li><a href="<?php echo site_url('seller_center/bids'); ?>"><i class="fa fa-list"></i> BIDS </a>
                   </li>
 
-
-                  <li><a><i class="fa fa-desktop"></i> Explore Stores <span class="fa fa-chevron-down"></span></a>
-                  </li>
-
-                  <li><a><i class="fa fa-thumbs-o-up"></i> Bids & Checkouts <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-thumbs-o-up"></i>WALLET<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="blank.php">Bids</a></li>
-                      <li><a href="blank.php">Purchases</a></li>
-
+                      <li><a href="<?php echo site_url('seller_center/payouts'); ?>">PAYOUT</a></li>
+                      <li><a href="<?php echo site_url('seller_center/sale_history'); ?>">SALE HISTORY</a></li>
                     </ul>
                   </li>
                 </ul>
@@ -96,15 +76,17 @@
         <div class="top_nav">
             <div class="nav_menu">
                 <div class="nav toggle ">
-                  <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                  <a id="menu_toggle"></a>
+                  <!-- <a id="menu_toggle"><i class="fa fa-bars"></i></a> -->
                 </div>
 
 
-                <?php if (isset($login_button)) { ?>
+                <?php if (($this->session->userdata('user_data')) == null) { ?>
                   <!-- START: LOGGED-OUT NAVBAR -->
                   <nav class="nav navbar-nav">
                     <ul class=" navbar-right">
                       <li class="nav-item dropdown open" style="padding-left: 15px;">
+
 
                           <?php
                               // include_once APPPATH . "libraries/vendor/autoload.php";
@@ -116,23 +98,22 @@
                               // $google_client->addScope('profile');
 
                               // $google_client->setRedirectUri(site_url('seller_center'));
-                              // echo "<a href='".$google_client->createAuthUrl()."' class=\"btn btn-outline-primary\" role=\"button\">SELLER CENTER</a> ";
-                              echo "<a href='".site_url('google_auth_c')."' class=\"btn btn-outline-primary\" role=\"button\">SELLER CENTER</a> ";
-                              if (isset($login_button)) {
-                                echo $login_button;
-                              }else{
-                                $google_client->setRedirectUri($this->config->item("google_redirect_url"));
-                                echo '<a href="' . $google_client->createAuthUrl() . '"  class="btn btn-outline-success" role="button"> SIGN-IN</a>';
-                              }
+                              // echo "<a href='".site_url('google_auth_c')."' class=\"btn btn-outline-primary\" role=\"button\">SELLER CENTER</a> ";
+
+                              // if (isset($login_button)) {
+                              //   echo $login_button;
+                              // }else{
+                              //   $google_client->setRedirectUri($this->config->item("google_redirect_url"));
+                                echo '<a href="'.site_url('logout').'"  class="btn btn-outline-success" role="button"> LOGOUT</a>';
+                              // }
 
                           ?>
-                          
                       </li>
                     </ul>
                   </nav>
                   <!-- END: LOGGED-OUT NAVBAR -->
 
-                <?php } else { 
+                <?php } else {
                   $user_data = $this->session->userdata('user_data');
                 ?>
                 <!-- START: LOGGED-IN NAVBAR -->
@@ -149,10 +130,10 @@
                             <span>Settings</span>
                           </a>
                       <a class="dropdown-item"  href="javascript:;">Help</a>
-                        <a class="dropdown-item"  href="<?php echo base_url('logout')?>"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                        <a class="dropdown-item"  href="<?php echo base_url('home/logout')?>"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                       </div>
                     </li>
-    
+
                     <li role="presentation" class="nav-item dropdown open">
                       <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false">
                         <i class="fa fa-envelope-o"></i>
@@ -227,6 +208,3 @@
             </div>
           </div>
         <!-- /top navigation -->
-
-
-

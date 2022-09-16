@@ -526,4 +526,5 @@ $config['proxy_ips'] = '';
 
 $config['google_client_id'] = '214666749439-69v4ja5gjgjsiasanivhe646a60v0nqr.apps.googleusercontent.com';
 $config['google_secret_id'] = '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';
-$config['google_redirect_url'] = 'http://localhost/ci2';
+$config['google_redirect_url'] = 'http://localhost/ec_ci/';
+$config['google_redirect_url_sc'] = 'http://localhost/ec_ci/seller_center';
