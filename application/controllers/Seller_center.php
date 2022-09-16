@@ -6,6 +6,6 @@ class Seller_center extends CI_Controller {
 		$this->load->view('header_sc');
 		$this->load->view('sidebar_sc');
 		$this->load->view('seller_center');
-		$this->load->view('footer');
+		$this->load->view('footer_sc');
 	}
 }
