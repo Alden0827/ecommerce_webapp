@@ -49,7 +49,7 @@
                           <div class="col-sm-12">
                             <div class="card-box table-responsive">
                     <p class="text-muted font-13 m-b-30">
-                      <button type="submit" class="btn btn-success btn-sm pull-right">NEW PRODUCT </button>
+                      <a type="submit" class="btn btn-success btn-sm pull-right" href="<?=site_url('seller_center/products_add')?>">NEW PRODUCT </a>
                     </p>
           
                     <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">

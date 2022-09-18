@@ -31,7 +31,7 @@ class Google_auth_c extends CI_Controller {
 
                 if ($this->google_login_model->Is_already_register($data['id'])) {
                     //update data
-                    $user_data = array(
+                    $user_data_c = array(
                         'first_name' => $data['given_name'],
                         'last_name' => $data['family_name'],
                         'email_address' => $data['email'],
@@ -39,11 +39,11 @@ class Google_auth_c extends CI_Controller {
                         'updated_at' => $current_datetime
                     );
 
-                    $this->google_login_model->Update_user_data($user_data, $data['id']);
+                    $this->google_login_model->Update_user_data_c($user_data_c, $data['id']);
                 }
                 else {
                     //insert data
-                    $user_data = array(
+                    $user_data_c = array(
                         'login_oauth_uid' => $data['id'],
                         'first_name' => $data['given_name'],
                         'last_name' => $data['family_name'],
@@ -52,9 +52,11 @@ class Google_auth_c extends CI_Controller {
                         'created_at' => $current_datetime
                     );
 
-                    $this->google_login_model->Insert_user_data($user_data);
+                    $this->google_login_model->Insert_user_data_c($user_data_c);
                 }
-                $this->session->set_userdata('user_data', $user_data);
+                // $this->session->set_userdata('login_oauth_uid', $data['id']);
+                $this->session->set_userdata('user_data_c', $user_data_c);
+
             }
         }
         $login_button = '';
@@ -87,7 +89,7 @@ class Google_auth_c extends CI_Controller {
 
     function logout() {
         $this->session->unset_userdata('access_token');
-        $this->session->unset_userdata('user_data');
+        $this->session->unset_userdata('user_data_c');
         redirect(site_url());
         // redirect('https://accounts.google.com/logout');
     }

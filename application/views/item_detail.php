@@ -57,7 +57,7 @@
               <div class="col-md-12 col-sm-12 ">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2><?=$item_detail[0]->item_title; ?></h2>
+                    <h2><?=$item_detail[0]->item_caption; ?></h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -77,13 +77,13 @@
 
                     <div class="col-md-5 col-sm-5 ">
                       <div class="product-image">
-                        <img src="<?=site_url('uploads/'.$item_detail[0]->uid); ?>_cp.jpg" alt="..." />
+                        <img src="<?=site_url('uploads/'.$item_detail[0]->upc); ?>_cp.jpg" alt="..." />
                       </div>
                       <div class="product_gallery">
                         <?php 
 
                           for ($i=1; $i < 8; $i++) { 
-                            $image = 'uploads/'.$item_detail[0]->uid."_image$i.jpg";
+                            $image = 'uploads/'.$item_detail[0]->upc."_image$i.jpg";
                             $img_url = site_url($image);
                             // echo $image;
                             if (file_exists($image)){

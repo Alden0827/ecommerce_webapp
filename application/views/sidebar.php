@@ -80,6 +80,7 @@
               <a data-toggle="tooltip" data-placement="top" title="FullScreen">
                 <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
               </a>
+
               <a data-toggle="tooltip" data-placement="top" title="Lock">
                 <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
               </a>
@@ -117,7 +118,7 @@
 
                               // $google_client->setRedirectUri(site_url('seller_center'));
                               // echo "<a href='".$google_client->createAuthUrl()."' class=\"btn btn-outline-primary\" role=\"button\">SELLER CENTER</a> ";
-                              echo "<a href='".site_url('google_auth_c')."' class=\"btn btn-outline-primary\" role=\"button\">SELLER CENTER</a> ";
+                              // echo "<a href='".site_url('google_auth_c')."' class=\"btn btn-outline-primary\" role=\"button\">SELLER CENTER</a> ";
                               if (isset($login_button)) {
                                 echo $login_button;
                               }else{
@@ -140,16 +141,24 @@
                   <ul class=" navbar-right">
                     <li class="nav-item dropdown open" style="padding-left: 15px;">
                       <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                        <img src="<?=$user_data['profile_picture'];?>" alt=""><?=$user_data["first_name"];?> <?=$user_data["last_name"];?>
+                        <?php
+                          if (isset($user_data['profile_picture'])){
+                            $profile_picture = $user_data['profile_picture'];
+                            $fullname = $user_data['first_name'].' '.$user_data['last_name'];
+                            echo "<img src=\"$profile_picture\" alt=''>$fullname";                            
+                          }
+                        ?>
+
                       </a>
                       <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item"  href="javascript:;"> Profile</a>
+                          <a class="dropdown-item"  href="<?=site_url('seller_center')?>">Seller Center</a>
                           <a class="dropdown-item"  href="javascript:;">
                             <span class="badge bg-red pull-right">50%</span>
                             <span>Settings</span>
                           </a>
-                      <a class="dropdown-item"  href="javascript:;">Help</a>
-                        <a class="dropdown-item"  href="<?php echo base_url('logout')?>"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                          <a class="dropdown-item"  href="javascript:;">Help</a>
+                          <a class="dropdown-item"  href="<?php echo base_url('logout')?>"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                       </div>
                     </li>
     

@@ -125,12 +125,13 @@
                       </a>
                       <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item"  href="javascript:;"> Profile</a>
+                        <a class="dropdown-item"  href="<?=site_url('products')?>">Store</a>
                           <a class="dropdown-item"  href="javascript:;">
                             <span class="badge bg-red pull-right">50%</span>
                             <span>Settings</span>
                           </a>
                       <a class="dropdown-item"  href="javascript:;">Help</a>
-                        <a class="dropdown-item"  href="<?php echo base_url('home/logout')?>"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                        <a class="dropdown-item"  href="<?php echo base_url('logout')?>"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                       </div>
                     </li>
 

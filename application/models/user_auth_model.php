@@ -1,12 +1,12 @@
 <?php
-// defined('BASEPATH') OR exit('No direct script access allowed');
-class Google_auth_m extends CI_Controller {
+class user_auth_model extends CI_Model {
     public function __construct() {
         parent::__construct();
         $this->load->model('google_login_model');
     }
 
-    function index() {
+
+    function generate_url() {
         include_once APPPATH . "libraries/vendor/autoload.php";
 
         $google_client = new Google_Client();
@@ -64,24 +64,7 @@ class Google_auth_m extends CI_Controller {
 
 
         if (!$this->session->userdata('access_token')) {
-            $login_button = '<a href="' . $google_client->createAuthUrl() . '"  class="btn btn-outline-success" role="button"> SIGN-IN</a>';
-            $data['login_button'] = $login_button;
-
-            $this->load->model('m_products');
-            $item_listing = $this->m_products->get_posted_items();
-            // print_r($item_listing);
-            $data['product_listing'] = $item_listing;
-
-            $this->load->view('header', $data);
-            $this->load->view('sidebar', $data);
-            $this->load->view('index');
-        }
-        else {
-            //logged_in
-            // $this->load->view('header', $data);
-            // $this->load->view('sidebar', $data);
-            // $this->load->view('index');
-            redirect(site_url('products'));
+        	return '<a href="' . $google_client->createAuthUrl() . '"  class="btn btn-outline-success" role="button"> SIGN-IN</a>';
         }
     }
 
@@ -93,4 +76,4 @@ class Google_auth_m extends CI_Controller {
     }
 
 }
-// <a href="" class="btn btn-outline-success" role="button">SIGN-IN</a>
+?>

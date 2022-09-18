@@ -38,7 +38,7 @@
                         <?php  foreach ($product_listing as $item): ?>
                                 
                            <!-- start of card -->
-                           <a href="<?php echo site_url("Products/detail/$item->uid") ?>">
+                           <a href="<?php echo site_url("Products/detail/$item->upc") ?>">
                             <div class="col-md-3   widget widget_tally_box">
                               <div class="x_panel ui-ribbon-container fixed_height_item_card">
                                 
@@ -51,13 +51,13 @@
                                 <?php endif; ?>
 
                                 <div class="x_title">
-                                  <h2><?=$item->item_title;?></h2>
+                                  <h2><?=$item->item_caption;?></h2>
                                   <div class="clearfix"></div>
                                 </div>
                                 <div class="x_content">
 
                                   <div style="text-align: center; margin-bottom: 17px">
-                                    <img src="<?php echo base_url()?>/uploads/<?=$item->uid;?>_cp.jpg" width="240" height="240">
+                                    <img src="<?php echo base_url()?>/uploads/<?=$item->upc;?>_1.jpg" width="240" height="240">
                                   </div>
 
                                   <div class="flex">
