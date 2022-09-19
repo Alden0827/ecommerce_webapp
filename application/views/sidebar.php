@@ -100,7 +100,6 @@
                   <a id="menu_toggle"><i class="fa fa-bars"></i></a>
                 </div>
 
-
                 <?php if (isset($login_button)) { ?>
                   <!-- START: LOGGED-OUT NAVBAR -->
                   <nav class="nav navbar-nav">

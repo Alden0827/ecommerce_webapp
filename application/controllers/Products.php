@@ -23,7 +23,11 @@ class Products extends CI_Controller {
 	public function detail($uid)
 	{
 		$this->load->model('m_products');
-
+		$this->load->model('user_auth_model');
+		$this->user_auth_model->generate_url();
+        $login_button = $this->user_auth_model->generate_url();
+        $data['login_button'] = $login_button;
+            
 		// $item_id = $this->m_products->get_id_by_uid($uid)->result()[0]->item_id;
 		$res_detail = $this->m_products->get_detail($uid);
 

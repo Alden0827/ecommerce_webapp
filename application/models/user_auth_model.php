@@ -71,12 +71,6 @@ class user_auth_model extends CI_Model {
         }
     }
 
-    function logout() {
-        $this->session->unset_userdata('access_token');
-        $this->session->unset_userdata('user_data');
-        redirect(site_url());
-        // redirect('https://accounts.google.com/logout');
-    }
 
 }
 ?>

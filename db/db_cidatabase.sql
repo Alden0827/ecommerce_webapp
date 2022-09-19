@@ -83,12 +83,28 @@ CREATE TABLE `store_info` (
 
 insert  into `store_info`(`store_id`,`name`) values ('104643403242055778893','store name');
 
+/*Table structure for table `tbl_carts` */
+
+DROP TABLE IF EXISTS `tbl_carts`;
+
+CREATE TABLE `tbl_carts` (
+  `cart_id` int(11) NOT NULL AUTO_INCREMENT,
+  `upc` varchar(21) DEFAULT NULL,
+  `qnt` int(11) DEFAULT 1,
+  `date_added` datetime DEFAULT NULL,
+  `login_oauth_uid` varchar(21) DEFAULT NULL,
+  PRIMARY KEY (`cart_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
+
+/*Data for the table `tbl_carts` */
+
+insert  into `tbl_carts`(`cart_id`,`upc`,`qnt`,`date_added`,`login_oauth_uid`) values (3,'6327316ccf721',1,'2022-09-19 00:00:00','104643403242055778893'),(4,'63280f199bcf4',1,'2022-09-19 00:00:00','104643403242055778893'),(5,'6327316ccf721',1,'2022-09-19 05:03:51','104643403242055778893'),(6,'6327316ccf721',1,'2022-09-19 05:04:38','104643403242055778893'),(7,'6327316ccf721',1,'2022-09-19 05:04:55','104643403242055778893');
+
 /*Table structure for table `tbl_items` */
 
 DROP TABLE IF EXISTS `tbl_items`;
 
 CREATE TABLE `tbl_items` (
-  `item_id` int(11) NOT NULL AUTO_INCREMENT,
   `item_caption` varchar(200) DEFAULT NULL,
   `item_desc` text DEFAULT NULL,
   `item_specs` text DEFAULT NULL,
@@ -102,14 +118,14 @@ CREATE TABLE `tbl_items` (
   `status_id` tinyint(1) DEFAULT NULL,
   `status_change_date` datetime DEFAULT NULL,
   `discount` float(2,2) DEFAULT 0.00,
-  `upc` varchar(50) DEFAULT NULL,
+  `upc` varchar(50) NOT NULL,
   `brand` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`item_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8mb4;
+  PRIMARY KEY (`upc`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `tbl_items` */
 
-insert  into `tbl_items`(`item_id`,`item_caption`,`item_desc`,`item_specs`,`cat_id`,`store_id`,`unit_price`,`sku`,`stock`,`date_updated`,`is_bidding`,`status_id`,`status_change_date`,`discount`,`upc`,`brand`) values (1,'A Universal for 12V/24V battery','sample desc','Features:Universal for 12V/24V battery12V/24V Intelligent pulse recognitionWith manual mode automatically for chooseLED DisplayVoltage IndicatorOverheat protectionShort circuit protectionReverse connection protectionLow voltage protection',1,'104643403242055778893','120','sk1234567890',3,'2022-09-13 00:00:00',1,1,'2022-09-13 00:00:00',0.71,'6327316ccf721','no brand'),(54,'sample_data1','sample_data1','adasdad\r\n                              ',1,'104643403242055778893','12',NULL,1,NULL,NULL,1,'2022-09-19 02:43:50',0.00,'63280f199bcf4','sample_data2');
+insert  into `tbl_items`(`item_caption`,`item_desc`,`item_specs`,`cat_id`,`store_id`,`unit_price`,`sku`,`stock`,`date_updated`,`is_bidding`,`status_id`,`status_change_date`,`discount`,`upc`,`brand`) values ('A Universal for 12V/24V battery','sample desc','Features:Universal for 12V/24V battery12V/24V Intelligent pulse recognitionWith manual mode automatically for chooseLED DisplayVoltage IndicatorOverheat protectionShort circuit protectionReverse connection protectionLow voltage protection',1,'104643403242055778893','120','sk1234567890',3,'2022-09-13 00:00:00',1,1,'2022-09-13 00:00:00',0.71,'6327316ccf721','no brand'),('sample_data1','sample_data1','adasdad\r\n                              ',1,'104643403242055778893','12',NULL,1,NULL,NULL,1,'2022-09-19 02:43:50',0.00,'63280f199bcf4','sample_data2'),('sample_data1','sample_data1','adasdad\r\n                              ',1,'104643403242055778893','12',NULL,1,NULL,NULL,1,'2022-09-19 05:08:56',0.00,'632831a19bc9b','sample_data2');
 
 /*Table structure for table `users` */
 
@@ -132,7 +148,7 @@ CREATE TABLE `users` (
 
 /*Data for the table `users` */
 
-insert  into `users`(`oauth_provider`,`login_oauth_uid`,`first_name`,`last_name`,`email_address`,`gender`,`locale`,`profile_picture`,`link`,`created_at`,`updated_at`) values ('','103522247494752001839','Roxanne Eve','Guibone - Quiñones','roxy.guibone@gmail.com',NULL,NULL,'https://lh3.googleusercontent.com/a-/AFdZucrZ72ZCpNr_uYjyfDzL6bUPjD-6wV-SzX6WZ3nDCQ=s96-c','','2022-09-16 09:54:54','0000-00-00 00:00:00'),('','104643403242055778893','Alden','Quiñones','alden.roxy@gmail.com',NULL,NULL,'https://lh3.googleusercontent.com/a-/ACNPEu9P7Q2rMr__fRYXeEfCpvPHabKcOPRniUeR-K7kJg=s96-c','','2022-09-09 10:01:13','2022-09-19 02:54:04'),('','116679270454783929350','Alden A','Quiñones','aaquinones.fo12@dswd.gov.ph',NULL,NULL,'https://lh3.googleusercontent.com/a-/ACNPEu_gXfFTohYOkNOZDqtrFr571rhMKrMEFtFxtK72=s96-c','','2022-09-16 08:15:55','2022-09-18 20:03:41');
+insert  into `users`(`oauth_provider`,`login_oauth_uid`,`first_name`,`last_name`,`email_address`,`gender`,`locale`,`profile_picture`,`link`,`created_at`,`updated_at`) values ('','103522247494752001839','Roxanne Eve','Guibone - Quiñones','roxy.guibone@gmail.com',NULL,NULL,'https://lh3.googleusercontent.com/a-/AFdZucrZ72ZCpNr_uYjyfDzL6bUPjD-6wV-SzX6WZ3nDCQ=s96-c','','2022-09-16 09:54:54','0000-00-00 00:00:00'),('','104643403242055778893','Alden','Quiñones','alden.roxy@gmail.com',NULL,NULL,'https://lh3.googleusercontent.com/a-/ACNPEu9P7Q2rMr__fRYXeEfCpvPHabKcOPRniUeR-K7kJg=s96-c','','2022-09-09 10:01:13','2022-09-19 05:08:43'),('','116679270454783929350','Alden A','Quiñones','aaquinones.fo12@dswd.gov.ph',NULL,NULL,'https://lh3.googleusercontent.com/a-/ACNPEu_gXfFTohYOkNOZDqtrFr571rhMKrMEFtFxtK72=s96-c','','2022-09-16 08:15:55','2022-09-18 20:03:41');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

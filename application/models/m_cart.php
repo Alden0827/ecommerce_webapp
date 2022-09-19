@@ -4,12 +4,32 @@ Class m_cart extends CI_Model{
    public function __construct(){
       parent::__construct();
       $this->load->database();
+      $this->load->model('user_auth_model');
    }
 
    public function add($data){
-      $this->db->insert('tbl_carts', $data);
-      return $this->db->insert_id();
+   	$login_oauth_uid = $this->user_auth_model->get_user_id();
+   	$upc = $data['upc'];
+   	//check if exists
+   	$q = $this->db->get_where('tbl_carts', array('upc' => $upc,'login_oauth_uid' => $login_oauth_uid));
+   	
+		//if exists
+		if ($q->num_rows() == 0){
+   		$this->db->insert('tbl_carts', $data);
+   		return $this->db->insert_id();
+		}else{
+			$qnt = $q->qnt;
+			$this->db->where('upc', $upc)
+						->where('login_oauth_uid', $login_oauth_uid)
+						->set('qnt', $qnt+1)
+						->update('tbl_carts');	
+			return 1;
+		}
+
+
+
    }
+
 
    public function get($cart_id){
 		return $this->db->select('`tbl_carts`.`cart_id`,`tbl_carts`.`upc`,`tbl_carts`.`qnt`,`tbl_carts`.`date_added`')
