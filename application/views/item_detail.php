@@ -36,7 +36,7 @@
             <div class="page-title">
               <div class="title_left">
                 <BR>
-                <h6>HOME | STORE | SIMILAR ITEMS</h6>
+                <h6><a href="#">HOME</a> | <a href="#">VISIT STORE</a> | <a href="#">SIMILAR ITEMS</a></h6>
               </div>
 
               <div class="title_right">
@@ -154,11 +154,13 @@
                       </div>
 
                       <div class="">
-                        <button type="button" class="btn btn-success btn-lg">Add to Cart</button>
-                        <button type="button" class="btn btn-info btn-lg">Add to Wishlist</button>
+                        <button type="button" class="btn btn-success btn-lg" id="btn_add_to_cart" upc="<?=$item_detail[0]->upc?>">Add to Cart</button>
+                        <button type="button" class="btn btn-info btn-lg" id="btn_add_to_wishlist" upc="<?=$item_detail[0]->upc?>">Add to Wishlist</button>
                       </div>
 
-                      <div class="product_social">
+                      <div id="container1"></div>
+
+<!--                       <div class="product_social">
                         <ul class="list-inline display-layout">
                           <li><a href="#"><i class="fa fa-facebook-square"></i></a>
                           </li>
@@ -169,7 +171,7 @@
                           <li><a href="#"><i class="fa fa-rss-square"></i></a>
                           </li>
                         </ul>
-                      </div>
+                      </div> -->
 
                     </div>
                     
@@ -185,17 +187,42 @@
 
 <script type="text/javascript">
 
+$(function() {
+    
+    //SWITCH COVER PHOTO IMAGES
     $(document).on('click','#item_thumb',function(){
         var src = $(this).attr('img_url');
         $('#cover_photo').fadeOut('fast',function(){
             $('#cover_photo').attr('src',src);
             $('#cover_photo').fadeIn('fast');
         });
-        // $('#cover_photo').attr('src',src);
-        // alert(src);
+    });
+
+    //ADD TO CART
+    $('#btn_add_to_cart').on('click',function(){
+        var upc = $(this).attr('upc');
+        $.ajax({
+          type: "POST",
+          url: "<?=site_url('cartmanager/add')?>",
+          data: {upc:upc},
+          success: function(msg){
+             console.log( "Data Saved: " + msg );
+          },
+          error: function(XMLHttpRequest, textStatus, errorThrown) {
+             alert('error!');
+             console.log(XMLHttpRequest);
+             $('#container1').html(XMLHttpRequest);
+          }
+        });
 
 
     });
+
+
+
+});
+
+
 
 
 </script>

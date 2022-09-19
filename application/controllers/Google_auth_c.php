@@ -63,26 +63,9 @@ class Google_auth_c extends CI_Controller {
 
 
         if (!$this->session->userdata('access_token')) {
-            // $login_button = '<a href="' . $google_client->createAuthUrl() . '"  class="btn btn-outline-success" role="button"> SIGN-IN</a>';
-            // $data['login_button'] = $login_button;
-
-            // $this->load->model('m_products');
-            // $item_listing = $this->m_products->get_posted_items();
-            // // print_r($item_listing);
-            // $data['product_listing'] = $item_listing;
-
-            // $this->load->view('header', $data);
-            // $this->load->view('sidebar', $data);
-            
             redirect($google_client->createAuthUrl());
-
-
         }
         else {
-            //logged_in
-            // $this->load->view('header', $data);
-            // $this->load->view('sidebar', $data);
-            // $this->load->view('index');
             redirect(site_url('item_listing'));
         }
     }

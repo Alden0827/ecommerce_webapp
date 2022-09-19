@@ -1,5 +1,9 @@
 <?php
-  // print_r($this->session->userdata()); 
+  echo "<pre>";
+    $this->cart->remove('eb43788d3d5c837c41bbb9ec9c5ea12f');
+    print_r($this->cart->contents()); 
+  echo "</pre>";
+
 ?>
 
 
