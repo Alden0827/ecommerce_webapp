@@ -25,7 +25,7 @@
               <div class="menu_section">
                 <h3>General</h3>
                 <ul class="nav side-menu">
-                  <li ><a href="<?php echo site_url('seller_center/dashboard'); ?>"><i class="fa fa-bar-chart"></i> DASHBOARD </a>
+                  <li ><a href="<?php echo site_url('item_listing/dashboard'); ?>"><i class="fa fa-bar-chart"></i> DASHBOARD </a>
 <!--
                     <ul class="nav child_menu">
                       <li><a href="index.php">Explore</a></li>
@@ -33,17 +33,17 @@
  -->
 				          </li>
 
-                  <li><a href="<?php echo site_url('seller_center/listing'); ?>"><i class="fa fa-shopping-cart"></i> PRODUCT LISTING </a>
+                  <li><a href="<?php echo site_url('item_listing'); ?>"><i class="fa fa-shopping-cart"></i> PRODUCT LISTING </a>
                   </li>
 
 
-                  <li><a href="<?php echo site_url('seller_center/bids'); ?>"><i class="fa fa-list"></i> BIDS </a>
+                  <li><a href="<?php echo site_url('item_listing/bids'); ?>"><i class="fa fa-list"></i> BIDS </a>
                   </li>
 
                   <li><a><i class="fa fa-thumbs-o-up"></i>WALLET<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="<?php echo site_url('seller_center/payouts'); ?>">PAYOUT</a></li>
-                      <li><a href="<?php echo site_url('seller_center/sale_history'); ?>">SALE HISTORY</a></li>
+                      <li><a href="<?php echo site_url('item_listing/payouts'); ?>">PAYOUT</a></li>
+                      <li><a href="<?php echo site_url('item_listing/sale_history'); ?>">SALE HISTORY</a></li>
                     </ul>
                   </li>
                 </ul>
@@ -97,7 +97,7 @@
                               // $google_client->addScope('email');
                               // $google_client->addScope('profile');
 
-                              // $google_client->setRedirectUri(site_url('seller_center'));
+                              // $google_client->setRedirectUri(site_url('item_listing'));
                               // echo "<a href='".site_url('google_auth_c')."' class=\"btn btn-outline-primary\" role=\"button\">SELLER CENTER</a> ";
 
                               // if (isset($login_button)) {

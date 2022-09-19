@@ -77,25 +77,18 @@
 
                     <div class="col-md-5 col-sm-5 ">
                       <div class="product-image">
-                        <img src="<?=site_url('uploads/'.$item_detail[0]->upc); ?>_cp.jpg" alt="..." />
+                        <img src="<?=site_url('uploads/'.$item_detail[0]->upc); ?>_p.jpg" alt="..." id='cover_photo' />
                       </div>
                       <div class="product_gallery">
                         <?php 
-
+                          echo "<a href='#' id='item_thumb' img_url='".site_url('uploads/'.$item_detail[0]->upc.'_p.jpg')."'><img src=\"".site_url('uploads/'.$item_detail[0]->upc."_p.jpg")."\" alt=\"...\" /></a>"; 
                           for ($i=1; $i < 8; $i++) { 
-                            $image = 'uploads/'.$item_detail[0]->upc."_image$i.jpg";
+                            $image = 'uploads/'.$item_detail[0]->upc."_p$i.jpg";
                             $img_url = site_url($image);
-                            // echo $image;
                             if (file_exists($image)){
-                              echo "
-                                <a>
-                                  <img src=\"$img_url\" alt=\"...\" />
-                                </a>
-                              "; 
+                              echo "<a href='#' id='item_thumb' img_url='$img_url'><img src=\"$img_url\" alt=\"...\" /></a>"; 
                             }
-
                           }
-
                         ?>
 
 
@@ -188,3 +181,21 @@
         </div>
         <!-- /page content -->
 
+
+
+<script type="text/javascript">
+
+    $(document).on('click','#item_thumb',function(){
+        var src = $(this).attr('img_url');
+        $('#cover_photo').fadeOut('fast',function(){
+            $('#cover_photo').attr('src',src);
+            $('#cover_photo').fadeIn('fast');
+        });
+        // $('#cover_photo').attr('src',src);
+        // alert(src);
+
+
+    });
+
+
+</script>

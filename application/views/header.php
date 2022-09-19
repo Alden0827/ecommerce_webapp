@@ -1,5 +1,5 @@
 <?php
-  print_r($this->session->userdata()); 
+  // print_r($this->session->userdata()); 
 ?>
 
 
@@ -22,7 +22,8 @@
     <link href="<?php echo base_url()?>/assets/vendors/nprogress/nprogress.css" rel="stylesheet">
     <!-- bootstrap-progressbar -->
     <link href="<?php echo base_url()?>/assets/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
-
+    <!-- jQuery -->
+    <script src="<?php echo base_url()?>/assets/vendors/jquery/dist/jquery.min.js"></script>
     <!-- Custom Theme Style -->
     <link href="<?php echo base_url()?>/assets/build/css/custom.min.css" rel="stylesheet">
   </head>

@@ -83,7 +83,7 @@ class Google_auth_c extends CI_Controller {
             // $this->load->view('header', $data);
             // $this->load->view('sidebar', $data);
             // $this->load->view('index');
-            redirect(site_url('seller_center'));
+            redirect(site_url('item_listing'));
         }
     }
 

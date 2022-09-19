@@ -5,6 +5,9 @@ class user_auth_model extends CI_Model {
         $this->load->model('google_login_model');
     }
 
+    function get_user_id(){
+        return $this->session->userdata('user_data')['id'];
+    }
 
     function generate_url() {
         include_once APPPATH . "libraries/vendor/autoload.php";

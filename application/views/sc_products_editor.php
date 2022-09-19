@@ -26,7 +26,7 @@
                     </div>
                     <div class="x_content">      
                      <?php 
-                        echo form_open('seller_center/products_save','enctype="multipart/form-data"'); 
+                        echo form_open('item_listing/products_save','enctype="multipart/form-data"'); 
                         echo "<input type='hidden' name='upc' id='upc' value='$new_upc'> ";
 
                      ?>        
@@ -121,8 +121,8 @@
                             <div class="form-group">
                               <div>
                                 <div class="custom-control custom-checkbox custom-control-inline">
-                                  <input name="is_posted" id="is_posted" type="checkbox" class="form-control"> 
-                                  <label for="is_posted" class="">Post this product in your store now!</label>
+                                  <input name="status_id" id="is_posted" type="checkbox" class="form-control"> 
+                                  <label for="status_id" class="">Post this product in your store now!</label>
                                 </div>
                               </div>
                             </div>                             

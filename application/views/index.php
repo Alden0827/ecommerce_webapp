@@ -57,7 +57,7 @@
                                 <div class="x_content">
 
                                   <div style="text-align: center; margin-bottom: 17px">
-                                    <img src="<?php echo base_url()?>/uploads/<?=$item->upc;?>_1.jpg" width="240" height="240">
+                                    <img src="<?php echo base_url()?>/uploads/<?=$item->upc;?>_p.jpg" width="240" height="240">
                                   </div>
 
                                   <div class="flex">

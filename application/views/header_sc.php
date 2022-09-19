@@ -1,5 +1,5 @@
 <?php
-print_r($this->session->userdata()); 
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

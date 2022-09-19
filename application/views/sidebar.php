@@ -116,7 +116,7 @@
                               // $google_client->addScope('email');
                               // $google_client->addScope('profile');
 
-                              // $google_client->setRedirectUri(site_url('seller_center'));
+                              // $google_client->setRedirectUri(site_url('item_listing'));
                               // echo "<a href='".$google_client->createAuthUrl()."' class=\"btn btn-outline-primary\" role=\"button\">SELLER CENTER</a> ";
                               // echo "<a href='".site_url('google_auth_c')."' class=\"btn btn-outline-primary\" role=\"button\">SELLER CENTER</a> ";
                               if (isset($login_button)) {
@@ -152,7 +152,7 @@
                       </a>
                       <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item"  href="javascript:;"> Profile</a>
-                          <a class="dropdown-item"  href="<?=site_url('seller_center')?>">Seller Center</a>
+                          <a class="dropdown-item"  href="<?=site_url('item_listing')?>">Seller Center</a>
                           <a class="dropdown-item"  href="javascript:;">
                             <span class="badge bg-red pull-right">50%</span>
                             <span>Settings</span>

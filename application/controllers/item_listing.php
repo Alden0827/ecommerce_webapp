@@ -1,17 +1,18 @@
 <?php
 // defined('BASEPATH') OR exit('No direct script access allowed');
-class Seller_center extends CI_Controller {	
+class Item_listing extends CI_Controller {	
 
 	//load SC landing page
 	public function index(){
 
 		$this->load->model('m_products');
+		$this->load->model('user_auth_model');
 
-		$data['items'] = $this->m_products->get_items_by_store(1);
+		$data['items'] = $this->m_products->get_items_by_store($this->user_auth_model->get_user_id());
 
 		$this->load->view('header_sc');
 		$this->load->view('sidebar_sc');
-		$this->load->view('seller_center',$data);
+		$this->load->view('item_listing',$data);
 		$this->load->view('footer_sc');
 	}
 
@@ -33,20 +34,19 @@ class Seller_center extends CI_Controller {
 		$this->load->helper(array('form', 'url'));
 		$this->load->library('form_validation');
 		$this->load->model('m_products');
+		$this->load->model('user_auth_model');
 
 		$form_data = $this->input->post();
 		// print_r($_FILES['product_photos']['name']);
 
-		//saving item
+		//rectify data
 		unset($form_data['is_discount']);	//remove 
 		unset($form_data['submit']);	//remove 
-		$form_data['is_posted'] = isset($form_data['is_posted'])?1:0;
-		if ($form_data['is_posted']){
-			$form_data['date_posted'] = date('Y-m-d h:i:s', time());
+		$form_data['status_id'] = isset($form_data['status_id'])?1:0;
+		if ($form_data['status_id']){
+			$form_data['status_change_date'] = date('Y-m-d h:i:s', time());
 		} 
-
-		// print_r($form_data);
-
+		$form_data['store_id'] = $this->user_auth_model->get_user_id();
 		$inserted_id = $this->m_products->item_add($form_data);
 		
 		//upload photoes
@@ -55,6 +55,7 @@ class Seller_center extends CI_Controller {
 			$count = count($_FILES['product_photos']['name']);
 			for($i=0;$i<$count;$i++){
 				if(!empty($_FILES['product_photos']['name'][$i])){
+
 		          $_FILES['file']['name'] = $_FILES['product_photos']['name'][$i];
 		          $_FILES['file']['type'] = $_FILES['product_photos']['type'][$i];
 		          $_FILES['file']['tmp_name'] = $_FILES['product_photos']['tmp_name'][$i];
@@ -63,10 +64,10 @@ class Seller_center extends CI_Controller {
 
 		          $config['upload_path'] = 'uploads/'; 
 		          $config['allowed_types'] = 'jpg|jpeg|png|gif';
-		          $config['max_size'] = '5000';
+		          $config['max_size'] = '500000';
 		          // $config['file_name'] = $_FILES['product_photos']['name'][$i];
-		          $config['file_name'] = $inserted_id.'-'.$i;
-
+		          $config['file_name'] = $form_data['upc'].'_p';
+		          print($form_data['upc'].'-'.($i+1).'<br>');
 		          $this->load->library('upload',$config); 
 		          if($this->upload->do_upload('file')){
 		            	$uploadData = $this->upload->data();
@@ -76,7 +77,8 @@ class Seller_center extends CI_Controller {
 				}
 			}
 
-			redirect(site_url('seller_center'));
+
+			redirect(site_url('item_listing'));
 		}
 		
         // $this->form_validation->set_rules('name', 'Imie', 'required|min_length[5]|max_length[25]|required|alpha'); 
