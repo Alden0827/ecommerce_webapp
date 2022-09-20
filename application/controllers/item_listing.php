@@ -42,20 +42,22 @@ class Item_listing extends CI_Controller {
 		//rectify data
 		unset($form_data['is_discount']);	//remove 
 		unset($form_data['submit']);	//remove 
+
 		$form_data['status_id'] = isset($form_data['status_id'])?1:0;
-		if ($form_data['status_id']){
-			$form_data['status_change_date'] = date('Y-m-d h:i:s', time());
-		} 
+		$form_data['discount'] = $form_data['discount'] / 100;
+		$form_data['status_change_date'] = date('Y-m-d h:i:s', time());
 		$form_data['store_id'] = $this->user_auth_model->get_user_id();
 		$inserted_id = $this->m_products->item_add($form_data);
-		
+		print_r($form_data);
 		//upload photoes
 		if ($inserted_id > 0) {
 			$data = [];
+
 			$count = count($_FILES['product_photos']['name']);
+			print($count);
 			for($i=0;$i<$count;$i++){
 				if(!empty($_FILES['product_photos']['name'][$i])){
-
+					print('1');
 		          $_FILES['file']['name'] = $_FILES['product_photos']['name'][$i];
 		          $_FILES['file']['type'] = $_FILES['product_photos']['type'][$i];
 		          $_FILES['file']['tmp_name'] = $_FILES['product_photos']['tmp_name'][$i];

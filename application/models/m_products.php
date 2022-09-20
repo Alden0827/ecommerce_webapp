@@ -32,7 +32,7 @@ Class m_products extends CI_Model{
 
    public function item_add($data){
       $this->db->insert('tbl_items', $data);
-      return $this->db->insert_id();
+      return $this->db->affected_rows(); // $this->db->insert_id();
    }
 
 

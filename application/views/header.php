@@ -15,6 +15,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>App Name | Home</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.css" integrity="sha512-8D+M+7Y6jVsEa7RD6Kv/Z7EImSpNpQllgaEIQAtqHcI0H6F4iZknRj0Nx1DCdB+TwBaS+702BGWYC0Ze2hpExQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Bootstrap -->
     <link href="<?php echo base_url()?>/assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -28,6 +30,9 @@
     <script src="<?php echo base_url()?>/assets/vendors/jquery/dist/jquery.min.js"></script>
     <!-- Custom Theme Style -->
     <link href="<?php echo base_url()?>/assets/build/css/custom.min.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script>
+
   </head>
 
   <body class="nav-sm">

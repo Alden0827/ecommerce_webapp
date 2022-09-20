@@ -31,7 +31,8 @@
                     </ul>
  -->                  
 				          </li>
-                  
+                  <li><a href="<?=site_url('cart')?>"><i class="fa fa-shopping-cart"></i> Cart <span class="fa fa-chevron-down"></span></a>
+                  </li>                  
                   <li><a><i class="fa fa-edit"></i> Category <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu " style="display: none;">
                       <li><a href="category.php">Car Accessories</a></li>
@@ -48,8 +49,7 @@
                     </ul>
                   </li>
 
-                  <li><a href="cart.php"><i class="fa fa-shopping-cart"></i> Cart <span class="fa fa-chevron-down"></span></a>
-                  </li>
+
 
 
                   <li><a href="Wishlist.php"><i class="fa fa-list"></i> Wishlist <span class="fa fa-chevron-down"></span></a>

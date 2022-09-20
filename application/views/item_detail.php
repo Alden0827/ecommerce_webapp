@@ -1,33 +1,3 @@
-<?php include_once("constantv.php") ?>
-
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!-- Meta, title, CSS, favicons, etc. -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title><?=app_name?> | Item Name</title>
-
-    <!-- Bootstrap -->
-    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <!-- NProgress -->
-    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
-    <!-- bootstrap-progressbar -->
-    <link href="../vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
-
-    <!-- Custom Theme Style -->
-    <link href="../build/css/custom.min.css" rel="stylesheet">
-  </head>
-
-  <body class="nav-sm">
-    <div class="container body">
-      <div class="main_container">
-        <?php include_once("sidebar.php");?>
 
         <!-- page content -->
         <div class="right_col" role="main">
@@ -183,8 +153,6 @@
         </div>
         <!-- /page content -->
 
-
-
 <script type="text/javascript">
 
 $(function() {
@@ -203,10 +171,29 @@ $(function() {
         var upc = $(this).attr('upc');
         $.ajax({
           type: "POST",
-          url: "<?=site_url('cartmanager/add')?>",
+          url: "<?=site_url('Cart/add')?>",
           data: {upc:upc},
-          success: function(msg){
-             console.log( "Data Saved: " + msg );
+          success: function(json_result){
+              var res = $.parseJSON(json_result);
+                // $(this).attr("disabled", 'disabled');
+                $.toast({
+                        text: '<b>'+res.upc+'<b><br>'+res.item_caption, 
+                        heading: 'Added to Cart Successfully!', 
+                        icon: 'success', 
+                        showHideTransition: 'slide',
+                        allowToastClose: true, 
+                        hideAfter: 3000, 
+                        stack: 5, 
+                        position: 'bottom-right',
+                        textAlign: 'left',  
+                        loader: true,  
+                        loaderBg: '#830101',  
+                        beforeShow: function () {}, 
+                        afterShown: function () {}, 
+                        beforeHide: function () {}, 
+                        afterHidden: function () {}  
+                    });
+
           },
           error: function(XMLHttpRequest, textStatus, errorThrown) {
              alert('error!');
@@ -219,10 +206,26 @@ $(function() {
     });
 
 
-
+    $('.toast').toast('show');
 });
 
 
 
 
 </script>
+
+
+
+<div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+  <div class="toast-header">
+    <img src="..." class="rounded mr-2" alt="...">
+    <strong class="mr-auto">Bootstrap</strong>
+    <small class="text-muted">just now</small>
+    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="toast-body">
+    See? Just like this.
+  </div>
+</div>
