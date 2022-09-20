@@ -1,0 +1,41 @@
+
+
+
+** AWARDSPACE.COM
+New Client Information
+Client ID: 4179927
+Login Email: alden.roxy@gmail.com
+P@ssw0rd0214a
+
+
+** FTP
+SFTP (SSH File Transfer Protocol, recommended) or FTP
+Hostnames:
+f30-preview.awardspace.net
+FTP Username:
+4179927
+FTP Password:
+(The password for 4179927)
+FTP Port: 221 for SFTP, or 21 for FTP
+
+username: 4179927_ROOT
+password: P@ssw0rd0214a
+
+
+***
+file manager: https://cp1.awardspace.net/file-manager/www/
+
+***
+domain: http://weavershop.onlinewebshop.net/
+
+*** database: 
+dbname: 4179927_cidatabase
+host: fdb30.awardspace.net
+user: 4179927_cidatabase
+password: P@ssw0rd0214a
+port: 3306
+
+
+***SSH
+ssh manager: https://cp1.awardspace.net/beta/ssh-manager/#_ga=2.213825553.461439025.1663683392-70700659.1663683392
+ssh weavershop.onlinewebshop.net

@@ -56,7 +56,7 @@
                             $image = 'uploads/'.$item_detail[0]->upc."_p$i.jpg";
                             $img_url = site_url($image);
                             if (file_exists($image)){
-                              echo "<a href='#' id='item_thumb' img_url='$img_url'><img src=\"$img_url\" alt=\"...\" /></a>"; 
+                              echo "<a href='' id='item_thumb' img_url='$img_url'><img src=\"$img_url\" alt=\"...\" /></a>"; 
                             }
                           }
                         ?>
@@ -158,7 +158,8 @@
 $(function() {
     
     //SWITCH COVER PHOTO IMAGES
-    $(document).on('click','#item_thumb',function(){
+    $(document).on('click','#item_thumb',function(e){
+        e.preventDefault();
         var src = $(this).attr('img_url');
         $('#cover_photo').fadeOut('fast',function(){
             $('#cover_photo').attr('src',src);

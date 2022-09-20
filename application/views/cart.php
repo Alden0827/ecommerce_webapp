@@ -72,15 +72,16 @@
                                   </td>
                                   <td class=" "><?php
                                     if ($item->discount == 0) {
-                                        echo $item->unit_price
+                                        echo '$'.$item->unit_price;
+                                    }else{
+                                        echo '<s><font color="red">$'.$item->unit_price.'</font></s><br>';
+                                      echo '$<strong>'.$item->discounted_unit_price.'</strong>';
+                              
                                     }
-                                    
-                                    $item->discounted_unit_price
-
                                     ?></td>
-                                  <td class=" "><input type="number" name="" value="1" width="10"></i></td>
-                                  <td class="a-right a-right ">$45.00</td>
-                                  <td class=" last"><a href="#">Delete</a>
+                                  <td class=" "><input type="number" name="qty" value="<?=$item->qnt?>" width="5"></i></td>
+                                  <td class="a-right a-right "><strong>$<?=$item->total?></strong></td>
+                                  <td class=" last"><a href="#" class="btn btn-sm btn-danger">Delete</a>
                                   </td>
                                 </tr>
                             <?php } ?>

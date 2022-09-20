@@ -27,8 +27,8 @@
         <div class="col-md-12">
           <div class="col-middle">
             <div class="text-center text-center">
-              <h1 class="error-number">404</h1>
-              <h2>Sorry but we couldn't find this page</h2>
+              <h1 class="error-number">THIS PAGE UNDER CONSTRUCTION</h1>
+              <h2>Sorry for inconvineint, this page is under construction</h2>
               <p>This page you are looking for does not exist <a href="#">Report this?</a>
               </p>
 <!--               <div class="mid_center">
@@ -44,7 +44,7 @@
                   </div>
                 </form>
               </div> -->
-              <a href="<?=site_url('')?>" class="btn btn-secondary" type="button" >Go back to main page!</a>
+              <a href="<?=site_url('')?>" class="btn btn-primary" type="button" >Go back to main page!</a>
             </div>
           </div>
         </div>

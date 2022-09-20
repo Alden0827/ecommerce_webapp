@@ -7,10 +7,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'db_cidatabase',
+	'hostname' => 'fdb30.awardspace.net',
+	'username' => '4179927_cidatabase',
+	'password' => 'P@ssw0rd0214a',
+	'database' => '4179927_cidatabase',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
