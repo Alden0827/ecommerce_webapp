@@ -124,8 +124,19 @@
                       </div>
 
                       <div class="">
-                        <button type="button" class="btn btn-success btn-lg" id="btn_add_to_cart" upc="<?=$item_detail[0]->upc?>">Add to Cart</button>
-                        <button type="button" class="btn btn-info btn-lg" id="btn_add_to_wishlist" upc="<?=$item_detail[0]->upc?>">Add to Wishlist</button>
+                        
+                        <?php if ($is_logged_in) { ?>
+                          <button type="button" class="btn btn-success btn-md" id="btn_add_to_cart" upc="<?=$item_detail[0]->upc?>">Add to Cart</button>
+                          <button type="button" class="btn btn-info btn-md" id="btn_add_to_wishlist" upc="<?=$item_detail[0]->upc?>">Add to Wishlist</button>
+                          <button type="button" class="btn btn-danger btn-md" id="btn_buy" upc="<?=$item_detail[0]->upc?>">BUY NOW</button>
+                        <?php } else { ?>
+                          <div class="alert alert-danger alert-dismissible " role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                            </button>
+                            <strong>To purchase this item, you must first log in.</strong>
+                          </div>
+                        <?php } ?>
+
                       </div>
 
                       <div id="container1"></div>

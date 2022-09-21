@@ -24,9 +24,9 @@ class Products extends CI_Controller {
 	{
 		$this->load->model('m_products');
 		$this->load->model('user_auth_model');
-		$this->user_auth_model->generate_url();
         $login_button = $this->user_auth_model->generate_url();
         $data['login_button'] = $login_button;
+        $data['is_logged_in'] = $this->user_auth_model->is_logged_in();
             
 		// $item_id = $this->m_products->get_id_by_uid($uid)->result()[0]->item_id;
 		$res_detail = $this->m_products->get_detail($uid);
@@ -36,7 +36,12 @@ class Products extends CI_Controller {
 		$data["item_detail"] = $res_detail->result();
 
 		$this->load->view('header',$data);
-		$this->load->view('sidebar');
+		if ($this->user_auth_model->is_logged_in()) {
+			$this->load->view('sidebar');
+		}else{
+			$this->load->view('sidebar_out');
+		}
+		
 		$this->load->view('item_detail');
 		$this->load->view('footer');	
 

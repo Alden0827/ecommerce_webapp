@@ -1,0 +1,24 @@
+https://app.infinityfree.net
+login: alden.roxy@gmail.com
+password: P@ssw0rd0214a
+
+**SITE
+site_url: ecci.infinityfreeapp.com
+ip: 185.27.134.134
+
+**CPANEL
+url: https://cpanel.epizy.com/panel/index.php
+user_account: epiz_32635831
+user_password: P@ssw0rd0214a or tTxlVlwzQDV
+
+**DATABASE
+host: sql111.epizy.com
+database: epiz_32635831_db
+username: epiz_32635831
+password: P@ssw0rd0214a
+
+**FTP
+host:ftpupload.net
+port: 21
+username: epiz_32635831 
+password: P@ssw0rd0214a OR tTxlVlwzQDV
