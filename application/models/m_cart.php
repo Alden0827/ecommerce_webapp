@@ -5,22 +5,27 @@ Class m_cart extends CI_Model{
       parent::__construct();
       $this->load->database();
       $this->load->model('user_auth_model');
+      $this->load->model('m_products');
    }
 
    public function add($data){
    	$login_oauth_uid = $this->user_auth_model->get_user_id();
    	$upc = $data['upc'];
    	//check if exists
-   	$q = $this->db->get_where('tbl_carts', array('upc' => $upc,'login_oauth_uid' => $login_oauth_uid));
-   	
+   	$cart_stock = $this->db->get_where('tbl_carts', array('upc' => $upc,'login_oauth_uid' => $login_oauth_uid));
+   	$available_stock = $this->m_products->get_available_stock($upc);
+
 		//if exists
-		if ($q->num_rows() == 0){
+		if ($cart_stock->num_rows() == 0){
    		$this->db->insert('tbl_carts', $data);
 		}else{
-			$this->db->where('upc', $upc)
-						->where('login_oauth_uid', $login_oauth_uid)
-						->set('qnt', $q->row()->qnt+1)
-						->update('tbl_carts');	
+			$cart_item_qty = $cart_stock->row()->qnt;
+			if ($cart_item_qty < $available_stock) {
+				$this->db->where('upc', $upc)
+							->where('login_oauth_uid', $login_oauth_uid)
+							->set('qnt', $cart_item_qty+1)
+							->update('tbl_carts');				
+			}
 		}
 
 		$res = $this->db->select('cart_id')->where(array('upc' => $upc,'login_oauth_uid' => $login_oauth_uid))->get('tbl_carts');
@@ -41,7 +46,7 @@ Class m_cart extends CI_Model{
    public function getall(){
    	// return  $this->db->get_where('tbl_carts', array('login_oauth_uid' => $this->user_auth_model->get_user_id()))->result();
 
-		return $this->db->select('`tbl_carts`.cart_id,`tbl_carts`.`upc`,`tbl_items`.`brand`,`tbl_items`.item_caption,`tbl_items`.item_desc,`tbl_items`.discount,`tbl_items`.unit_price,`tbl_carts`.`qnt`,(`tbl_items`.unit_price) * (1-`tbl_items`.discount) AS discounted_unit_price,(`tbl_carts`.`qnt` * `tbl_items`.unit_price) * (1-`tbl_items`.discount) AS total')
+		return $this->db->select('`tbl_carts`.cart_id,`tbl_items`.`stock`,`tbl_carts`.`upc`,`tbl_items`.`brand`,`tbl_items`.item_caption,`tbl_items`.item_desc,`tbl_items`.discount,`tbl_items`.unit_price,`tbl_carts`.`qnt`,(`tbl_items`.unit_price) * (1-`tbl_items`.discount) AS discounted_unit_price,(`tbl_carts`.`qnt` * `tbl_items`.unit_price) * (1-`tbl_items`.discount) AS total')
 		->from('`tbl_items`')
 		->join('`tbl_carts`', '(`tbl_items`.`upc` = `tbl_carts`.`upc`)')
 		->group_start()

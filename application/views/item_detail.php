@@ -186,10 +186,12 @@ $(function() {
           url: "<?=site_url('Cart/add')?>",
           data: {upc:upc},
           success: function(json_result){
+            console.log(json_result);
               var res = $.parseJSON(json_result);
                 // $(this).attr("disabled", 'disabled');
                 $.toast({
-                        text: '<b>'+res.upc+'<b><br>'+res.item_caption, 
+                        // text: '<b>'+res.upc+'<b><br>'+res.item_caption, 
+                        text: 'xxxxxxxxxxxxx<?php echo $this->session->flashdata('info');?>',
                         heading: 'Added to Cart Successfully!', 
                         icon: 'success', 
                         showHideTransition: 'slide',

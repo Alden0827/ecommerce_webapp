@@ -35,6 +35,10 @@ Class m_products extends CI_Model{
       return $this->db->affected_rows(); // $this->db->insert_id();
    }
 
+   public function get_available_stock($upc){
+      $stock = $this->db->select('stock')->where(array('upc' => $upc))->get('tbl_items');
+      return $stock->row()->stock;
+   }
 
 }
 

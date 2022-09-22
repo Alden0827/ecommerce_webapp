@@ -6,6 +6,12 @@
             <div class="page-title">
               <div class="title_left">
                 <h3>Shopping Cart</h3>
+                       <?php 
+          print('<pre>');
+          print_r($cart_items);
+          print('</pre>');
+
+       ?>
               </div>
             </div>
 
@@ -79,7 +85,7 @@
                               
                                     }
                                     ?></td>
-                                  <td class=" "><input type="number" name="qty" value="<?=$item->qnt?>" width="5"></i></td>
+                                  <td class=" "><input class = "form-control input-lg col-xs-1" min="1" max="<?=$item->stock?>" type="number" name="qty"  id="qty" value="<?=$item->qnt?>" width="5"></i></td>
                                   <td class="a-right a-right "><strong>$<?=$item->total?></strong></td>
                                   <td class=" last"><a href="#" class="btn btn-sm btn-danger">Delete</a>
                                   </td>
@@ -156,3 +162,7 @@
           </div>
         </div>
         <!-- /page content -->
+
+
+
+
