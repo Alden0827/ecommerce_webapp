@@ -1,14 +1,23 @@
 <?php
 // defined('BASEPATH') OR exit('No direct script access allowed');
 class Item_listing extends CI_Controller {	
+    public function __construct(){
+        parent::__construct();
 
+		$this->load->helper(array('form', 'url'));
+		$this->load->library('form_validation');
+
+		$this->load->model('store_model');
+		$this->load->model('item_model');
+		$this->load->model('user_auth_model');        
+		$this->load->model('library_model');
+
+
+    }
 	//load SC landing page
 	public function index(){
-
-		$this->load->model('m_products');
-		$this->load->model('user_auth_model');
-
-		$data['items'] = $this->m_products->get_items_by_store($this->user_auth_model->get_user_id());
+		$this->user_auth_model->login_required();
+		$data['items'] = $this->store_model->get_items_by_store($this->user_auth_model->get_user_id());
 
 		$this->load->view('header_sc');
 		$this->load->view('sidebar_sc');
@@ -17,11 +26,9 @@ class Item_listing extends CI_Controller {
 	}
 
 	public function products_add(){
-
-		$this->load->model('m_library');
-
+		$this->user_auth_model->login_required();
 		$data['new_upc'] = uniqid();
-		$data['res_product_category'] = $this->m_library->get_product_categories();
+		$data['res_product_category'] = $this->library_model->get_product_categories();
 
 		$this->load->helper(array('form', 'url'));
 		$this->load->view('header_sc');
@@ -31,13 +38,9 @@ class Item_listing extends CI_Controller {
 	}
 
 	public function products_save(){
-		$this->load->helper(array('form', 'url'));
-		$this->load->library('form_validation');
-		$this->load->model('m_products');
-		$this->load->model('user_auth_model');
+		$this->user_auth_model->login_required();
 
 		$form_data = $this->input->post();
-		// print_r($_FILES['product_photos']['name']);
 
 		//rectify data
 		unset($form_data['is_discount']);	//remove 
@@ -47,7 +50,7 @@ class Item_listing extends CI_Controller {
 		$form_data['discount'] = $form_data['discount'] / 100;
 		$form_data['status_change_date'] = date('Y-m-d h:i:s', time());
 		$form_data['store_id'] = $this->user_auth_model->get_user_id();
-		$inserted_id = $this->m_products->item_add($form_data);
+		$inserted_id = $this->item_model->item_add($form_data);
 		print_r($form_data);
 		//upload photoes
 		if ($inserted_id > 0) {
@@ -78,34 +81,8 @@ class Item_listing extends CI_Controller {
 		          }	          
 				}
 			}
-
-
 			redirect(site_url('item_listing'));
 		}
-		
-        // $this->form_validation->set_rules('name', 'Imie', 'required|min_length[5]|max_length[25]|required|alpha'); 
-        // $this->form_validation->set_rules('surname', 'Nazwisko', 'required|min_length[5]|max_length[25]|required|alpha'); 
-        // $this->form_validation->set_rules('email', 'Email', 'required|valid_email'); 
-        // $this->form_validation->set_rules('number', 'Numer telefonu', 'required|alpha_numeric|max_length[10]'); 
-        // $this->form_validation->set_rules('brand', 'Marka', 'required|alpha'); 
-        // $this->form_validation->set_rules('model', 'Model', 'required|alpha'); 
-        // $this->form_validation->set_rules('year', 'Rok produkcji', 'required|alpha_numeric|max_length[5]'); 
-        // $this->form_validation->set_rules('km', 'Ilosc KM', 'required|alpha_numeric|max_length[5]'); 
-        // $this->form_validation->set_rules('licenceseplate', 'Tablica rejestracyjna', 'required|max_length[15]'); 
-        // $this->form_validation->set_rules('description', 'Opis', 'required|max_length[300]'); 
-        // $this->form_validation->set_rules('city', 'Miasto', 'required|max_length[30]'); 
-
-	    // if ($this->form_validation->run() == FALSE){
-	    //    echo "Ops!";
-	    // }
-	    // else {
-	    // 	print_r($data);
-	    //  	// $this->your_model->save($data);           
-	    // }
-
-
-
-		
 	}
 
 

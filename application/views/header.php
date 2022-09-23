@@ -1,9 +1,6 @@
 <?php
-
 // echo $this->session->userdata('user_data')['id'];
-
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">

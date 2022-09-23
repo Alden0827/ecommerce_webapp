@@ -86,27 +86,8 @@
                   <nav class="nav navbar-nav">
                     <ul class=" navbar-right">
                       <li class="nav-item dropdown open" style="padding-left: 15px;">
-
-
                           <?php
-                              // include_once APPPATH . "libraries/vendor/autoload.php";
-                              // $this->load->model('google_login_model');
-                              // $google_client = new Google_Client();
-                              // $google_client->setClientId($this->config->item("google_client_id"));
-                              // $google_client->setClientSecret($this->config->item("google_secret_id"));
-                              // $google_client->addScope('email');
-                              // $google_client->addScope('profile');
-
-                              // $google_client->setRedirectUri(site_url('item_listing'));
-                              // echo "<a href='".site_url('google_auth_c')."' class=\"btn btn-outline-primary\" role=\"button\">SELLER CENTER</a> ";
-
-                              // if (isset($login_button)) {
-                              //   echo $login_button;
-                              // }else{
-                              //   $google_client->setRedirectUri($this->config->item("google_redirect_url"));
-                                echo '<a href="'.site_url('logout').'"  class="btn btn-outline-success" role="button"> LOGOUT</a>';
-                              // }
-
+                              echo '<a href="'.site_url('logout').'"  class="btn btn-outline-success" role="button"> LOGOUT</a>';
                           ?>
                       </li>
                     </ul>

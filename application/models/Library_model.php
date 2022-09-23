@@ -1,5 +1,5 @@
 <?php
-Class m_library extends CI_Model{
+Class library_model extends CI_Model{
 
    public function __construct(){
       parent::__construct();

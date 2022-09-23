@@ -2,9 +2,27 @@
 class user_auth_model extends CI_Model {
     public function __construct() {
         parent::__construct();
-        $this->load->model('google_login_model');
     }
-
+    private function Is_already_register($id) {
+        $this->db->where('login_oauth_uid', $id);
+        $query = $this->db->get('users');
+        if ($query->num_rows() > 0) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    public function login_required(){
+        if (!$this->is_logged_in()) redirect(site_url('logout'));
+    }
+    private function Update_user_data($data, $id) {
+        $this->db->where('login_oauth_uid', $id);
+        $this->db->update('users', $data);
+    }
+    private function Insert_user_data($data) {
+        $this->db->insert('users', $data);
+    }
     function get_user_id(){
         return $this->session->userdata('user_data')['id'];
     }
@@ -34,7 +52,7 @@ class user_auth_model extends CI_Model {
                 $data = $google_service->userinfo->get();
                 $current_datetime = date('Y-m-d H:i:s');
 
-                if ($this->google_login_model->Is_already_register($data['id'])) {
+                if ($this->Is_already_register($data['id'])) {
                     //update data
                     $user_data = array(
                         'first_name' => $data['given_name'],
@@ -44,7 +62,7 @@ class user_auth_model extends CI_Model {
                         'updated_at' => $current_datetime
                     );
 
-                    $this->google_login_model->Update_user_data($user_data, $data['id']);
+                    $this->Update_user_data($user_data, $data['id']);
                 }
                 else {
                     //insert data
@@ -57,7 +75,7 @@ class user_auth_model extends CI_Model {
                         'created_at' => $current_datetime
                     );
 
-                    $this->google_login_model->Insert_user_data($user_data);
+                    $this->Insert_user_data($user_data);
                 }
                 if (!isset($user_data['id'])){
                     $user_data['id'] = $data['id'];

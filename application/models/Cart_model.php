@@ -1,11 +1,11 @@
 <?php
-Class m_cart extends CI_Model{
+Class cart_model extends CI_Model{
 
    public function __construct(){
       parent::__construct();
       $this->load->database();
       $this->load->model('user_auth_model');
-      $this->load->model('m_products');
+      $this->load->model('item_model');
    }
 
    public function add($data){
@@ -13,7 +13,7 @@ Class m_cart extends CI_Model{
    	$upc = $data['upc'];
    	//check if exists
    	$cart_stock = $this->db->get_where('tbl_carts', array('upc' => $upc,'login_oauth_uid' => $login_oauth_uid));
-   	$available_stock = $this->m_products->get_available_stock($upc);
+   	$available_stock = $this->item_model->get_available_stock($upc);
 
 		//if exists
 		if ($cart_stock->num_rows() == 0){

@@ -6,7 +6,7 @@ Class image_processor extends CI_Model{
       $this->load->database();
    }
 
-   public function resizeImage($filename){
+   public function crate_thumbs($filename){
       $source_path = $_SERVER['DOCUMENT_ROOT'] . '/uploads/' . $filename;
       $target_path = $_SERVER['DOCUMENT_ROOT'] . '/uploads/thumbnail/';
       $config_manip = array(
@@ -19,7 +19,6 @@ Class image_processor extends CI_Model{
           'width' => 150,
           'height' => 150
       );
-
       $this->load->library('image_lib', $config_manip);
       if (!$this->image_lib->resize()) {
           echo $this->image_lib->display_errors();

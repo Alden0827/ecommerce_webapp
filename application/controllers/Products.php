@@ -1,10 +1,17 @@
 <?php
 // defined('BASEPATH') OR exit('No direct script access allowed');
 class Products extends CI_Controller {
+
+    public function __construct(){
+        parent::__construct();
+		$this->load->model('item_model');
+		$this->load->model('store_model');
+		$this->load->model('user_auth_model');        
+    }
+
 	public function index()
 	{
-	    $this->load->model('m_products');
-	    $item_listing = $this->m_products->get_posted_items();
+	    $item_listing = $this->store_model->get_posted_items();
 	    $data['product_listing'] = $item_listing;
 
 		$this->load->view('header');
@@ -14,25 +21,17 @@ class Products extends CI_Controller {
 	}
 	public function category()
 	{
-		// $this->load->model('model_users');
-		// $res = $this->model_users->read();
-		// $data['dataset'] = $res;
-
 		$this->load->view('category');
 	}
 	public function detail($uid)
 	{
-		$this->load->model('m_products');
-		$this->load->model('user_auth_model');
+		$this->user_auth_model->login_required();
+
         $login_button = $this->user_auth_model->generate_url();
         $data['login_button'] = $login_button;
         $data['is_logged_in'] = $this->user_auth_model->is_logged_in();
             
-		// $item_id = $this->m_products->get_id_by_uid($uid)->result()[0]->item_id;
-		$res_detail = $this->m_products->get_detail($uid);
-
-		 // print_r($res_detail->result());
-
+		$res_detail = $this->item_model->get_detail($uid);
 		$data["item_detail"] = $res_detail->result();
 
 		$this->load->view('header',$data);

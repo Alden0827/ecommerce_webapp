@@ -7,11 +7,10 @@
               <div class="title_left">
                 <h3>Shopping Cart</h3>
                        <?php 
-          print('<pre>');
-          print_r($cart_items);
-          print('</pre>');
-
-       ?>
+                          // print('<pre>');
+                          // print_r($cart_items);
+                          // print('</pre>');
+                       ?>
               </div>
             </div>
 

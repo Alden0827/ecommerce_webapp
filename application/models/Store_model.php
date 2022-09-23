@@ -1,6 +1,6 @@
 
 <?php
-Class m_products extends CI_Model{
+Class store_model extends CI_Model{
    public function __construct(){
       parent::__construct();
       $this->load->database();

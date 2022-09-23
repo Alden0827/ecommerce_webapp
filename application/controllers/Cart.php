@@ -3,13 +3,15 @@ class Cart extends CI_Controller {
 
     public function __construct() {
        parent::__construct();
-       
-       $this->load->model('m_cart');
+       $this->load->model('cart_model');
        $this->load->model('user_auth_model');
     }
 
     public function index(){
-        $data['cart_items'] = $this->m_cart->getall();
+
+        $this->user_auth_model->login_required();
+
+        $data['cart_items'] = $this->cart_model->getall();
         $this->load->view('header');
         $this->load->view('sidebar',$data);
         $this->load->view('cart');
@@ -21,9 +23,9 @@ class Cart extends CI_Controller {
         $data['login_oauth_uid'] = $this->user_auth_model->get_user_id();
         $data['date_added'] = date('Y-m-d h:i:s', time());
         $data['qnt'] = 1;
-        $new_id = $this->m_cart->add($data);
+        $new_id = $this->cart_model->add($data);
         if ($new_id > 0) {
-            print_r(json_encode($this->m_cart->get($new_id)[0]));
+            print_r(json_encode($this->cart_model->get($new_id)[0]));
         }
     }
 
