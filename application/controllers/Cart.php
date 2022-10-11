@@ -30,9 +30,19 @@ class Cart extends CI_Controller {
     }
 
     public function delete(){
-
+        $data = $this->input->post();
+        $cart_id = $data['cart_id'];
+        $this->cart_model->delete($cart_id); 
     }
 
+    public function updateqty(){
+        $data = $this->input->post();
+        $cart_id = $data['cart_id'];
+        $cart_item_qty = $data['cart_item_qty'];
+        
+
+    }
+    
 
 }
 

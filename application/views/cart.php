@@ -1,4 +1,7 @@
+<?php
 
+  // print_r($cart_items);
+?>
 
         <!-- page content -->
         <div class="right_col" role="main">
@@ -61,7 +64,7 @@
 
                           <tbody>
                             <?php foreach ($cart_items as $item) { ?>
-                                <tr class="even pointer">
+                                <tr class="even pointer" cart_id="<?=$item->cart_id;?>">
                                   <td class="a-center ">
                                     <input type="checkbox" class="flat" name="table_records">
                                   </td>
@@ -86,7 +89,18 @@
                                     ?></td>
                                   <td class=" "><input class = "form-control input-lg col-xs-1" min="1" max="<?=$item->stock?>" type="number" name="qty"  id="qty" value="<?=$item->qnt?>" width="5"></i></td>
                                   <td class="a-right a-right "><strong>$<?=$item->total?></strong></td>
-                                  <td class=" last"><a href="#" class="btn btn-sm btn-danger">Delete</a>
+                                  <td class=" last">
+
+                                    <div class="visible delete_entry_container">
+                                      <a href="#" class="btn btn-sm btn-danger" id="delete_entry" ><i class="fa fa-trash"></i></a>
+                                    </div>
+                                    
+                                    
+                                    <div class="invisible confirm_delete_entry_container">
+                                      <a href="#" class="btn btn-sm btn-danger" id="confirm_delete_entry" ><i class="fa fa-trash"></i></a>
+                                      <a href="#" class="btn btn-sm btn-success" id="cancel_delete_entry"><i class="fa fa-close"></i></a>
+                                    </div>
+
                                   </td>
                                 </tr>
                             <?php } ?>
@@ -164,4 +178,73 @@
 
 
 
+        <script type="text/javascript">
+          $(function() {
 
+
+
+            //WHEN QNT_CHANGED CLICKED
+            $(document).on('change','#qty',function(){
+              var new_qty = $(this).val();
+              var cart_id = $(this).closest('tr').attr('cart_id');
+
+              $.ajax({
+                  url:'<?=site_url('Cart/updateqty')?>',
+                  data: {
+                      cart_id:cart_id,
+                      cart_item_qty:new_qty
+                  },
+                  type: 'post',
+                  success: function(data){
+                      console.log(data)      
+                  }
+              })
+            });
+
+            //WHEN CONFIRM DELETE CLICKED
+            $(document).on('click','#confirm_delete_entry',function(e){
+              e.preventDefault();
+
+                var cart_id = $(this).closest('tr').attr('cart_id');
+                var row = $(this).closest('tr');
+
+                $.ajax({
+                    url:'<?=site_url('Cart/delete')?>',
+                    data: {cart_id:cart_id},
+                    type: 'post',
+                    success: function(data){
+                      row.fadeOut(300,function(){
+                          $(this).remove();
+                      });        
+                    }
+                })
+            });
+
+            //WHEN CANCEL DELETE CLICKED
+            $(document).on('click','#cancel_delete_entry',function(e){
+              e.preventDefault();
+              var confirm_delete_entry_container = $(this).parent().parent().find('.confirm_delete_entry_container');
+              var delete_entry_container = $(this).parent().parent().find('.delete_entry_container');     
+
+              confirm_delete_entry_container.fadeOut(300,function(e){
+                delete_entry_container.fadeIn(300);
+              });
+            });
+
+            // DELETE ENTRY CLICKED
+            $(document).on('click','#delete_entry',function(e){
+              e.preventDefault();
+              // $('#confirm_delete_entry')
+              var confirm_delete_entry_container = $(this).parent().parent().find('.confirm_delete_entry_container');
+              var delete_entry_container = $(this).parent().parent().find('.delete_entry_container');
+
+              delete_entry_container.fadeOut(300,function(e){
+                confirm_delete_entry_container.fadeIn(100);
+                if ($(confirm_delete_entry_container).hasClass('invisible')) {
+                   $(confirm_delete_entry_container).removeClass('invisible').addClass('visible');
+                }
+              });
+
+            });
+          });
+        </script>

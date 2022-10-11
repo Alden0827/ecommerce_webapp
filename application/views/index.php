@@ -82,7 +82,7 @@
                                 <div class="flex">
                                   <ul class="list-inline count2">
                                     <li>
-                                      <b><?=$item->unit_price;?></b>
+                                      <b>$<?=$item->unit_price;?></b>
                                       <span>Price</span>
                                     </li>
                                     <li>

@@ -8,14 +8,33 @@ Class cart_model extends CI_Model{
       $this->load->model('item_model');
    }
 
+   public function delete($cart_id){
+   	$this->db->delete('tbl_carts', array('cart_id' => $cart_id));
+   }
+
+   public function updateqty($cart_id,$cart_item_qty){
+
+   	//get available stock
+   	$upc = $this->db->select('upc')->where(array('cart_id' => $cart_id))->get('tbl_carts')->row()->upc;
+   	$available_stock = $this->item_model->get_available_stock($upc);
+
+   	if ($cart_item_qty > $available_stock) {
+				return $this->db->update('tbl_carts', array('qnt' => $available_stock), array('cart_id' => $cart_id)) ;   		
+   	}else{
+				return $this->db->update('tbl_carts', array('qnt' => $cart_item_qty), array('cart_id' => $cart_id)) ;   		
+		}
+
+   }
+
    public function add($data){
    	$login_oauth_uid = $this->user_auth_model->get_user_id();
    	$upc = $data['upc'];
+
    	//check if exists
    	$cart_stock = $this->db->get_where('tbl_carts', array('upc' => $upc,'login_oauth_uid' => $login_oauth_uid));
    	$available_stock = $this->item_model->get_available_stock($upc);
 
-		//if exists
+		//if not exists
 		if ($cart_stock->num_rows() == 0){
    		$this->db->insert('tbl_carts', $data);
 		}else{

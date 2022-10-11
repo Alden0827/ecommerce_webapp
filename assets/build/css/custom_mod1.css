@@ -1193,7 +1193,7 @@ body {
 .fixed_height_390 {
   height: 390px; }
 
-.fixed_item_card_height {height: 310px; } /* here  */
+.fixed_item_card_height {height: 280px; } /* here  */
 .fixed_item_card_width {width: 310px; } /* here */
 
 .fixed_height_200 {
@@ -3353,7 +3353,7 @@ ul.social li {
   margin-top: 0; }
 
 
-.widget {min-width: 192px; max-width: 192px; } /* here */
+.widget {min-width: 156px; max-width: 156px; } /* here */
 
 .widget_tally_box .btn-group button {
   text-align: center; }
@@ -3674,7 +3674,8 @@ ul.project_files li a i {
   height: 88px;
   top: -1px;
   right: -100px; 
-  left: 87px;
+  left: 45px;
+
 /*  border-style: solid;
   border-width: 1px;*/
 
@@ -3706,8 +3707,8 @@ ul.project_files li a i {
 
 .image_zindex {
     z-index: -1;
-    width: 163px;
-    height: 163px;
+    width: 123px;
+    height: 123px;
  }
 /*-------------------------------------*/
 

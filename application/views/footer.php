@@ -29,7 +29,7 @@
     <script src="<?php echo base_url()?>/assets/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
 
     <!-- Custom Theme Scripts -->
-    <script src="<?php echo base_url()?>/assets/build/js/custom.min.js"></script>
+    <script src="<?php echo base_url()?>/assets/build/js/custom.js"></script>
 
     <script type="text/javascript">
     	$(document).ready(function(){
