@@ -6,3 +6,4 @@ $route['404_override'] = 'errors/error404';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['logout'] = 'home/logout';
+$route['test'] = 'tests/test1';

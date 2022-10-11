@@ -25,8 +25,6 @@ class Products extends CI_Controller {
 	}
 	public function detail($uid)
 	{
-		$this->user_auth_model->login_required();
-
         $login_button = $this->user_auth_model->generate_url();
         $data['login_button'] = $login_button;
         $data['is_logged_in'] = $this->user_auth_model->is_logged_in();

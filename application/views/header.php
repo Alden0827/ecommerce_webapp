@@ -26,7 +26,7 @@
     <!-- jQuery -->
     <script src="<?php echo base_url()?>/assets/vendors/jquery/dist/jquery.min.js"></script>
     <!-- Custom Theme Style -->
-    <link href="<?php echo base_url()?>/assets/build/css/custom.min.css" rel="stylesheet">
+    <link href="<?php echo base_url()?>/assets/build/css/custom_mod1.css" rel="stylesheet">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script>
 
