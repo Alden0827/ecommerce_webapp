@@ -5,6 +5,7 @@ class Cart extends CI_Controller {
        parent::__construct();
        $this->load->model('cart_model');
        $this->load->model('user_auth_model');
+       $this->load->helper('form');
     }
 
     public function index(){
@@ -39,7 +40,8 @@ class Cart extends CI_Controller {
         $data = $this->input->post();
         $cart_id = $data['cart_id'];
         $cart_item_qty = $data['cart_item_qty'];
-        
+        $result = $this->cart_model->updateqty($cart_id,$cart_item_qty);
+        print($result);
 
     }
     

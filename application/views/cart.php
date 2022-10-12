@@ -6,6 +6,8 @@
         <!-- page content -->
         <div class="right_col" role="main">
           <div class="">
+
+
             <div class="page-title">
               <div class="title_left">
                 <h3>Shopping Cart</h3>
@@ -16,6 +18,9 @@
                        ?>
               </div>
             </div>
+
+
+            <?php echo form_open('order/checkout'); ?>
 
             <div class="clearfix"></div>
             <div class="row" style="display: block;">
@@ -48,7 +53,7 @@
                           <thead>
                             <tr class="headings">
                               <th>
-                                <input type="checkbox" id="check-all" class="flat">
+                                <input type="checkbox" id="check-all" class="flat" checked="checked">
                               </th>
                               <th class="column-title">Product </th>
                               <th class="column-title">Unit Price </th>
@@ -62,11 +67,13 @@
                             </tr>
                           </thead>
 
-                          <tbody>
+                          <tbody id="cart_list_container" >
                             <?php foreach ($cart_items as $item) { ?>
-                                <tr class="even pointer" cart_id="<?=$item->cart_id;?>">
+                                <tr class="even pointer" cart_id="<?=$item->cart_id;?>" item_total_cost="<?=$item->total;?>"
+                                  >
+                                  <input type="hidden" name="cart_id[]" value="<?=$item->cart_id;?>">
                                   <td class="a-center ">
-                                    <input type="checkbox" class="flat" name="table_records">
+                                    <input type="checkbox" class="flat chk_item_selector" id="chk_item_selector" name="chk_item_selector[]" checked="checked">
                                   </td>
                                   <td class=" ">
                                     <div class="image-wrapper float-left pr-3">
@@ -131,31 +138,25 @@
                                                   <strong>Price: </strong>
                                               </p>
                                               <p>
-                                                  <strong>Shipment: </strong>
-                                              </p>
-                                              <p>
                                                   <strong>Tax: </strong>
                                               </p></td>
                                               <td class="text-center">
                                               <p>
-                                                  <strong>$90.00</strong>
+                                                  <strong id="total_cost">$0.00</strong>
                                               </p>
                                               <p>
-                                                  <strong>$5.00</strong>
-                                              </p>
-                                              <p>
-                                                  <strong>$6.94</strong>
+                                                  <strong id="taxed_amount">$0.00</strong>
                                               </p>
 
                                             </td>
                                           </tr>
                                           <tr>
                                               <td class="text-right"><h4><strong>Total: </strong></h4></td>
-                                              <td class="text-center text-danger"><h4><strong>$101.94</strong></h4></td>
+                                              <td class="text-center text-danger"><h4><strong id="net_amount">$0.0</strong></h4></td>
                                           </tr>
                                       </tbody>
                                   </table>
-                                  <button type="button" class="btn btn-success btn-lg btn-block">
+                                  <button type="Submit" class="btn btn-success btn-lg btn-block" name='submit' value='Submit'>
                                       Checkout Now   <span class="glyphicon glyphicon-chevron-right"></span>
                                   </button></td>
                               </div>
@@ -172,6 +173,13 @@
                 </div>
               </div>
             </div>
+
+          </form>
+
+
+
+
+
           </div>
         </div>
         <!-- /page content -->
@@ -181,7 +189,10 @@
         <script type="text/javascript">
           $(function() {
 
-
+            var formatter = new Intl.NumberFormat('en-US', {
+              style: 'currency',
+              currency: 'USD',
+            });
 
             //WHEN QNT_CHANGED CLICKED
             $(document).on('change','#qty',function(){
@@ -246,5 +257,54 @@
               });
 
             });
+
+            //toggle check all
+            $(document).on("click","#check-all",function(){
+                var is_checked = $(this).is(":checked");
+                console.log(is_checked);
+                $("#cart_list_container tr").each(function(){
+                    $(this).find('input.chk_item_selector').prop('checked',is_checked);
+                });
+                update_summary();
+            });
+
+            //toggle check selector
+            $(document).on("click","#chk_item_selector",function(){
+                var is_checked = $(this).is(":checked");
+                $('#check-all').prop('checked',false);
+                // console.log(is_checked);
+                update_summary();
+            });
+
+            //update summary
+            function update_summary(){
+                var shipping_fee = 0;
+                var tax_rate = 0.12;
+                var item_count = 0;
+                var total_cost = 0;
+                var taxed_amount = 0;
+                var net_amount = 0;
+                $("#cart_list_container tr").each(function(){
+                    var tr = $(this);
+                    var is_selected = $(this).find('input.chk_item_selector').is(":checked");
+                    var cart_id = tr.attr('cart_id');
+                    var item_cost = 0;
+                    if (is_selected) {
+                        item_cost = tr.attr('item_total_cost');
+                        total_cost+=parseFloat(item_cost);
+                        
+                    }
+                });
+                taxed_amount = total_cost * tax_rate;
+                net_amount = total_cost + taxed_amount;
+
+                $('#total_cost').html(formatter.format(total_cost));
+                $('#taxed_amount').html(formatter.format(taxed_amount));
+                $('#net_amount').html(formatter.format(net_amount));
+                
+            }
+
+            update_summary();
+
           });
         </script>
