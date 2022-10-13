@@ -7,6 +7,7 @@ class Order extends CI_Controller {
        $this->load->model('cart_model');
        $this->load->model('user_auth_model');
        $this->load->helper('url');
+       $this->load->helper('form');
     }
 
     public function index(){
@@ -16,10 +17,23 @@ class Order extends CI_Controller {
     public function checkout(){
         $this->user_auth_model->login_required();
          if($this->input->post('submit') != NULL ){
-            $postData = $this->input->post();
-            print('<pre>');
-            print_r($postData);
-            print('</pre>');
+
+            // $data['cart_items'] = $this->cart_model->getall();
+            $selected_items = $this->input->post();
+            // print('<pre>');
+            print_r($selected_items);
+            // print('</pre>');
+
+            
+            $this->load->view('header');
+            $this->load->view('sidebar');
+            $this->load->view('checkout');
+            $this->load->view('footer');
+
+
+
+
+
          }
 
         

@@ -71,9 +71,10 @@
                             <?php foreach ($cart_items as $item) { ?>
                                 <tr class="even pointer" cart_id="<?=$item->cart_id;?>" item_total_cost="<?=$item->total;?>"
                                   >
-                                  <input type="hidden" name="cart_id[]" value="<?=$item->cart_id;?>">
+                                  
                                   <td class="a-center ">
-                                    <input type="checkbox" class="flat chk_item_selector" id="chk_item_selector" name="chk_item_selector[]" checked="checked">
+                                    <input type="checkbox" class="flat chk_item_selector" id="chk_item_selector" checked="checked">
+                                    <input type="hidden" name="cart_id[]" value="<?=$item->cart_id;?>" id="hidden_chart_id" class="hidden_chart_id">
                                   </td>
                                   <td class=" ">
                                     <div class="image-wrapper float-left pr-3">
@@ -94,7 +95,7 @@
                               
                                     }
                                     ?></td>
-                                  <td class=" "><input class = "form-control input-lg col-xs-1" min="1" max="<?=$item->stock?>" type="number" name="qty"  id="qty" value="<?=$item->qnt?>" width="5"></i></td>
+                                  <td class=" "><input class = "form-control input-lg col-xs-1" min="1" max="<?=$item->stock?>" type="number" id="qty" value="<?=$item->qnt?>" width="5"></i></td>
                                   <td class="a-right a-right "><strong>$<?=$item->total?></strong></td>
                                   <td class=" last">
 
@@ -156,7 +157,7 @@
                                           </tr>
                                       </tbody>
                                   </table>
-                                  <button type="Submit" class="btn btn-success btn-lg btn-block" name='submit' value='Submit'>
+                                  <button type="Submit" class="btn btn-success btn-lg btn-block" name='submit' value='Submit' id='checkout_button'>
                                       Checkout Now   <span class="glyphicon glyphicon-chevron-right"></span>
                                   </button></td>
                               </div>
@@ -287,13 +288,19 @@
                 $("#cart_list_container tr").each(function(){
                     var tr = $(this);
                     var is_selected = $(this).find('input.chk_item_selector').is(":checked");
+                    var hidden_chart_id = $(this).find('input.hidden_chart_id');
                     var cart_id = tr.attr('cart_id');
                     var item_cost = 0;
+                   
                     if (is_selected) {
                         item_cost = tr.attr('item_total_cost');
                         total_cost+=parseFloat(item_cost);
-                        
+                        hidden_chart_id.removeAttr("disabled"); 
+                    }else{
+                        hidden_chart_id.attr('disabled','disabled');
                     }
+                     
+                   
                 });
                 taxed_amount = total_cost * tax_rate;
                 net_amount = total_cost + taxed_amount;
@@ -301,6 +308,12 @@
                 $('#total_cost').html(formatter.format(total_cost));
                 $('#taxed_amount').html(formatter.format(taxed_amount));
                 $('#net_amount').html(formatter.format(net_amount));
+
+                if (net_amount < 1) {
+                    $('#checkout_button').attr('disabled','disabled');
+                }else{
+                    $('#checkout_button').removeAttr('disabled');
+                }
                 
             }
 
