@@ -55,7 +55,7 @@
                         ?>
 
                           <tr>
-                            <td><img src="<?=site_url("uploads/".$item->upc."_p.jpg")?>" width="100" height="100"/><br><?=$item->upc?></td>
+                            <td><img src="<?=site_url("uploads/items/thumbs/".$item->upc."_p_thumb.jpg")?>" width="100" height="100"/><br><?=$item->upc?></td>
                             <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;white-space: normal !important; ">
                               <strong><?=$item->item_caption?></strong><br> <br> 
                             </td>

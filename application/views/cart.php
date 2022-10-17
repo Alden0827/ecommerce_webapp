@@ -78,7 +78,7 @@
                                   </td>
                                   <td class=" ">
                                     <div class="image-wrapper float-left pr-3">
-                                        <img src="<?=site_url('uploads/'.$item->upc.'_p.jpg')?>" width="100" height="100" alt=""/>
+                                        <img src="<?=site_url('uploads/items/'.$item->upc.'_p.jpg')?>" width="100" height="100" alt=""/>
                                     </div>
                                     <div class="">
                                         <strong><?=$item->item_caption?></strong>                                        
@@ -256,7 +256,6 @@
                    $(confirm_delete_entry_container).removeClass('invisible').addClass('visible');
                 }
               });
-
             });
 
             //toggle check all

@@ -33,17 +33,15 @@
 				          </li>                 
                   <li><a><i class="fa fa-edit"></i> Category <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu " style="display: none;">
-                      <li><a href="category.php">Car Accessories</a></li>
-                      <li><a href="category.php">Home Care</a></li>
-                      <li><a href="category.php">Home Appliances</a></li>
-                      <li><a href="category.php">Mobile Phones</a></li>
-                      <li><a href="category.php">Furnitures</a></li>
-                      <li><a href="category.php">Toys and baby Equipment</a></li>
-                      <li><a href="category.php">Electronics</a></li>
-                      <li><a href="category.php">Books, CDs, and Other Phisical Media</a></li>
-                      <li><a href="category.php">Grocery Food and Drinks</a></li>
-                      <li><a href="category.php">Fashion, Clothos, and Accessories</a></li>
-                      <li><a href="category.php">Health and Beauty</a></li>
+
+
+                      <?php foreach ($item_categories->result() as $category) {  ?>
+                           <?php echo "<li><a href=\"".site_url()."/category/s/".$category->cat_id."\">".$category->category."</a></li>" ?>
+
+                      <?php } ?>
+
+
+
                     </ul>
                   </li>
                 </ul>

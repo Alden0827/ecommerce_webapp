@@ -1,3 +1,5 @@
+
+
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
@@ -35,34 +37,26 @@
                   </li>                  
                   <li><a><i class="fa fa-edit"></i> Category <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu " style="display: none;">
-                      <li><a href="category.php">Car Accessories</a></li>
-                      <li><a href="category.php">Home Care</a></li>
-                      <li><a href="category.php">Home Appliances</a></li>
-                      <li><a href="category.php">Mobile Phones</a></li>
-                      <li><a href="category.php">Furnitures</a></li>
-                      <li><a href="category.php">Toys and baby Equipment</a></li>
-                      <li><a href="category.php">Electronics</a></li>
-                      <li><a href="category.php">Books, CDs, and Other Phisical Media</a></li>
-                      <li><a href="category.php">Grocery Food and Drinks</a></li>
-                      <li><a href="category.php">Fashion, Clothos, and Accessories</a></li>
-                      <li><a href="category.php">Health and Beauty</a></li>
+
+                      <?php foreach ($item_categories->result() as $category) {  ?>
+                           <?php echo "<li><a href=\"".site_url()."/category/s/".$category->cat_id."\">".$category->category."</a></li>" ?>
+
+                      <?php } ?>
+
                     </ul>
                   </li>
 
-
-
-
-                  <li><a href="Wishlist.php"><i class="fa fa-list"></i> Wishlist <span class="fa fa-chevron-down"></span></a>
+                  <li><a href="<?=site_url('wishlist')?>"><i class="fa fa-list"></i> Wishlist <span class="fa fa-chevron-down"></span></a>
                   </li>
 
 
-                  <li><a><i class="fa fa-desktop"></i> Explore Stores <span class="fa fa-chevron-down"></span></a>
+                  <li><a href="<?=site_url('stores')?>"><i class="fa fa-desktop"></i> Explore Stores <span class="fa fa-chevron-down"></span></a>
                   </li>
 
                   <li><a><i class="fa fa-thumbs-o-up"></i> Bids & Checkouts <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="blank.php">Bids</a></li>
-                      <li><a href="blank.php">Purchases</a></li>
+                      <li><a href="<?=site_url('trans/bids')?>">My Bids</a></li>
+                      <li><a href="<?=site_url('trans/purchases')?>">My Purchases</a></li>
 
                     </ul>
                   </li>

@@ -26,6 +26,10 @@ Class store_model extends CI_Model{
                            ->get();
    }
 
+   public function get_posted_items_by_category($category_id){
+      return $this->db->get_where('`tbl_items`', array('cat_id' => $category_id))->result();
+   }
+
    public function get_detail($uid){
       return $this->db->select('*')->from('tbl_items')->where(array('upc' => $uid))->get();
    }
@@ -38,6 +42,10 @@ Class store_model extends CI_Model{
    public function get_available_stock($upc){
       $stock = $this->db->select('stock')->where(array('upc' => $upc))->get('tbl_items');
       return $stock->row()->stock;
+   }
+
+   public function get_store_info($store_id){
+      return $this->db->get_where('`store_info`', array('store_id' => $store_id));
    }
 
 }

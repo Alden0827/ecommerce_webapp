@@ -1,5 +1,5 @@
 <?php
-Class cart_model extends CI_Model{
+Class Cart_model extends CI_Model{
 
    public function __construct(){
       parent::__construct();
@@ -49,6 +49,34 @@ Class cart_model extends CI_Model{
 
 		$res = $this->db->select('cart_id')->where(array('upc' => $upc,'login_oauth_uid' => $login_oauth_uid))->get('tbl_carts');
 		return $res->row()->cart_id;
+   }
+
+   public function get_cart_entries($data){
+   		// print($data);
+   		return $this->db->select('`tbl_carts`.`qnt`,`tbl_items`.`item_caption`,`tbl_items`.`item_desc`,`tbl_carts`.`upc`,`tbl_items`.`unit_price`,`tbl_items`.`unit_price` + (`tbl_items`.`unit_price` * `tbl_items`.`discount`) AS discounted_unit_price,(`tbl_items`.`unit_price` + (`tbl_items`.`unit_price` * `tbl_items`.`discount`)) * `tbl_carts`.`qnt` AS sub_total')
+			->from('`db_cidatabase`.`tbl_carts`')
+			->join('`db_cidatabase`.`tbl_items`', '(`tbl_carts`.`upc` = `tbl_items`.`upc`)')
+			->group_start()
+			->where_in('`tbl_carts`.`cart_id`', $data)
+			->group_end()
+			->order_by('`tbl_carts`.`cart_id` ASC')
+			->get()->result();
+
+			// SELECT
+			//     `tbl_carts`.`qnt`
+			//     , `tbl_items`.`item_caption`
+			//     , `tbl_items`.`item_desc`
+			//     , `tbl_carts`.`upc`
+			//     , `tbl_items`.`unit_price`
+			//     , `tbl_items`.`unit_price` + (`tbl_items`.`unit_price` * `tbl_items`.`discount`) AS discounted_unit_price
+			//     , (`tbl_items`.`unit_price` + (`tbl_items`.`unit_price` * `tbl_items`.`discount`)) * `tbl_carts`.`qnt` AS sub_total
+			// FROM
+			//     `db_cidatabase`.`tbl_carts`
+			//     INNER JOIN `db_cidatabase`.`tbl_items` 
+			//         ON (`tbl_carts`.`upc` = `tbl_items`.`upc`)
+			// WHERE (`tbl_carts`.`cart_id` IN (1,2,3,4,5))
+			// ORDER BY `tbl_carts`.`cart_id` ASC;
+
    }
 
    public function get($cart_id){

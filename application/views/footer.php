@@ -28,9 +28,9 @@
     <!-- bootstrap-progressbar -->
     <script src="<?php echo base_url()?>/assets/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
     <!-- jQuery Smart Wizard -->
-    <script src="<?php echo base_url()?>/assets/endors/jQuery-Smart-Wizard/js/jquery.smartWizard.js"></script>
+    <script src="<?php echo base_url()?>/assets/vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js"></script>
     <!-- Custom Theme Scripts -->
-    <script src="<?php echo base_url()?>/assets/build/js/custom.js"></script>
+    <script src="<?php echo base_url()?>/assets/build/js/custom_mod1.js"></script>
 
     <script type="text/javascript">
     	$(document).ready(function(){

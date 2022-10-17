@@ -6,6 +6,7 @@ class Cart extends CI_Controller {
        $this->load->model('cart_model');
        $this->load->model('user_auth_model');
        $this->load->helper('form');
+       $this->load->model('library_model');
     }
 
     public function index(){
@@ -13,6 +14,8 @@ class Cart extends CI_Controller {
         $this->user_auth_model->login_required();
 
         $data['cart_items'] = $this->cart_model->getall();
+        $data['item_categories'] = $this->library_model->get_product_categories();
+
         $this->load->view('header');
         $this->load->view('sidebar',$data);
         $this->load->view('cart');

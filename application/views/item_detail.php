@@ -47,16 +47,22 @@
 
                     <div class="col-md-5 col-sm-5 ">
                       <div class="product-image">
-                        <img src="<?=site_url('uploads/'.$item_detail[0]->upc); ?>_p.jpg" alt="..." id='cover_photo' />
+                        <img src="<?=site_url('uploads/items/'.$item_detail[0]->upc); ?>_p.jpg" alt="..." id='cover_photo' />
                       </div>
                       <div class="product_gallery">
                         <?php 
-                          echo "<a href='#' id='item_thumb' img_url='".site_url('uploads/'.$item_detail[0]->upc.'_p.jpg')."'><img src=\"".site_url('uploads/'.$item_detail[0]->upc."_p.jpg")."\" alt=\"...\" /></a>"; 
+                          echo "
+                            <a href='#' id='item_thumb' img_url='".site_url('uploads/items/'.$item_detail[0]->upc.'_p.jpg')."'>
+                              <img src=\"".site_url('uploads/items/thumbs/'.$item_detail[0]->upc."_p_thumb.jpg")."\" alt=\"...\" />
+                            </a>"; 
                           for ($i=1; $i < 8; $i++) { 
-                            $image = 'uploads/'.$item_detail[0]->upc."_p$i.jpg";
+                            $image_thumb = 'uploads/items/thumbs/'.$item_detail[0]->upc."_p$i"."_thumb.jpg";
+                            $image = 'uploads/items/'.$item_detail[0]->upc."_p$i.jpg";
                             $img_url = site_url($image);
-                            if (file_exists($image)){
-                              echo "<a href='' id='item_thumb' img_url='$img_url'><img src=\"$img_url\" alt=\"...\" /></a>"; 
+                            $img_url_tmb = site_url($image_thumb);
+                  
+                            if (file_exists($image_thumb)){
+                              echo "<a href='' id='item_thumb' img_url='$img_url'><img src=\"$img_url_tmb\" alt=\"...\" / style='width:100px;height:100px'></a>"; 
                             }
                           }
                         ?>
@@ -177,6 +183,47 @@ $(function() {
             $('#cover_photo').fadeIn('fast');
         });
     });
+    
+
+    //ADD TO WISHLIST
+    $(document).on('click','#btn_add_to_wishlist',function(){
+        var upc = $(this).attr('upc');
+        $.ajax({
+          type: "POST",
+          url: "<?=site_url('Wishlist/add')?>",
+          data: {upc:upc},
+          success: function(json_result){
+            console.log(json_result);
+              // var res = $.parseJSON(json_result);
+                // $(this).attr("disabled", 'disabled');
+                $.toast({
+                        // text: '<b>'+res.upc+'<b><br>'+res.item_caption, 
+                        text: '<?php echo $this->session->flashdata('info');?>',
+                        heading: 'Added to Wishlist!', 
+                        icon: 'success', 
+                        showHideTransition: 'slide',
+                        allowToastClose: true, 
+                        hideAfter: 3000, 
+                        stack: 5, 
+                        position: 'bottom-right',
+                        textAlign: 'left',  
+                        loader: true,  
+                        loaderBg: '#830101',  
+                        beforeShow: function () {}, 
+                        afterShown: function () {}, 
+                        beforeHide: function () {}, 
+                        afterHidden: function () {}  
+                    });
+
+          },
+          error: function(XMLHttpRequest, textStatus, errorThrown) {
+             alert(XMLHttpRequest);
+             console.log(XMLHttpRequest);
+             $('#container1').html(XMLHttpRequest);
+          }
+        });
+        $('.toast').toast('show');
+    });
 
     //ADD TO CART
     $('#btn_add_to_cart').on('click',function(){
@@ -191,7 +238,7 @@ $(function() {
                 // $(this).attr("disabled", 'disabled');
                 $.toast({
                         // text: '<b>'+res.upc+'<b><br>'+res.item_caption, 
-                        text: 'xxxxxxxxxxxxx<?php echo $this->session->flashdata('info');?>',
+                        text: '<?php echo $this->session->flashdata('info');?>',
                         heading: 'Added to Cart Successfully!', 
                         icon: 'success', 
                         showHideTransition: 'slide',
@@ -215,12 +262,10 @@ $(function() {
              $('#container1').html(XMLHttpRequest);
           }
         });
-
-
+        $('.toast').toast('show');
     });
 
-
-    $('.toast').toast('show');
+    
 });
 
 

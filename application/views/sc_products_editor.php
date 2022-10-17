@@ -26,6 +26,7 @@
                     </div>
                     <div class="x_content">      
                      <?php 
+                        // echo form_open('item_listing/products_save','enctype="multipart/form-data"'); 
                         echo form_open('item_listing/products_save','enctype="multipart/form-data"'); 
                         echo "<input type='hidden' name='upc' id='upc' value='$new_upc'> ";
 

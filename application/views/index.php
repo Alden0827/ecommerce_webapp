@@ -77,7 +77,7 @@
 
                               <div class="x_content">
                                 <div style="text-align: center; margin-bottom: 17px">
-                                  <img src="<?php echo base_url()?>/uploads/<?=$item->upc;?>_p.jpg" class="image_zindex">
+                                  <img src="<?php echo base_url()?>/uploads/items/thumbs/<?=$item->upc;?>_p_thumb.jpg" class="image_zindex">
                                 </div>                                
                                 <div class="flex">
                                   <ul class="list-inline count2">

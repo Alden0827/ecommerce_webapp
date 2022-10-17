@@ -23,101 +23,85 @@
                   <div class="x_content">
 
 
-                    <!-- Smart Wizard -->
-                    <p>Instruction here</p>
-                    <div id="wizard" class="form_wizard wizard_horizontal">
-                      <ul class="wizard_steps">
+
+
+                    <h2>Example: Vertical Style</h2>
+                    <!-- Tabs -->
+                    <div id="wizard_verticle" class="form_wizard wizard_verticle">
+                      <ul class="list-unstyled wizard_steps">
                         <li>
-                          <a href="#step-1">
+                          <a href="#step-11">
                             <span class="step_no">1</span>
-                            <span class="step_descr">
-                                              Step 1<br />
-                                              <small>Review Purchase Order</small>
-                                          </span>
                           </a>
                         </li>
                         <li>
-                          <a href="#step-2">
+                          <a href="#step-22">
                             <span class="step_no">2</span>
-                            <span class="step_descr">
-                                              Step 2<br />
-                                              <small>Delivery Options</small>
-                                          </span>
                           </a>
                         </li>
                         <li>
-                          <a href="#step-3">
+                          <a href="#step-33">
                             <span class="step_no">3</span>
-                            <span class="step_descr">
-                                              Step 3<br />
-                                              <small>Payment Options</small>
-                                          </span>
                           </a>
                         </li>
-                        <li>
-                          <a href="#step-4">
-                            <span class="step_no">4</span>
-                            <span class="step_descr">
-                                              Step 4<br />
-                                              <small>Payment</small>
-                                          </span>
-                          </a>
-                        </li>
+
                       </ul>
-                      <div id="step-1">
 
+                      <div id="step-11">
+                        <h2 class="StepTitle">Step 1: Review Purchase Order</h2>
+                            <div class="x_panel">
+                              <div class="x_title">
+                                <h2>Items</h2>
 
+                                <div class="clearfix"></div>
+                              </div>
+                              <div class="x_content">
+                                <table class="table table-hover">
+                                  <thead>
+                                    <tr>
+                                      <th>#</th>
+                                      <th>Item Desc</th>
+                                      <th>Unit Cost</th>
+                                      <th>Qty</th>
+                                      <th>Amount</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr>
+                                      <th scope="row">1</th>
+                                      <td>Paper Towel</td>
+                                      <td>$3</td>
+                                      <td>2</td>
+                                      <td>$6.00</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">2</th>
+                                      <td>Paper Towel</td>
+                                      <td>$3</td>
+                                      <td>2</td>
+                                      <td>$6.00</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">3</th>
+                                      <td>Paper Towel</td>
+                                      <td>$3</td>
+                                      <td>2</td>
+                                      <td>$6.00</td>
+                                    </tr>                        
+                                  </tbody>
+                                </table>
 
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>Items</h2>
-
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                    <table class="table table-hover">
-                      <thead>
-                        <tr>
-                          <th>#</th>
-                          <th>Item Desc</th>
-                          <th>Unit Cost</th>
-                          <th>Qty</th>
-                          <th>Amount</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>Paper Towel</td>
-                          <td>$3</td>
-                          <td>2</td>
-                          <td>$6.00</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">2</th>
-                          <td>Paper Towel</td>
-                          <td>$3</td>
-                          <td>2</td>
-                          <td>$6.00</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">3</th>
-                          <td>Paper Towel</td>
-                          <td>$3</td>
-                          <td>2</td>
-                          <td>$6.00</td>
-                        </tr>                        
-                      </tbody>
-                    </table>
-
-                  </div>
-                </div>
-
-                      </div>
-                      <div id="step-2">
+                              </div>
+                            </div>
                         
-                          <div class="row justify-content-center">
-                              <div class="col-md-9">
+                      </div>
+                      <div id="step-22">
+                        <h2 class="StepTitle">Step 2: Delivery Address</h2>
+
+
+                        
+                          <div class="row ">
+                              <div class="col-md-12">
                                   <div class="card text-center justify-content-center shaodw-lg  card-1 border-0 bg-white px-sm-2">
                                       <div class="card-body show  ">
                                           <div class="row">
@@ -168,6 +152,45 @@
                                                       </div>
                                                   </div>
                                               </div>
+                                              <div class="col-auto ml-sm-2 mx-1 card-block  py-0 text-center radio  " >
+                                                  <div class="flex-row">
+                                                      <div class="col">
+                                                          <div class="pic"> 
+                                                              <strong>BEN DELA CRUZ</strong><br>
+                                                              <strong>0934-0980-3131</strong> <br>
+                                                              <i>123R 4F Wallstreet</i><br>
+                                                              <i>San Firnando, Califonia</i><br>
+                                                          </div>
+                                                          <p>Address 3</p>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                              <div class="col-auto ml-sm-2 mx-1 card-block  py-0 text-center radio  ">
+                                                  <div class="flex-row">
+                                                      <div class="col">
+                                                          <div class="pic"> 
+                                                              <strong>BEN DELA CRUZ</strong><br>
+                                                              <strong>0934-0980-3131</strong> <br>
+                                                              <i>123R 4F Wallstreet</i><br>
+                                                              <i>San Firnando, Califonia</i><br>
+                                                          </div>
+                                                          <p>Address 3</p>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                              <div class="col-auto ml-sm-2 mx-1 card-block  py-0 text-center radio  ">
+                                                  <div class="flex-row">
+                                                      <div class="col">
+                                                          <div class="pic"> 
+                                                              <strong>BEN DELA CRUZ</strong><br>
+                                                              <strong>0934-0980-3131</strong> <br>
+                                                              <i>123R 4F Wallstreet</i><br>
+                                                              <i>San Firnando, Califonia</i><br>
+                                                          </div>
+                                                          <p>Address 3</p>
+                                                      </div>
+                                                  </div>
+                                              </div>
                                           </div>
                                           <div class="row justify-content-center">
                                               <div class="col">
@@ -181,20 +204,18 @@
                           </div>
 
 
-
-
-
-
                       </div>
-                      <div id="step-3">
+                      <div id="step-33">
+                        <h2 class="StepTitle">Step 3: Mode of Payment</h2>
 
-                          <div class="row justify-content-center">
-                              <div class="col-md-9">
+
+                          <div class="row ">
+                              <div class="col-md-12">
                                   <div class="card text-center justify-content-center shaodw-lg  card-1 border-0 bg-white px-sm-2">
                                       <div class="card-body show  ">
                                           <div class="row">
                                               <div class="col">
-                                                  <h5><b>Payment Option</b></h5>
+                                                  <h5><b>Mode of Payment</b></h5>
                                                   <p> Not my prefered delivery address ? <span class=" ml-1 cursor-pointer"> Change</span> </p>
                                               </div>
                                           </div>
@@ -203,7 +224,9 @@
                                                   <div class="flex-row">
                                                       <div class="col">
                                                           <div class="pic2">
-                                                                <img class="irc_mut img-fluid" src="images/stripe_secure.jpg" width="200" height="200"> 
+                                                              <a href="#">
+                                                                <img class="irc_mut img-fluid" src="<?=site_url('assets/images/stripe_secure.jpg')?>" width="200" height="200"> 
+                                                              </a>
                                                           </div>
                                                           
                                                       </div>
@@ -213,7 +236,7 @@
                                                   <div class="flex-row">
                                                       <div class="col">
                                                           <div class="pic2"> 
-                                                                <img class="irc_mut img-fluid" src="images/google_pay.jpg" width="200" height="200"> 
+                                                                <img class="irc_mut img-fluid" src="<?=site_url('assets/images/google_pay.jpg')?>" width="200" height="200"> 
                                                           </div>
                                                          
                                                       </div>
@@ -223,7 +246,7 @@
                                                   <div class="flex-row">
                                                       <div class="col">
                                                           <div class="pic2"> 
-                                                                <img class="irc_mut img-fluid" src="images/paypal.jpg" width="200" height="200"> 
+                                                                <img class="irc_mut img-fluid" src="<?=site_url('assets/images/paypal.jpg')?>" width="200" height="200"> 
                                                           </div>
                                                           
                                                       </div>
@@ -242,33 +265,14 @@
                           </div>
 
 
-
-
                       </div>
-                      <div id="step-4">
-                        <h2 class="StepTitle">Step 4 Content</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                          in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                          in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                      </div>
-
+                      
                     </div>
                     <!-- End SmartWizard Content -->
 
 
 
-
-
-                    <h2>Example: Vertical Style</h2>
-                    <!-- Tabs -->
+                   
                     
                   </div>
                 </div>
@@ -287,10 +291,10 @@ body {
     background-color: #eee;
 }
 
-.container {
+/*.container {
     margin-top: 100px;
     margin-bottom: 100px;
-}
+}*/
 
 p {
     font-size: 14px;
@@ -390,8 +394,10 @@ $(document).ready(function () {
     $('.radio-group .radio').click(function () {
         $('.selected .fa').removeClass('fa-check');
         $('.radio').removeClass('selected');
-        $(this).addClass('selected');
+        $(this).addClass('selected'); 
     });
+
+
 });
 
 </script>
