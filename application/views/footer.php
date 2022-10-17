@@ -32,13 +32,13 @@
     <!-- Custom Theme Scripts -->
     <script src="<?php echo base_url()?>/assets/build/js/custom_mod1.js"></script>
 
-    <script type="text/javascript">
+<!--     <script type="text/javascript">
     	$(document).ready(function(){
 	    	$('#menu_toggle').click();
 	    	$('#menu_toggle').click();
 
     	});
-    </script>
+    </script> -->
 
 
   </body>

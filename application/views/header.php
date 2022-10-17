@@ -35,6 +35,6 @@
 
   </head>
 
-  <body class="nav-sm">
+  <body class="nav-md">
     <div class="container body">
       <div class="main_container">

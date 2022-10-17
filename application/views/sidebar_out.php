@@ -1,21 +1,21 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="<?php echo base_url('')?>" class="site_title"><i class="fa fa-paw"></i> <span>Application Name</span></a>
+              <a href="<?php echo base_url('')?>" class="site_title"><i class="fa fa-paw"></i> <span><?=APP_NAME?></span></a>
             </div>
 
             <div class="clearfix"></div>
 
             <!-- menu profile quick info -->
-            <div class="profile clearfix">
+<!--             <div class="profile clearfix">
               <div class="profile_pic">
-                <img src="<?php echo base_url()?>/assets/images/img.jpg" alt="..." class="img-circle profile_img">
+                <img src="<?php echo base_url()?>/assets/images/user.png" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
                 <span>Welcome,</span>
                 <h2>Alden</h2>
               </div>
-            </div>
+            </div> -->
             <!-- /menu profile quick info -->
 
             <br />

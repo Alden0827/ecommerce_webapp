@@ -27,12 +27,13 @@ $db['local'] = array(
 	'save_queries' => TRUE
 );
 
-$db['default'] = array(
+
+$db['online'] = array(
 	'dsn'	=> '',
-	'hostname' => 'fdb30.awardspace.net',
-	'username' => '4179927_cidatabase',
-	'password' => 'P@ssw0rd0214a',
-	'database' => '4179927_cidatabase',
+	'hostname' => 'sql111.epizy.com',
+	'username' => 'epiz_32635831',
+	'password' => 'tTxlVlwzQDV',
+	'database' => 'epiz_32635831_db',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
@@ -48,6 +49,29 @@ $db['default'] = array(
 	'failover' => array(),
 	'save_queries' => TRUE
 );
+
+
+// $db['default'] = array(
+// 	'dsn'	=> '',
+// 	'hostname' => 'fdb30.awardspace.net',
+// 	'username' => '4179927_cidatabase',
+// 	'password' => 'P@ssw0rd0214a',
+// 	'database' => '4179927_cidatabase',
+// 	'dbdriver' => 'mysqli',
+// 	'dbprefix' => '',
+// 	'pconnect' => FALSE,
+// 	'db_debug' => (ENVIRONMENT !== 'production'),
+// 	'cache_on' => FALSE,
+// 	'cachedir' => '',
+// 	'char_set' => 'utf8',
+// 	'dbcollat' => 'utf8_general_ci',
+// 	'swap_pre' => '',
+// 	'encrypt' => FALSE,
+// 	'compress' => FALSE,
+// 	'stricton' => FALSE,
+// 	'failover' => array(),
+// 	'save_queries' => TRUE
+// );
 /*
 | -------------------------------------------------------------------
 | DATABASE CONNECTIVITY SETTINGS

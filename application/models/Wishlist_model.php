@@ -35,9 +35,9 @@ Class Wishlist_model extends CI_Model{
    		$login_oauth_uid = $this->user_auth_model->get_user_id();
 
 		return $this->db->select('`tbl_wishlist`.`wl_id`,`tbl_items`.`item_caption`,`tbl_items`.`item_desc`,`lib_item_category`.`category`,`tbl_items`.`unit_price`,`tbl_items`.`stock`,`tbl_items`.`is_bidding`,`tbl_items`.`discount`,`tbl_items`.`unit_price` - (`tbl_items`.`unit_price` * `tbl_items`.`discount`) AS discounted_price,`tbl_items`.`brand`,`tbl_items`.`upc`,`tbl_wishlist`.`login_oauth_uid`,`tbl_wishlist`.`date_added`')
-			->from('`db_cidatabase`.`tbl_items`')
-			->join('`db_cidatabase`.`tbl_wishlist`', '(`tbl_items`.`upc` = `tbl_wishlist`.`upc`)')
-			->join('`db_cidatabase`.`lib_item_category`', '(`lib_item_category`.`cat_id` = `tbl_items`.`cat_id`)')
+			->from('`tbl_items`')
+			->join('`tbl_wishlist`', '(`tbl_items`.`upc` = `tbl_wishlist`.`upc`)')
+			->join('`lib_item_category`', '(`lib_item_category`.`cat_id` = `tbl_items`.`cat_id`)')
 			->group_start()
 			->where('`tbl_items`.`is_bidding`', 0)
 			->where('`tbl_wishlist`.`login_oauth_uid`', $login_oauth_uid)
@@ -59,10 +59,10 @@ Class Wishlist_model extends CI_Model{
 			//     , `tbl_wishlist`.`login_oauth_uid`
 			//     , `tbl_wishlist`.`date_added`
 			// FROM
-			//     `db_cidatabase`.`tbl_items`
-			//     INNER JOIN `db_cidatabase`.`tbl_wishlist` 
+			//     `tbl_items`
+			//     INNER JOIN `tbl_wishlist` 
 			//         ON (`tbl_items`.`upc` = `tbl_wishlist`.`upc`)
-			//     INNER JOIN `db_cidatabase`.`lib_item_category` 
+			//     INNER JOIN `lib_item_category` 
 			//         ON (`lib_item_category`.`cat_id` = `tbl_items`.`cat_id`)
 			// WHERE (`tbl_items`.`is_bidding` = 0
 			//     AND `tbl_wishlist`.`login_oauth_uid` ='104643403242055778893');

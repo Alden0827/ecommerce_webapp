@@ -1,9 +1,20 @@
+<?php 
+
+$is_logged_in = !isset($login_button);
+
+if ($is_logged_in) { 
+  $user_data = $this->session->userdata('user_data');
+  $profile_picture = $user_data['profile_picture'];
+  $fullname = $user_data['first_name'].' '.$user_data['last_name'];
+}
+?>
+
 
 
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="<?php echo base_url('')?>" class="site_title"><i class="fa fa-paw"></i> <span>Application Name</span></a>
+              <a href="<?php echo base_url('')?>" class="site_title"><i class="fa fa-paw"></i> <span><?=APP_NAME?></span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -11,11 +22,11 @@
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
-                <img src="<?php echo base_url()?>/assets/images/img.jpg" alt="..." class="img-circle profile_img">
+                <img src="<?=$profile_picture?>" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
                 <span>Welcome,</span>
-                <h2>Alden</h2>
+                <h2><?=$fullname?></h2>
               </div>
             </div>
             <!-- /menu profile quick info -->
@@ -94,42 +105,14 @@
                   <a id="menu_toggle"><i class="fa fa-bars"></i></a>
                 </div>
 
-                <?php if (isset($login_button)) { ?>
-                  <!-- START: LOGGED-OUT NAVBAR -->
-                  <nav class="nav navbar-nav">
-                    <ul class=" navbar-right">
-                      <li class="nav-item dropdown open" style="padding-left: 15px;">
+                <?php if ($is_logged_in) { ?>
 
-                          <?php
-                              if (isset($login_button)) {
-                                echo $login_button;
-                              }else{
-                                $google_client->setRedirectUri($this->config->item("google_redirect_url"));
-                                echo '<a href="' . $google_client->createAuthUrl() . '"  class="btn btn-outline-success" role="button"> SIGN-IN</a>';
-                              }
-
-                          ?>
-                          
-                      </li>
-                    </ul>
-                  </nav>
-                  <!-- END: LOGGED-OUT NAVBAR -->
-
-                <?php } else { 
-                  $user_data = $this->session->userdata('user_data');
-                ?>
                 <!-- START: LOGGED-IN NAVBAR -->
                 <nav class="nav navbar-nav">
                   <ul class=" navbar-right">
                     <li class="nav-item dropdown open" style="padding-left: 15px;">
                       <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                        <?php
-                          if (isset($user_data['profile_picture'])){
-                            $profile_picture = $user_data['profile_picture'];
-                            $fullname = $user_data['first_name'].' '.$user_data['last_name'];
-                            echo "<img src=\"$profile_picture\" alt=''>$fullname";                            
-                          }
-                        ?>
+                        <img src="<?=$profile_picture?>" alt=''><?=$fullname?>
 
                       </a>
                       <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
