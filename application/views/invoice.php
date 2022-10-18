@@ -114,9 +114,12 @@
                           <img src="<?=site_url();?>/assets/images/mastercard.png" alt="Mastercard">
                           <img src="<?=site_url();?>/assets/images/american-express.png" alt="American Express">
                           <img src="<?=site_url();?>/assets/images/paypal.png" alt="Paypal">
-                          <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
+   <!--                        <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
                             Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles, weebly ning heekya handango imeem plugg dopplr jibjab, movity jajah plickers sifteo edmodo ifttt zimbra.
                           </p>
+ -->    
+
+                          <br><br><label for="message">:Leave Message to Seller :</label><textarea id="message" required="required" class="form-control text-muted well well-sm no-shadow" name="message" data-parsley-trigger="keyup" data-parsley-minlength="0" data-parsley-maxlength="255" data-parsley-minlength-message="" data-parsley-validation-threshold="10" data-gramm="false" wt-ignore-input="true" data-quillbot-element="gweYF26Tnw6CS5nPsFfCs" id="message"></textarea>
                         </div>
                         <!-- /.col -->
                         <div class="col-md-6">
@@ -149,13 +152,23 @@
                       <!-- /.row -->
 
                       <!-- this row will not appear when printing -->
-                      <div class="row no-print">
+                      <div class="row no-print" id="place_order_controller">
+                        <input type="hidden" name="" id="csv_cart_items" value="<?=$csv_cart_items;?>">
+                        <input type="hidden" name="" id="shipment_id" value="<?=$shipment_info->id;?>">
+
+                        <div class=" ">
+                          &nbsp;&nbsp;&nbsp;<button class="btn btn-success pull-right" id="btn_place_order"><i class="fa fa-credit-card"></i> PLACE ORDER</button>
+                        </div>
+                      </div>
+                      <div class="row no-print invisible" id="post_payment_controller">
                         <div class=" ">
                           <button class="btn btn-default" onclick="window.print();"><i class="fa fa-print"></i> Print</button>
                           <button class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Submit Payment</button>
                           <button class="btn btn-primary pull-right" style="margin-right: 5px;"><i class="fa fa-download"></i> Generate PDF</button>
                         </div>
                       </div>
+
+
                     </section>
                   </div>
                 </div>
@@ -164,3 +177,39 @@
           </div>
         </div>
         <!-- /page content -->
+
+
+
+        <script type="text/javascript">
+          $(function() {
+
+            var formatter = new Intl.NumberFormat('en-US', {
+              style: 'currency',
+              currency: 'USD',
+            });
+
+            //PLACE ORDER
+            $('#btn_place_order').on('click',function(){
+              var csv_cart_items = $('#csv_cart_items').val();
+              var shipment_id = $('#shipment_id').val();
+              var message = $('#message').val();
+             
+              $.ajax({
+                  url:'<?=site_url('Order/place_order')?>',
+                  data: {
+                      csv_cart_items:csv_cart_items,
+                      shipment_id:shipment_id,
+                      message:message,
+                      place_order:1
+                  },
+                  type: 'post',
+                  success: function(data){
+                    alert(data);
+                    console.log(data)      
+                  }
+              })
+            });
+
+
+          });
+        </script>

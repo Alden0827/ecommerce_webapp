@@ -10,6 +10,7 @@ class Order extends CI_Controller {
        $this->load->model('shipment_model');
        $this->load->model('cart_model');
        $this->load->model('settings_model');
+       $this->load->model('order_model');
 
        $this->load->helper('url');
        $this->load->helper('form');
@@ -31,7 +32,7 @@ class Order extends CI_Controller {
             //get checked-out items
             $selected_items = $chkout_items['cart_id'];
             $data['cart_entries'] = $this->cart_model->get_cart_entries($selected_items);
-            
+            $data['csv_cart_items'] = implode(',',$selected_items);
             //get total
             $sub_total = 0;
             foreach ($data['cart_entries'] as $item) {
@@ -60,6 +61,22 @@ class Order extends CI_Controller {
             $this->load->view('invoice');
             $this->load->view('footer');
          }
+    }
+
+    //PLACE ORDER
+    public function place_order(){
+        $this->user_auth_model->login_required();
+        if ($this->input->post('place_order')!=NULL) {
+            $data = $this->input->post();
+            $data['csv_cart_items'] = explode(',', $data['csv_cart_items']);
+
+            $res = $this->order_model->place_order((object)$data);
+            print($res);
+            
+        }
+
+
+
     }
 
 
