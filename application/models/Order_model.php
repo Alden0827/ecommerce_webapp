@@ -76,17 +76,37 @@ Class Order_model extends CI_Model{
 	    //4.   UPDATE CART AS ORDERED (fill order_id)
 	    //5.   SUBTRACT QTY FROM ITEMS
 
-		/
+		
 	    //Check if stock is still available per items
 		$this->db->trans_start();	
 	    $ordered_items = $this->get_ordered_items($data->csv_cart_items);
 	    if ($ordered_items->result()[0]->is_invalid == 0) {
+				$tbl_order_data = 	array('`shipment_id`' 		=> 'shipment_id', 
+													'`date_posted`' 		=> 'date_posted', 
+												'`date_due`' 				=> 'date_due', 
+												'`cancelled`' 				=> 'cancelled', 
+												'`ex_tax_rate`' 			=> 'ex_tax_rate', 
+												'`master_charge_rate`' 	=> 'master_charge_rate', 
+												'`ex_tax_fee`' 			=> 'ex_tax_fee', 
+												'`master_charge_fee`' 	=> 'master_charge_fee', 
+												'`shipment_fee`' 			=> 'shipment_fee', 
+												'`Note`' 					=> 'Note');
+			
 
 	    	// INSERT ORDER DETAILS (EXCEPT PAYMENT_ID)
-			$this->db->insert('`tbl_orders`', $data);
+			$this->db->insert('`tbl_orders`', $tbl_order_data);
+			if ($this->db->insert_id() > 0) {
+				// UPDATE CART AS ORDERED (fill order_id)
+				UPDATE `tbl_carts`
+					SET 
+					  `upc` = 'upc',
+					  `qnt` = 'qnt',
+					  `date_added` = 'date_added',
+					  `login_oauth_uid` = 'login_oauth_uid',
+					  `order_id` = 'order_id'
+					WHERE `cart_id` IN (11,12,13,14);
+			}
 
-// array('`shipment_id`' => 'shipment_id', '`date_posted`' => 'date_posted', '`date_due`' => 'date_due', '`cancelled`' => 'cancelled', '`ex_tax_rate`' => 'ex_tax_rate', '`master_charge_rate`' => 'master_charge_rate', '`ex_tax_fee`' => 'ex_tax_fee', '`master_charge_fee`' => 'master_charge_fee', '`shipment_fee`' => 'shipment_fee', '`Note`' => 'Note')
-			
 	    }else{
 	    	echo "invalid";
 	    }

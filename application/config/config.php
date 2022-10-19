@@ -526,9 +526,13 @@ $config['rewrite_short_tags'] = FALSE;
 */
 $config['proxy_ips'] = '';
 
-
-
+#GOOGLE LOGIN API KEYS
 $config['google_client_id'] = '214666749439-69v4ja5gjgjsiasanivhe646a60v0nqr.apps.googleusercontent.com';
 $config['google_secret_id'] = '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';
 $config['google_redirect_url'] = 'http://localhost/ec_ci/';
 $config['google_redirect_url_sc'] = 'http://localhost/ec_ci/item_listing';
+
+#STRIPE API KEYS
+$config['stripe_key'] = 'pk_test_51LaqPiBtm6knNJUvaMky79L8UdVxJuzh0nV54Va4fdkao6nDOoJqXP2iYkG62SxEWQ2aukLQd0nX5RzHS9IwAQdA00tQflcvkb';
+$config['stripe_secret'] = 'sk_test_51LaqPiBtm6knNJUvtMJrwwCdNm4lyeSqhWTZ89OPg9v9UTCXdRads4bqyjxgdZZHYk936KCsNmznLloKdyCiSj1s00aKa2NOzF';
+
