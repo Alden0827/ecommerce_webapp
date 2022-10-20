@@ -53,32 +53,35 @@ Class Cart_model extends CI_Model{
 
    public function get_cart_entries($data){
    		// print($data);
-   		return $this->db->select('`tbl_carts`.`qnt`,`tbl_items`.stock,CASE WHEN `tbl_carts`.`qnt` > `tbl_items`.stock THEN 1 ELSE 0 END AS \'is_valid\',`tbl_items`.`item_caption`,`tbl_items`.`item_desc`,`tbl_carts`.`upc`,`tbl_items`.`unit_price`,`tbl_items`.`unit_price` + (`tbl_items`.`unit_price` * `tbl_items`.`discount`) AS discounted_unit_price,(`tbl_items`.`unit_price` + (`tbl_items`.`unit_price` * `tbl_items`.`discount`)) * `tbl_carts`.`qnt` AS sub_total')
-				->from('`tbl_carts`')
-				->join('`tbl_items`', '(`tbl_carts`.`upc` = `tbl_items`.`upc`)')
-				->group_start()
-				->where_in('`tbl_carts`.`cart_id`', $data)
-				->group_end()
-				->order_by('`tbl_carts`.`cart_id` ASC')
-				->get()->result();
+   		return $this->db->select('`tbl_carts`.`qnt`,`tbl_items`.stock,CASE WHEN `tbl_carts`.`qnt` > `tbl_items`.stock THEN 1 ELSE 0 END AS \'is_valid\',`tbl_items`.`item_caption`,`tbl_items`.`item_desc`,`tbl_carts`.`upc`,`tbl_items`.`unit_price`,`tbl_courier`.`courier_fee`,`tbl_items`.`unit_price` + (`tbl_items`.`unit_price` * `tbl_items`.`discount`) AS discounted_unit_price,`tbl_courier`.`courier_fee` + (`tbl_items`.`unit_price` + (`tbl_items`.`unit_price` * `tbl_items`.`discount`)) * `tbl_carts`.`qnt` AS sub_total')
+			->from('`tbl_carts`')
+			->join('`tbl_items`', '(`tbl_carts`.`upc` = `tbl_items`.`upc`)')
+			->join('`tbl_courier`', '(`tbl_courier`.`id`  = `tbl_items`.`courier_id`)')
+			->group_start()
+			->where_in('`tbl_carts`.`cart_id`',$data)
+			->group_end()
+			->order_by('`tbl_carts`.`cart_id` ASC')
+			->get()->result();
 
-
-			// SELECT
-			//       `tbl_carts`.`qnt`
-			//     , `tbl_items`.stock
-			//     , CASE WHEN `tbl_carts`.`qnt` > `tbl_items`.stock THEN 1 ELSE 0 END AS 'is_valid'
-			//     , `tbl_items`.`item_caption`
-			//     , `tbl_items`.`item_desc`
-			//     , `tbl_carts`.`upc`
-			//     , `tbl_items`.`unit_price`
-			//     , `tbl_items`.`unit_price` + (`tbl_items`.`unit_price` * `tbl_items`.`discount`) AS discounted_unit_price
-			//     , (`tbl_items`.`unit_price` + (`tbl_items`.`unit_price` * `tbl_items`.`discount`)) * `tbl_carts`.`qnt` AS sub_total
-			// FROM
-			//     `tbl_carts`
-			//     INNER JOIN `tbl_items` 
-			//         ON (`tbl_carts`.`upc` = `tbl_items`.`upc`)
-			// WHERE (`tbl_carts`.`cart_id` IN (1,2,3,4,5))
-			// ORDER BY `tbl_carts`.`cart_id` ASC;
+			 // SELECT
+			 //       `tbl_carts`.`qnt`
+			 //     , `tbl_items`.stock
+			 //     , CASE WHEN `tbl_carts`.`qnt` > `tbl_items`.stock THEN 1 ELSE 0 END AS 'is_valid'
+			 //     , `tbl_items`.`item_caption`
+			 //     , `tbl_items`.`item_desc`
+			 //     , `tbl_carts`.`upc`
+			 //     , `tbl_items`.`unit_price`
+			 //     , `tbl_courier`.`courier_fee`
+			 //     , `tbl_items`.`unit_price` + (`tbl_items`.`unit_price` * `tbl_items`.`discount`) AS discounted_unit_price
+			 //     , `tbl_courier`.`courier_fee` + (`tbl_items`.`unit_price` + (`tbl_items`.`unit_price` * `tbl_items`.`discount`)) * `tbl_carts`.`qnt` AS sub_total
+			 // FROM
+			 //     `tbl_carts`
+			 //     INNER JOIN `tbl_items` 
+			 //         ON (`tbl_carts`.`upc` = `tbl_items`.`upc`)
+			 //     INNER JOIN `tbl_courier` 
+			 //         ON (`tbl_courier`.`id`  = `tbl_items`.`courier_id`)
+			 // WHERE (`tbl_carts`.`cart_id` IN (1,2,3,4,5))
+			 // ORDER BY `tbl_carts`.`cart_id` ASC;
    }
 
    public function get($cart_id){

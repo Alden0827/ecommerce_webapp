@@ -85,6 +85,8 @@
                                 <th>Qty</th>
                                 <th>Product</th>
                                 <th style="width: 59%">Description</th>
+                                <th>Unit Cost</th>
+                                <th>Shipping Charge</th>
                                 <th>Subtotal</th>
                               </tr>
                             </thead>
@@ -93,11 +95,11 @@
                                 <tr>
                                   <td><?=$item->qnt;?></td>
                                   <td><?=$item->item_caption;?></td>
-                                  <td><?=$item->item_desc;?>
-                                  </td>
-                                  <td>$<?=$item->sub_total;?></td>
+                                  <td><?=$item->item_desc;?></td>
+                                  <td>$<?=number_format($item->unit_price,2);?></td>
+                                  <td>$<?=number_format($item->courier_fee,2)?></td>
+                                  <td>$<?=number_format($item->sub_total,2);?></td>
                                 </tr>
-                                
                               <?php } ?>
                             </tbody>
                           </table>
@@ -204,9 +206,11 @@
                   },
                   type: 'post',
                   success: function(data){
-                    alert(data);
-                    console.log(data)      
+                    
+                    console.log(data);
                   }
+
+
               })
             });
 

@@ -533,6 +533,6 @@ $config['google_redirect_url'] = 'http://localhost/ec_ci/';
 $config['google_redirect_url_sc'] = 'http://localhost/ec_ci/item_listing';
 
 #STRIPE API KEYS
-$config['stripe_key'] = 'pk_test_51LaqPiBtm6knNJUvaMky79L8UdVxJuzh0nV54Va4fdkao6nDOoJqXP2iYkG62SxEWQ2aukLQd0nX5RzHS9IwAQdA00tQflcvkb';
-$config['stripe_secret'] = 'sk_test_51LaqPiBtm6knNJUvtMJrwwCdNm4lyeSqhWTZ89OPg9v9UTCXdRads4bqyjxgdZZHYk936KCsNmznLloKdyCiSj1s00aKa2NOzF';
+$config['stripe_key'] = 'pk_test_51LubMnB7hhuaHTVjyjMkEV0gJDebLJ9UP951YtdSueTjyiPJ081pozRiIOMddZtA51uL4OzUALnU15ZputgWIvkH00tkK8FWO0';
+$config['stripe_secret'] = 'sk_test_51LubMnB7hhuaHTVjeiyVlT6l4YUxPLPGvGVjAJEQS5FX3hPoVCUx1EXa5pKdVxsZJ1zNyH3xthjpXhyTsML5nmNO008xRmWt1g';
 

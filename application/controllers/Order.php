@@ -33,28 +33,31 @@ class Order extends CI_Controller {
             $selected_items = $chkout_items['cart_id'];
             $data['cart_entries'] = $this->cart_model->get_cart_entries($selected_items);
             $data['csv_cart_items'] = implode(',',$selected_items);
+            
             //get total
             $sub_total = 0;
+            $shipping_total = 0;
             foreach ($data['cart_entries'] as $item) {
                $sub_total += $item->sub_total;
+               $shipping_total+=$item->courier_fee;
             }
-
             
-            //get 
+            //summary
             $charges = $this->settings_model->get_tax_rate();
-            $shipment_cost = 0;
             $ex_tax_rate = $charges[0]->sale_ex_tax_perc;  
             $ex_tax_charge = ($sub_total * $ex_tax_rate);    
-            $total_amount =  $sub_total + $ex_tax_charge + $shipment_cost;
+            $total_amount =  $sub_total + $ex_tax_charge + $shipping_total;
             $data['totals'] = (object) array(
                               'sub_total' =>  number_format( $sub_total,2), 
-                              'shipment_cost' => number_format( $shipment_cost,2), 
+                              'shipment_cost' => number_format( $shipping_total,2), 
                               'ex_tax_charge' => number_format( $ex_tax_charge,2), 
                               'ex_tax_rate' => number_format( $ex_tax_rate*100,2) . '%', 
                               'total_amount' => number_format( $total_amount,2)
                             );
+            // echo "<pre>";
+            // print_r($data['cart_entries']);
+            // echo "</pre>";
 
-            
             // print_r($data['totals']);
             $this->load->view('header',$data);
             $this->load->view('sidebar');
@@ -69,6 +72,10 @@ class Order extends CI_Controller {
         if ($this->input->post('place_order')!=NULL) {
             $data = $this->input->post();
             $data['csv_cart_items'] = explode(',', $data['csv_cart_items']);
+            // print('<pre>');
+            // print_r($data);
+            // print('</pre>');
+      
 
             $res = $this->order_model->place_order((object)$data);
             print($res);
