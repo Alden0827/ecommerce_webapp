@@ -31,7 +31,7 @@ Class Cart_model extends CI_Model{
    	$upc = $data['upc'];
 
    	//check if exists
-   	$cart_stock = $this->db->get_where('tbl_carts', array('upc' => $upc,'login_oauth_uid' => $login_oauth_uid));
+   	$cart_stock = $this->db->get_where('tbl_carts', array('upc' => $upc,'login_oauth_uid' => $login_oauth_uid, 'order_id' => 0));
    	$available_stock = $this->item_model->get_available_stock($upc);
 
 		//if not exists
@@ -96,15 +96,24 @@ Class Cart_model extends CI_Model{
    }
 
    public function getall(){
-   	// return  $this->db->get_where('tbl_carts', array('login_oauth_uid' => $this->user_auth_model->get_user_id()))->result();
 
-		return $this->db->select('`tbl_carts`.cart_id,`tbl_items`.`stock`,`tbl_carts`.`upc`,`tbl_items`.`brand`,`tbl_items`.item_caption,`tbl_items`.item_desc,`tbl_items`.discount,`tbl_items`.unit_price,`tbl_carts`.`qnt`,(`tbl_items`.unit_price) * (1-`tbl_items`.discount) AS discounted_unit_price,(`tbl_carts`.`qnt` * `tbl_items`.unit_price) * (1-`tbl_items`.discount) AS total')
+
+  		return $this->db->select('`tbl_carts`.cart_id,`tbl_items`.`stock`,`tbl_carts`.`upc`,`tbl_items`.`brand`,`tbl_items`.item_caption,`tbl_items`.item_desc,`tbl_items`.discount,`tbl_items`.unit_price,`tbl_carts`.`qnt`,(`tbl_items`.unit_price) * (1-`tbl_items`.discount) AS discounted_unit_price,(`tbl_carts`.`qnt` * `tbl_items`.unit_price) * (1-`tbl_items`.discount) AS total')
 		->from('`tbl_items`')
 		->join('`tbl_carts`', '(`tbl_items`.`upc` = `tbl_carts`.`upc`)')
 		->group_start()
-		->where('`tbl_carts`.`login_oauth_uid`',  $this->user_auth_model->get_user_id())
+		->where(array('`tbl_carts`.`login_oauth_uid`' => $this->user_auth_model->get_user_id(),'`tbl_carts`.order_id' => 0))
 		->group_end()
 		->get()->result();
+
+
+
+  		// return $this->db->select('`tbl_carts`.cart_id,`tbl_carts`.`upc`,`tbl_items`.`brand`,`tbl_items`.item_caption,`tbl_items`.item_desc,`tbl_items`.discount,`tbl_items`.unit_price,`tbl_carts`.`qnt`,(`tbl_items`.unit_price) * (1-`tbl_items`.discount) AS discounted_unit_price,(`tbl_carts`.`qnt` * `tbl_items`.unit_price) * (1-`tbl_items`.discount) AS total')
+				// 	->from('`tbl_items`')
+				// 	->join('`tbl_carts`', '(`tbl_items`.`upc` = `tbl_carts`.`upc`)')
+				// 	->where(array('`tbl_carts`.`login_oauth_uid`' => $this->user_auth_model->get_user_id(),'`tbl_carts`.order_id' => 0))
+				// 	->get()->result();
+
 
 		// SELECT
 		//       `tbl_carts`.cart_id

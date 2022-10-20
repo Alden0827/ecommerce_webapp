@@ -66,8 +66,8 @@ if ($is_logged_in) {
 
                   <li><a><i class="fa fa-thumbs-o-up"></i> Bids & Checkouts <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="<?=site_url('trans/bids')?>">My Bids</a></li>
-                      <li><a href="<?=site_url('trans/purchases')?>">My Purchases</a></li>
+                      <li><a href="<?=site_url('auction/bids')?>">My Bids</a></li>
+                      <li><a href="<?=site_url('order/list')?>">My Purchases</a></li>
 
                     </ul>
                   </li>

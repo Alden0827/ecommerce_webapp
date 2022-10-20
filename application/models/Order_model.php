@@ -34,43 +34,35 @@ Class Order_model extends CI_Model{
 			->group_by(array('`master_checkout_charge_perc`', '`sale_ex_tax_perc`'))
 			->get();
 
-
-
-
- // SELECT      `master_checkout_charge_perc`
- // 	 , `sale_ex_tax_perc`
- // 	 , SUM(`is_invalid`) AS is_invalid
- // 	 , SUM(`sub_total`) AS cart_sub_total
- // 	 , SUM(`courier_fee`) AS total_courier_charge
- // 	 , SUM(`master_checkout_charge`) AS total_master_checkout_charge
- // 	 , SUM(`sales_ex_tax`) AS total_sales_ex_tax
- // 	 , SUM(`sub_total`) + SUM(`sales_ex_tax`) + SUM(`master_checkout_charge`) AS total_amount
-	
- // 	FROM (
- // 		SELECT
-
- // 		      `configuration`.master_checkout_charge_perc
- // 		    , `configuration`.sale_ex_tax_perc
- // 		    , CASE WHEN `tbl_carts`.`qnt` > `tbl_items`.stock THEN 1 ELSE 0 END AS 'is_invalid'
- // 		    ,  `tbl_items`.`discount` AS discount
- // 		    ,  `tbl_courier`.`courier_fee`
- // 		    , (`tbl_items`.`unit_price` + (`tbl_items`.`unit_price` * `tbl_items`.`discount`)) * `tbl_carts`.`qnt` AS sub_total
- // 		    , ((`tbl_items`.`unit_price` + (`tbl_items`.`unit_price` * `tbl_items`.`discount`)) * `tbl_carts`.`qnt`) * `configuration`.master_checkout_charge_perc AS master_checkout_charge
- // 		    , ((`tbl_items`.`unit_price` + (`tbl_items`.`unit_price` * `tbl_items`.`discount`)) * `tbl_carts`.`qnt`) * `configuration`.sale_ex_tax_perc AS sales_ex_tax
- // 		FROM
- // 		    `tbl_carts`
- // 		    INNER JOIN `tbl_items` 
- // 			ON (`tbl_carts`.`upc` = `tbl_items`.`upc`)
- // 		    INNER JOIN configuration
- // 			ON (`configuration`.ID = 1)
- // 		    INNER JOIN `tbl_courier`
- // 			ON (`tbl_courier`.`id` = `tbl_items`.`courier_id`)
- // 		WHERE (`tbl_carts`.`cart_id` IN (1,2,3,4,5))
- // 	) AS A
-	
- // 	GROUP BY `master_checkout_charge_perc`, `sale_ex_tax_perc`;
-
-
+			 // SELECT      `master_checkout_charge_perc`
+			 // 	 , `sale_ex_tax_perc`
+			 // 	 , SUM(`is_invalid`) AS is_invalid
+			 // 	 , SUM(`sub_total`) AS cart_sub_total
+			 // 	 , SUM(`courier_fee`) AS total_courier_charge
+			 // 	 , SUM(`master_checkout_charge`) AS total_master_checkout_charge
+			 // 	 , SUM(`sales_ex_tax`) AS total_sales_ex_tax
+			 // 	 , SUM(`sub_total`) + SUM(`sales_ex_tax`) + SUM(`master_checkout_charge`) AS total_amount
+			 // 	FROM (
+			 // 		SELECT
+			 // 		      `configuration`.master_checkout_charge_perc
+			 // 		    , `configuration`.sale_ex_tax_perc
+			 // 		    , CASE WHEN `tbl_carts`.`qnt` > `tbl_items`.stock THEN 1 ELSE 0 END AS 'is_invalid'
+			 // 		    ,  `tbl_items`.`discount` AS discount
+			 // 		    ,  `tbl_courier`.`courier_fee`
+			 // 		    , (`tbl_items`.`unit_price` + (`tbl_items`.`unit_price` * `tbl_items`.`discount`)) * `tbl_carts`.`qnt` AS sub_total
+			 // 		    , ((`tbl_items`.`unit_price` + (`tbl_items`.`unit_price` * `tbl_items`.`discount`)) * `tbl_carts`.`qnt`) * `configuration`.master_checkout_charge_perc AS master_checkout_charge
+			 // 		    , ((`tbl_items`.`unit_price` + (`tbl_items`.`unit_price` * `tbl_items`.`discount`)) * `tbl_carts`.`qnt`) * `configuration`.sale_ex_tax_perc AS sales_ex_tax
+			 // 		FROM
+			 // 		    `tbl_carts`
+			 // 		    INNER JOIN `tbl_items` 
+			 // 			ON (`tbl_carts`.`upc` = `tbl_items`.`upc`)
+			 // 		    INNER JOIN configuration
+			 // 			ON (`configuration`.ID = 1)
+			 // 		    INNER JOIN `tbl_courier`
+			 // 			ON (`tbl_courier`.`id` = `tbl_items`.`courier_id`)
+			 // 		WHERE (`tbl_carts`.`cart_id` IN (1,2,3,4,5))
+			 // 	) AS A
+			 // 	GROUP BY `master_checkout_charge_perc`, `sale_ex_tax_perc`;
 
    }
 
@@ -89,7 +81,7 @@ Class Order_model extends CI_Model{
 		    if ($order_data->is_invalid == 0) {
 				$tbl_order_data = 	array(		'shipment_id' 			=> $data->shipment_id, 
 												'date_posted' 		=> $cur_date, 
-												'date_due' 			=> date('Y-m-d H:i:s', strtotime($cur_date . ' +1 day')), 
+												'date_due' 			=> date('Y-m-d H:i:s', strtotime('+1 day')), 
 												'ex_tax_rate' 		=> $order_data->sale_ex_tax_perc, 
 												'master_charge_rate' 	=> $order_data->master_checkout_charge_perc, 
 												'ex_tax_fee' 			=> $order_data->total_sales_ex_tax, 
@@ -113,7 +105,7 @@ Class Order_model extends CI_Model{
 					UPDATE `tbl_carts`  , `tbl_items` 
 					 	INNER JOIN `tbl_carts` t1 ON (`tbl_items`.`upc` = t1.`upc`)
 					SET `tbl_items`.`stock` = `tbl_items`.`stock` - t1.`qnt`
-					WHERE (`tbl_carts`.`order_id` =?);
+					WHERE (t1.`order_id` = ? );
 					',[$order_id]);
 				}
 

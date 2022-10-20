@@ -110,7 +110,7 @@
 
                       <div class="row">
                         <!-- accepted payments column -->
-                        <div class="col-md-6">
+                        <div class="col-md-8">
                           <p class="lead">Payment Methods:</p>
                           <img src="<?=site_url();?>/assets/images/visa.png" alt="Visa">
                           <img src="<?=site_url();?>/assets/images/mastercard.png" alt="Mastercard">
@@ -124,7 +124,7 @@
                           <br><br><label for="message">:Leave Message to Seller :</label><textarea id="message" required="required" class="form-control text-muted well well-sm no-shadow" name="message" data-parsley-trigger="keyup" data-parsley-minlength="0" data-parsley-maxlength="255" data-parsley-minlength-message="" data-parsley-validation-threshold="10" data-gramm="false" wt-ignore-input="true" data-quillbot-element="gweYF26Tnw6CS5nPsFfCs" id="message"></textarea>
                         </div>
                         <!-- /.col -->
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                           <p class="lead">Amount Due <?=date('m/d/Y', strtotime(date('Y-m-d'). ' + 1 days'))?></p>
                           <div class="table-responsive">
                             <table class="table">
@@ -142,8 +142,8 @@
                                   <td>$<?=$totals->shipment_cost?></td>
                                 </tr>
                                 <tr>
-                                  <th>Total:</th>
-                                  <td>$<?=$totals->total_amount?></td>
+                                  <th><h6><strong>Total:</strong></h6></th>
+                                  <td><h6><strong>$<?=$totals->total_amount?></strong></h6></td>
                                 </tr>
                               </tbody>
                             </table>
@@ -206,8 +206,14 @@
                   },
                   type: 'post',
                   success: function(data){
-                    
-                    console.log(data);
+                    if (data.includes('cust-msg: Success')) {
+                      //loads
+                      $('#place_order_controller').addClass('invisible');
+                      $('#post_payment_controller').removeClass('invisible');
+                      console.log('success!');
+                    }else{
+                        console.log('failed!');
+                    }
                   }
 
 

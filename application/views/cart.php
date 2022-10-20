@@ -7,7 +7,6 @@
         <div class="right_col" role="main">
           <div class="">
 
-
             <div class="page-title">
               <div class="title_left">
                 <h3>Shopping Cart</h3>
@@ -18,7 +17,6 @@
                        ?>
               </div>
             </div>
-
 
             <?php echo form_open('order/checkout'); ?>
 
@@ -69,7 +67,7 @@
 
                           <tbody id="cart_list_container" >
                             <?php foreach ($cart_items as $item) { ?>
-                                <tr class="even pointer" cart_id="<?=$item->cart_id;?>" item_total_cost="<?=$item->total;?>"
+                                <tr class="even pointer" cart_id="<?=$item->cart_id;?>" item_total_cost="<?=$item->total;?>" unit_price='<?=$item->unit_price?>'
                                   >
                                   
                                   <td class="a-center ">
@@ -91,18 +89,16 @@
                                         echo '$'.$item->unit_price;
                                     }else{
                                         echo '<s><font color="red">$'.$item->unit_price.'</font></s><br>';
-                                      echo '$<strong>'.$item->discounted_unit_price.'</strong>';
-                              
+                                        echo '$<strong>'.$item->discounted_unit_price.'</strong>';
                                     }
                                     ?></td>
                                   <td class=" "><input class = "form-control input-lg col-xs-1" min="1" max="<?=$item->stock?>" type="number" id="qty" value="<?=$item->qnt?>" width="5"></i></td>
-                                  <td class="a-right a-right "><strong>$<?=$item->total?></strong></td>
+                                  <td class="a-right a-right "><strong>$<span id='item_total'><?=$item->total?></span></strong></td>
                                   <td class=" last">
 
                                     <div class="visible delete_entry_container">
                                       <a href="#" class="btn btn-sm btn-danger" id="delete_entry" ><i class="fa fa-trash"></i></a>
                                     </div>
-                                    
                                     
                                     <div class="invisible confirm_delete_entry_container">
                                       <a href="#" class="btn btn-sm btn-danger" id="confirm_delete_entry" ><i class="fa fa-trash"></i></a>
@@ -162,24 +158,13 @@
                                   </button></td>
                               </div>
                           </div>
-
-
-
                     </div>
-
-
-							
-						
                   </div>
                 </div>
               </div>
             </div>
 
           </form>
-
-
-
-
 
           </div>
         </div>
@@ -208,7 +193,8 @@
                   },
                   type: 'post',
                   success: function(data){
-                      console.log(data)      
+                      update_summary()
+                      // console.log(data)      
                   }
               })
             });
@@ -290,17 +276,24 @@
                     var hidden_chart_id = $(this).find('input.hidden_chart_id');
                     var cart_id = tr.attr('cart_id');
                     var item_cost = 0;
-                   
+                    var qty = 0;
+                    
                     if (is_selected) {
-                        item_cost = tr.attr('item_total_cost');
-                        total_cost+=parseFloat(item_cost);
+
+                        // CALCULATES TOTAL FROM DATABASE
+                        unit_price = parseFloat(tr.attr('unit_price'));
+                        qty = parseInt(tr.find('input#qty').val());
+                        item_cost = unit_price * qty;
+                        total_cost+=parseFloat(item_cost) ;
+
                         hidden_chart_id.removeAttr("disabled"); 
+                        
                     }else{
                         hidden_chart_id.attr('disabled','disabled');
                     }
-                     
-                   
+                    tr.find('span#item_total').html(parseFloat(tr.attr('unit_price')) * qty);
                 });
+
                 taxed_amount = total_cost * tax_rate;
                 net_amount = total_cost + taxed_amount;
 

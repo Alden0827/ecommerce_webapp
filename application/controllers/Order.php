@@ -23,10 +23,12 @@ class Order extends CI_Controller {
 
     public function checkout(){
         $this->user_auth_model->login_required();
-         if($this->input->post('submit') != NULL ){
+        $data['item_categories'] = $this->library_model->get_product_categories();
+
+        #IF CHECKOUT LOADS FROM CART PAGE
+        if($this->input->post('submit') != NULL ){
             $chkout_items = $this->input->post();
 
-            $data['item_categories'] = $this->library_model->get_product_categories();
             $data['shipment_info'] = $this->shipment_model->fetch_default()[0];
 
             //get checked-out items
@@ -54,15 +56,19 @@ class Order extends CI_Controller {
                               'ex_tax_rate' => number_format( $ex_tax_rate*100,2) . '%', 
                               'total_amount' => number_format( $total_amount,2)
                             );
-            // echo "<pre>";
-            // print_r($data['cart_entries']);
-            // echo "</pre>";
 
-            // print_r($data['totals']);
             $this->load->view('header',$data);
             $this->load->view('sidebar');
             $this->load->view('invoice');
             $this->load->view('footer');
+         } else {
+            #IF CHECKOUT LOADS FROM MY PURCHASES PAGE
+            #INDER CONSTRUCTION
+            $this->load->view('header',$data);
+            $this->load->view('sidebar');
+            $this->load->view('invoice');
+            $this->load->view('footer');
+
          }
     }
 
@@ -72,18 +78,14 @@ class Order extends CI_Controller {
         if ($this->input->post('place_order')!=NULL) {
             $data = $this->input->post();
             $data['csv_cart_items'] = explode(',', $data['csv_cart_items']);
-            // print('<pre>');
-            // print_r($data);
-            // print('</pre>');
-      
-
             $res = $this->order_model->place_order((object)$data);
-            print($res);
-            
+            print($res);   
         }
+    }
 
-
-
+    //LOAD LIST OF ORDERS
+    public function list($value=''){
+        
     }
 
 
