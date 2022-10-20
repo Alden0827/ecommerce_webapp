@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<!-- Created By CodingNepal -->
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <!-- <title>Responsive payment-cards</title> -->
+      <link rel="stylesheet" href="style.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+      <meta name="viewport" card-content="width=device-width, initial-scale=1.0">
+
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+   </head>
+   <body>
+
+                           <button 
+                            class="btn btn-success pull-right" 
+                            data-toggle="modal" 
+                            data-target=".payment_modal"
+                            data-backdrop="static" 
+                            data-keyboard="false"
+                            >
+                            <i class="fa fa-credit-card" id="submit_payment"></i> Submit Payment
+                          </button>
+
+
+
+                          <!-- Payment modal -->
+                          <div class="modal fade payment_modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg" style="max-width: 80% !important;">
+                              <div class="modal-content">
+                                
+                                    <div class="modal-header">
+                                      <h5 class="modal-title" id="exampleModalLabel">PAYMENT OPTION</h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+                                    <div class="modal-body">
+
+
+       <div class="payment-cards">
+         <h2 class="header">
+            SELECT PAYMENT OPTIONS
+         </h2>
+         <div class="card-services">
+
+
+            <div class="card-content card-content-2">
+               <div class="fab fa-cc-amex"></div>
+               <h2>
+                  American Express
+               </h2>
+               <p>
+                  Don't Leave Home Without Them
+               </p>
+               <a href="#">Pay with AmEx</a>
+            </div>
+
+            <div class="card-content card-content-2">
+               <div class="fab fa-cc-discover"></div>
+               <h2>
+                  Discover
+               </h2>
+               <p>
+                  It pays to Discover
+               </p>
+               <a href="#">Pay with Discord</a>
+            </div>
+
+            <div class="card-content card-content-2">
+               <div class="fab fa-cc-visa"></div>
+               <h2>
+                  Visa
+               </h2>
+               <p>
+                  Trust, Security, Acceptance, and Inclusion.
+               </p>
+               <a href="#">Pay with Visa</a>
+            </div>
+            <div class="card-content card-content-2">
+               <div class="fab fa-cc-mastercard"></div>
+               <h2>
+                  Mastercard
+               </h2>
+               <p>
+                  There are some things money can't buy. For everything else there's Mastercard.
+               </p>
+               <a href="#">Pay with Mastercard</a>
+            </div>
+            <div class="card-content card-content-2">
+               <div class="fab fa-cc-paypal"></div>
+               <h2>
+                  PAYPAL
+               </h2>
+               <p>
+                  We put people at the center of everything we do.
+               </p>
+               <a href="#">Pay with Paypal</a>
+            </div>
+         </div>
+      </div>
+
+
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                    </div>
+
+                              </div>
+                            </div>
+                          </div> <!-- payment modal -->
+
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+   </body>
+</html>
+
+<style type="text/css">
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800|Poppins&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat',sans-serif;
+}
+.payment-cards{
+  max-width: 1500px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 30px;
+}
+.payment-cards h2.header{
+  font-size: 40px;
+  margin: 0 0 30px 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.card-services{
+  display: flex;
+  align-items: center;
+}
+.card-content{
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1;
+  margin: 20px;
+  padding: 20px;
+  border: 2px solid black;
+  border-radius: 4px;
+  transition: all .3s ease;
+  /*width: 400px;*/
+  height: 400px;
+
+}
+.card-content .fab{
+  font-size: 70px;
+  margin: 16px 0;
+}
+.card-content > *{
+  flex: 1 1 100%;
+}
+.card-content:hover{
+  color: white;
+}
+.card-content:hover a{
+  border-color: white;
+  background: white;
+}
+.card-content-1:hover{
+  border-color: #1DA1F2;
+  background: #1DA1F2;
+}
+.card-content-1:hover a{
+  color: #1DA1F2;
+}
+.card-content-2:hover{
+  border-color: #E1306C;
+  background: #E1306C;
+}
+.card-content-2:hover a{
+  color: #E1306C;
+}
+.card-content-3:hover{
+  border-color: #ff0000;
+  background: #ff0000;
+}
+.card-content-3:hover a{
+  color: #ff0000;
+}
+.card-content h2{
+  font-size: 30px;
+  margin: 16px 0;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.card-content p{
+  font-size: 17px;
+  font-family: 'Poppins',sans-serif;
+
+}
+.card-content a{
+  margin: 22px 0;
+  background: black;
+  color: white;
+  text-decoration: none;
+  text-transform: uppercase;
+  border: 1px solid black;
+  padding: 15px 0;
+  border-radius: 25px;
+  transition: .3s ease;
+}
+.card-content a:hover{
+  border-radius: 4px;
+}
+@media (max-width: 900px) {
+  .card-services{
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+</style>

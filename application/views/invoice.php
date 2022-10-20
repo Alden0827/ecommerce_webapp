@@ -1,5 +1,6 @@
 
 
+
         <!-- page content -->
         <div class="right_col" role="main">
           <div class="">
@@ -31,7 +32,6 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-
                     <section class="content invoice">
                       <!-- title row -->
                       <div class="row">
@@ -165,12 +165,106 @@
                       <div class="row no-print invisible" id="post_payment_controller">
                         <div class=" ">
                           <button class="btn btn-default" onclick="window.print();"><i class="fa fa-print"></i> Print</button>
-                          <button class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Submit Payment</button>
-                          <button class="btn btn-primary pull-right" style="margin-right: 5px;"><i class="fa fa-download"></i> Generate PDF</button>
+                          <button 
+                            class="btn btn-success pull-right" 
+                            data-toggle="modal" 
+                            data-target=".payment_modal"
+                            data-backdrop="static" 
+                            data-keyboard="false"
+                            >
+                            <i class="fa fa-credit-card" id="submit_payment"></i> Submit Payment
+                          </button>
+                          <button class="btn btn-primary pull-right" style="margin-right: 5px;" id="gen_pdf"><i class="fa fa-download"></i> Generate PDF</button>
+                          <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".payment_modal">Large modal</button> -->
+                          <!-- Payment modal -->
+                          <div class="modal fade payment_modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                              <div class="modal-content">
+                                
+                                    <div class="modal-header">
+                                      <h5 class="modal-title" id="exampleModalLabel">PAYMENT OPTION</h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+                                    <div class="modal-body">
+
+
+       <div class="payment-cards">
+         <h2 class="header">
+            SELECT PAYMENT OPTIONS
+         </h2>
+         <div class="card-services">
+
+
+            <div class="card-content card-content-1">
+               <div class="fab fa-cc-amex"></div>
+               <h2>
+                  American Express
+               </h2>
+               <p>
+                  Don't Leave Home Without Them
+               </p>
+               <a href="#">Pay with American Express</a>
+            </div>
+
+            <div class="card-content card-content-1">
+               <div class="fab fa-cc-discover"></div>
+               <h2>
+                  Discover
+               </h2>
+               <p>
+                  It pays to Discover
+               </p>
+               <a href="#">Pay with Discord</a>
+            </div>
+
+            <div class="card-content card-content-1">
+               <div class="fab fa-cc-visa"></div>
+               <h2>
+                  Visa
+               </h2>
+               <p>
+                  Trust, Security, Acceptance, and Inclusion.
+               </p>
+               <a href="#">Pay with Visa</a>
+            </div>
+            <div class="card-content card-content-2">
+               <div class="fab fa-cc-mastercard"></div>
+               <h2>
+                  Mastercard
+               </h2>
+               <p>
+                  There are some things money can't buy. For everything else there's Mastercard.
+               </p>
+               <a href="#">Pay with Mastercard</a>
+            </div>
+            <div class="card-content card-content-3">
+               <div class="fab fa-cc-paypal"></div>
+               <h2>
+                  PAYPAL
+               </h2>
+               <p>
+                  We put people at the center of everything we do.
+               </p>
+               <a href="#">Pay with Paypal</a>
+            </div>
+         </div>
+      </div>
+
+
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                    </div>
+
+                              </div>
+                            </div>
+                          </div> <!-- payment modal -->
+
+
                         </div>
                       </div>
-
-
                     </section>
                   </div>
                 </div>
@@ -184,11 +278,36 @@
 
         <script type="text/javascript">
           $(function() {
-
             var formatter = new Intl.NumberFormat('en-US', {
               style: 'currency',
               currency: 'USD',
             });
+
+         $('#gen_pdf').on('click',function(){
+              var HTML_Width = $(".x_panel").width();
+              var HTML_Height = $(".x_panel").height();
+              var top_left_margin = 15;
+              var PDF_Width = HTML_Width + (top_left_margin * 2);
+              var PDF_Height = (PDF_Width * 1.5) + (top_left_margin * 2);
+              var canvas_image_width = HTML_Width;
+              var canvas_image_height = HTML_Height;
+
+              var totalPDFPages = Math.ceil(HTML_Height / PDF_Height) - 1;
+
+              html2canvas($(".x_panel")[0]).then(function (canvas) {
+                  var imgData = canvas.toDataURL("image/jpeg", 1.0);
+                  var pdf = new jsPDF('p', 'pt', [PDF_Width, PDF_Height]);
+                  pdf.addImage(imgData, 'JPG', top_left_margin, top_left_margin, canvas_image_width, canvas_image_height);
+                  for (var i = 1; i <= totalPDFPages; i++) { 
+                      pdf.addPage(PDF_Width, PDF_Height);
+                      pdf.addImage(imgData, 'JPG', top_left_margin, -(PDF_Height*i)+(top_left_margin*4),canvas_image_width,canvas_image_height);
+                  }
+                  pdf.save("Your_PDF_Name.pdf");
+                  // $(".x_panel").hide();
+              });
+          });
+
+
 
             //PLACE ORDER
             $('#btn_place_order').on('click',function(){
@@ -210,16 +329,154 @@
                       //loads
                       $('#place_order_controller').addClass('invisible');
                       $('#post_payment_controller').removeClass('invisible');
-                      console.log('success!');
+                      $.toast({
+                              // text: '<b>'+res.upc+'<b><br>'+res.item_caption, 
+                              text: 'Success!',
+                              heading: 'msg', 
+                              icon: 'success', 
+                              showHideTransition: 'slide',
+                              allowToastClose: true, 
+                              hideAfter: 10000, 
+                              stack: 5, 
+                              position: 'bottom-right',
+                              textAlign: 'left',  
+                              loader: true,  
+                              loaderBg: '#830101',  
+                              beforeShow: function () {}, 
+                              afterShown: function () {}, 
+                              beforeHide: function () {}, 
+                              afterHidden: function () {}  
+                          });
                     }else{
-                        console.log('failed!');
+                      var msg = data.replace('cust-error:','');
+                      $.toast({
+                              // text: '<b>'+res.upc+'<b><br>'+res.item_caption, 
+                              text: 'Error!',
+                              heading: msg, 
+                              icon: 'danger', 
+                              showHideTransition: 'slide',
+                              allowToastClose: true, 
+                              hideAfter: 10000, 
+                              stack: 5, 
+                              position: 'bottom-right',
+                              textAlign: 'left',  
+                              loader: true,  
+                              loaderBg: '#830101',  
+                              beforeShow: function () {}, 
+                              afterShown: function () {}, 
+                              beforeHide: function () {}, 
+                              afterHidden: function () {}  
+                          });
                     }
                   }
 
 
               })
             });
-
-
           });
+
+
+ 
         </script>
+
+<style type="text/css">
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800|Poppins&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat',sans-serif;
+}
+.payment-cards{
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 30px;
+}
+.payment-cards h2.header{
+  font-size: 40px;
+  margin: 0 0 30px 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.services{
+  display: flex;
+  align-items: center;
+}
+.card-content{
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1;
+  margin: 20px;
+  padding: 20px;
+  border: 2px solid black;
+  border-radius: 4px;
+  transition: all .3s ease;
+}
+.card-content .fab{
+  font-size: 70px;
+  margin: 16px 0;
+}
+.card-content > *{
+  flex: 1 1 100%;
+}
+.card-content:hover{
+  color: white;
+}
+.card-content:hover a{
+  border-color: white;
+  background: white;
+}
+.card-content-1:hover{
+  border-color: #1DA1F2;
+  background: #1DA1F2;
+}
+.card-content-1:hover a{
+  color: #1DA1F2;
+}
+.card-content-2:hover{
+  border-color: #E1306C;
+  background: #E1306C;
+}
+.card-content-2:hover a{
+  color: #E1306C;
+}
+.card-content-3:hover{
+  border-color: #ff0000;
+  background: #ff0000;
+}
+.card-content-3:hover a{
+  color: #ff0000;
+}
+.card-content h2{
+  font-size: 30px;
+  margin: 16px 0;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.card-content p{
+  font-size: 17px;
+  font-family: 'Poppins',sans-serif;
+}
+.card-content a{
+  margin: 22px 0;
+  background: black;
+  color: white;
+  text-decoration: none;
+  text-transform: uppercase;
+  border: 1px solid black;
+  padding: 15px 0;
+  border-radius: 25px;
+  transition: .3s ease;
+}
+.card-content a:hover{
+  border-radius: 4px;
+}
+@media (max-width: 900px) {
+  .services{
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+</style>

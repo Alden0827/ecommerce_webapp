@@ -31,8 +31,13 @@
     <link href="<?php echo base_url()?>/assets/build/css/custom_mod1.css" rel="stylesheet">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script>
-    
+   
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+   <script type="text/javascript" src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script> 
 
+
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+   
   </head>
 
   <body class="nav-md">
