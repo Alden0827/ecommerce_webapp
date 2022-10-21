@@ -14,103 +14,101 @@
    </head>
    <body>
 
-                           <button 
-                            class="btn btn-success pull-right" 
-                            data-toggle="modal" 
-                            data-target=".payment_modal"
-                            data-backdrop="static" 
-                            data-keyboard="false"
-                            >
-                            <i class="fa fa-credit-card" id="submit_payment"></i> Submit Payment
-                          </button>
+   <button 
+    class="btn btn-success pull-right" 
+    data-toggle="modal" 
+    data-target=".payment_modal"
+    data-backdrop="static" 
+    data-keyboard="false"
+    >
+    <i class="fa fa-credit-card" id="submit_payment"></i> Submit Payment
+  </button>
 
 
 
-                          <!-- Payment modal -->
-                          <div class="modal fade payment_modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-lg" style="max-width: 80% !important;">
-                              <div class="modal-content">
-                                
-                                    <div class="modal-header">
-                                      <h5 class="modal-title" id="exampleModalLabel">PAYMENT OPTION</h5>
-                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                      </button>
-                                    </div>
-                                    <div class="modal-body">
+  <!-- Payment modal -->
+  <div class="modal fade payment_modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" style="max-width: 80% !important;">
+      <div class="modal-content">
+        
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">PAYMENT OPTION</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+               <div class="payment-cards">
+                 <h2 class="header">
+                    SELECT PAYMENT OPTIONS
+                 </h2>
+                 <div class="card-services">
 
 
-       <div class="payment-cards">
-         <h2 class="header">
-            SELECT PAYMENT OPTIONS
-         </h2>
-         <div class="card-services">
+                    <div class="card-content card-content-2">
+                       <div class="fab fa-cc-amex"></div>
+                       <h3>
+                          American Express
+                       </h3>
+                       <p>
+                          Don't Leave Home Without Them
+                       </p>
+                       <a href="#">Pay with<br>AmEx</a>
+                    </div>
+
+                    <div class="card-content card-content-2">
+                       <div class="fab fa-cc-discover"></div>
+                       <h3>
+                          Discover
+                       </h3>
+                       <p>
+                          It pays to Discover
+                       </p>
+                       <a href="#">Pay with<br>Discord</a>
+                    </div>
+
+                    <div class="card-content card-content-2">
+                       <div class="fab fa-cc-visa"></div>
+                       <h3>
+                          Visa
+                       </h3>
+                       <p>
+                          Trust, Security, Acceptance, and Inclusion.
+                       </p>
+                       <a href="#">Pay with<br>Visa</a>
+                    </div>
+                    <div class="card-content card-content-2">
+                       <div class="fab fa-cc-mastercard"></div>
+                       <h3>
+                          Mastercard
+                       </h3>
+                       <p>
+                          There are some things money can't buy. For everything else there's Mastercard.
+                       </p>
+                       <a href="#">Pay with<br>Mastercard</a>
+                    </div>
+                    <div class="card-content card-content-2">
+                       <div class="fab fa-cc-paypal"></div>
+                       <h3>
+                          PAYPAL
+                       </h3>
+                       <p>
+                          We put people at the center of everything we do.
+                       </p>
+                       <a href="#">Pay with<br>Paypal</a>
+                    </div>
+                 </div>
+              </div>
 
 
-            <div class="card-content card-content-2">
-               <div class="fab fa-cc-amex"></div>
-               <h3>
-                  American Express
-               </h3>
-               <p>
-                  Don't Leave Home Without Them
-               </p>
-               <a href="#">Pay with<br>AmEx</a>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
             </div>
 
-            <div class="card-content card-content-2">
-               <div class="fab fa-cc-discover"></div>
-               <h3>
-                  Discover
-               </h3>
-               <p>
-                  It pays to Discover
-               </p>
-               <a href="#">Pay with<br>Discord</a>
-            </div>
-
-            <div class="card-content card-content-2">
-               <div class="fab fa-cc-visa"></div>
-               <h3>
-                  Visa
-               </h3>
-               <p>
-                  Trust, Security, Acceptance, and Inclusion.
-               </p>
-               <a href="#">Pay with<br>Visa</a>
-            </div>
-            <div class="card-content card-content-2">
-               <div class="fab fa-cc-mastercard"></div>
-               <h3>
-                  Mastercard
-               </h3>
-               <p>
-                  There are some things money can't buy. For everything else there's Mastercard.
-               </p>
-               <a href="#">Pay with<br>Mastercard</a>
-            </div>
-            <div class="card-content card-content-2">
-               <div class="fab fa-cc-paypal"></div>
-               <h3>
-                  PAYPAL
-               </h3>
-               <p>
-                  We put people at the center of everything we do.
-               </p>
-               <a href="#">Pay with<br>Paypal</a>
-            </div>
-         </div>
       </div>
-
-
-                                    </div>
-                                    <div class="modal-footer">
-                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                    </div>
-
-                              </div>
-                            </div>
-                          </div> <!-- payment modal -->
+    </div>
+  </div> <!-- payment modal -->
 
 
 

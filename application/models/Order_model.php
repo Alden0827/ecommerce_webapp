@@ -34,36 +34,6 @@ Class Order_model extends CI_Model{
 			->group_by(array('`master_checkout_charge_perc`', '`sale_ex_tax_perc`'))
 			->get();
 
-			 // SELECT      `master_checkout_charge_perc`
-			 // 	 , `sale_ex_tax_perc`
-			 // 	 , SUM(`is_invalid`) AS is_invalid
-			 // 	 , SUM(`sub_total`) AS cart_sub_total
-			 // 	 , SUM(`courier_fee`) AS total_courier_charge
-			 // 	 , SUM(`master_checkout_charge`) AS total_master_checkout_charge
-			 // 	 , SUM(`sales_ex_tax`) AS total_sales_ex_tax
-			 // 	 , SUM(`sub_total`) + SUM(`sales_ex_tax`) + SUM(`master_checkout_charge`) AS total_amount
-			 // 	FROM (
-			 // 		SELECT
-			 // 		      `configuration`.master_checkout_charge_perc
-			 // 		    , `configuration`.sale_ex_tax_perc
-			 // 		    , CASE WHEN `tbl_carts`.`qnt` > `tbl_items`.stock THEN 1 ELSE 0 END AS 'is_invalid'
-			 // 		    ,  `tbl_items`.`discount` AS discount
-			 // 		    ,  `tbl_courier`.`courier_fee`
-			 // 		    , (`tbl_items`.`unit_price` + (`tbl_items`.`unit_price` * `tbl_items`.`discount`)) * `tbl_carts`.`qnt` AS sub_total
-			 // 		    , ((`tbl_items`.`unit_price` + (`tbl_items`.`unit_price` * `tbl_items`.`discount`)) * `tbl_carts`.`qnt`) * `configuration`.master_checkout_charge_perc AS master_checkout_charge
-			 // 		    , ((`tbl_items`.`unit_price` + (`tbl_items`.`unit_price` * `tbl_items`.`discount`)) * `tbl_carts`.`qnt`) * `configuration`.sale_ex_tax_perc AS sales_ex_tax
-			 // 		FROM
-			 // 		    `tbl_carts`
-			 // 		    INNER JOIN `tbl_items` 
-			 // 			ON (`tbl_carts`.`upc` = `tbl_items`.`upc`)
-			 // 		    INNER JOIN configuration
-			 // 			ON (`configuration`.ID = 1)
-			 // 		    INNER JOIN `tbl_courier`
-			 // 			ON (`tbl_courier`.`id` = `tbl_items`.`courier_id`)
-			 // 		WHERE (`tbl_carts`.`cart_id` IN (1,2,3,4,5))
-			 // 	) AS A
-			 // 	GROUP BY `master_checkout_charge_perc`, `sale_ex_tax_perc`;
-
    }
 
    public function place_order($data){
@@ -122,6 +92,48 @@ Class Order_model extends CI_Model{
 		}	//try	
 
 	} 
+
+	// ---------------------------------------------------------------------------------------
+
+	public function get_order_detail($order_id){
+			return $this->db->select('tbl_carts.order_id
+				,tbl_carts.upc
+				,tbl_carts.qnt
+				,tbl_items.unit_price
+				,tbl_items.discount,configuration.sale_ex_tax_perc
+				,tbl_orders.date_posted
+				,tbl_orders.date_due,tbl_carts.qnt * (tbl_items.unit_price - (tbl_items.unit_price * tbl_items.discount)) AS NET_AMOUNT
+				,ROUND((tbl_carts.qnt * (tbl_items.unit_price - (tbl_items.unit_price * tbl_items.discount))) * (configuration.sale_ex_tax_perc + 1),2) AS SUB_TOTAL')
+				->from('tbl_orders')
+				->join('tbl_carts', 'tbl_carts.order_id = tbl_orders.id')
+				->join('tbl_items', 'tbl_items.upc = tbl_carts.upc')
+				->join('configuration', 'configuration.id = 1')
+				->where('tbl_orders.payment_id', 0)
+				->where('tbl_orders.id', $order_id)
+				->order_by('date_posted ASC')
+				->get();
+			// $this->db->last_query();
+	}
+
+	public function get_order_listing($login_oauth_uid){
+			return $this->db->select('
+				tbl_carts.order_id,
+				SUM(tbl_carts.qnt) AS ITEM_COUNT
+				,tbl_orders.date_posted,tbl_orders.date_due,
+				SUM(tbl_carts.qnt * (tbl_items.unit_price - (tbl_items.unit_price * tbl_items.discount))) AS NET_AMOUNT
+				,ROUND(SUM((tbl_carts.qnt * (tbl_items.unit_price - (tbl_items.unit_price * tbl_items.discount))) * (configuration.sale_ex_tax_perc)),2) AS EX_TAX
+				,ROUND(SUM((tbl_carts.qnt * (tbl_items.unit_price - (tbl_items.unit_price * tbl_items.discount))) * (configuration.sale_ex_tax_perc + 1)),2) AS SUB_TOTAL')
+				->from('tbl_orders')
+				->join('tbl_carts', 'tbl_carts.order_id = tbl_orders.id')
+				->join('tbl_items', 'tbl_items.upc = tbl_carts.upc')
+				->join('configuration', 'configuration.id = 1')
+				->where('tbl_orders.payment_id', 0)
+				->where('tbl_carts.login_oauth_uid', $login_oauth_uid)
+				->where('tbl_items.is_bidding', 0)
+				->group_by('tbl_carts.order_id')
+				->order_by('date_posted ASC, tbl_orders.date_posted ASC, tbl_orders.date_due ASC')
+				->get();
+	}
 
 
 }

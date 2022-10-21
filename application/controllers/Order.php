@@ -84,8 +84,18 @@ class Order extends CI_Controller {
     }
 
     //LOAD LIST OF ORDERS
-    public function list($value=''){
-        
+    public function list(){
+        $login_oauth_uid = $this->user_auth_model->get_user_id();
+        $data['item_categories'] = $this->library_model->get_product_categories();
+        $data['order_listing'] = $this->order_model->get_order_listing($login_oauth_uid);
+        print_r($data['order_listing']->result());
+        $this->load->view('header',$data);
+        $this->load->view('sidebar');
+        $this->load->view('order_listing');
+        $this->load->view('footer');
+
+        // 
+        // 
     }
 
 
