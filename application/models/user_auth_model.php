@@ -38,7 +38,7 @@ class user_auth_model extends CI_Model {
         $google_client->setClientSecret($this->config->item("google_secret_id")); //Define your Client Secret Key
         $google_client->setRedirectUri($this->config->item("google_redirect_url")); //Define your Redirect Uri
         $google_client->addScope('email');
-
+        // $google_client->display('popup');
         $google_client->addScope('profile');
 
         if (isset($_GET["code"])) {

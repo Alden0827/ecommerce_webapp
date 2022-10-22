@@ -38,13 +38,13 @@ if ($is_logged_in) {
               <div class="menu_section">
                 <h3>General</h3>
                 <ul class="nav side-menu">
-                  <li ><a href="<?php echo site_url(); ?>"><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
+                  <li ><a href="<?php echo site_url(); ?>"><i class="fa fa-home"></i> Home </a>
 <!--                <ul class="nav child_menu">
                       <li><a href="index.php">Explore</a></li>
                     </ul>
  -->                  
 				          </li>
-                  <li><a href="<?=site_url('cart')?>"><i class="fa fa-shopping-cart"></i> Cart <span class="fa fa-chevron-down"></span></a>
+                  <li><a href="<?=site_url('cart')?>"><i class="fa fa-shopping-cart"></i> Cart </a>
                   </li>                  
                   <li><a><i class="fa fa-edit"></i> Category <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu " style="display: none;">
@@ -57,11 +57,11 @@ if ($is_logged_in) {
                     </ul>
                   </li>
 
-                  <li><a href="<?=site_url('wishlist')?>"><i class="fa fa-list"></i> Wishlist <span class="fa fa-chevron-down"></span></a>
+                  <li><a href="<?=site_url('wishlist')?>"><i class="fa fa-list"></i> Wishlist </a>
                   </li>
 
 
-                  <li><a href="<?=site_url('stores')?>"><i class="fa fa-desktop"></i> Explore Stores <span class="fa fa-chevron-down"></span></a>
+                  <li><a href="<?=site_url('stores')?>"><i class="fa fa-desktop"></i> Explore Stores </a>
                   </li>
 
                   <li><a><i class="fa fa-thumbs-o-up"></i> Bids & Checkouts <span class="fa fa-chevron-down"></span></a>

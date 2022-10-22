@@ -21,8 +21,12 @@ Class Shipment_model extends CI_Model{
    public function fetch_default(){
    		$login_oauth_uid = $this->user_auth_model->get_user_id();
    		return $this->db->get_where('`tbl_shipment_addresses`', array('`login_oauth_uid`' => $login_oauth_uid,'`default`' => 1))->result();
-         // print($aa[0]->login_oauth_uid);
    }
+   
+   public function fetch_by_id($id){
+         return $this->db->get_where('`tbl_shipment_addresses`', array('`id`' => $id))->result();
+   }
+
    public function fetch_all(){
 
    		$login_oauth_uid = $this->user_auth_model->get_user_id();

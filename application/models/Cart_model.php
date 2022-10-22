@@ -53,7 +53,18 @@ Class Cart_model extends CI_Model{
 
    public function get_cart_entries($data){
    		// print($data);
-   		return $this->db->select('`tbl_carts`.`qnt`,`tbl_items`.stock,CASE WHEN `tbl_carts`.`qnt` > `tbl_items`.stock THEN 1 ELSE 0 END AS \'is_valid\',`tbl_items`.`item_caption`,`tbl_items`.`item_desc`,`tbl_carts`.`upc`,`tbl_items`.`unit_price`,`tbl_courier`.`courier_fee`,`tbl_items`.`unit_price` + (`tbl_items`.`unit_price` * `tbl_items`.`discount`) AS discounted_unit_price,`tbl_courier`.`courier_fee` + (`tbl_items`.`unit_price` + (`tbl_items`.`unit_price` * `tbl_items`.`discount`)) * `tbl_carts`.`qnt` AS sub_total')
+   		return $this->db->select('
+   			 `tbl_carts`.`qnt`
+   			,`tbl_items`.stock
+   			,CASE WHEN `tbl_carts`.`qnt` > `tbl_items`.stock THEN 1 ELSE 0 END AS \'is_valid\'
+   			,`tbl_items`.`item_caption`
+   			,`tbl_items`.`item_desc`
+   			,`tbl_carts`.`upc`
+   			,`tbl_items`.`unit_price`
+   			,`tbl_courier`.`courier_fee`
+   			,`tbl_items`.`unit_price` + (`tbl_items`.`unit_price` * `tbl_items`.`discount`) AS discounted_unit_price
+   			,`tbl_courier`.`courier_fee` + (`tbl_items`.`unit_price` + (`tbl_items`.`unit_price` * `tbl_items`.`discount`)) * `tbl_carts`.`qnt` AS sub_total'
+   			)
 			->from('`tbl_carts`')
 			->join('`tbl_items`', '(`tbl_carts`.`upc` = `tbl_items`.`upc`)')
 			->join('`tbl_courier`', '(`tbl_courier`.`id`  = `tbl_items`.`courier_id`)')
