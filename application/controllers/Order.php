@@ -14,6 +14,10 @@ class Order extends CI_Controller {
 
        $this->load->helper('url');
        $this->load->helper('form');
+
+       $this->load->library('paypal_lib'); 
+       // $this->load->model('product'); 
+
        
     }
 
@@ -147,7 +151,7 @@ class Order extends CI_Controller {
                                            <h2 class='header'>
                                               SELECT PAYMENT OPTIONS
                                            </h2>
-                                           <div class='card-services'>
+                                           <div class='card-services' order_id='$order_id'>
 
 
                                               <div class='card-content card-content-2'>
@@ -259,9 +263,57 @@ class Order extends CI_Controller {
     public function payment(){
        $this->user_auth_model->login_required();
        $data = $this->input->post();
+       $order_id = $data['order_id'];
+       $mop = $data['mop'];
+       $this->mop_paypal(1);
+
+
 
        print_r($data);
     }
+
+    function mop_paypal($id){ 
+
+        # sb-uz9bd18075500@business.example.com
+        # P@ssw0rd0214
+
+        #sb-43x43px20719471@personal.example.com
+
+
+        // Set variables for paypal form 
+        $returnURL = site_url().'paypal/success'; //payment success url 
+        $cancelURL = base_url().'paypal/cancel'; //payment cancel url 
+        $notifyURL = base_url().'paypal/ipn'; //ipn url 
+         
+        // Get product data from the database 
+        // $product = $this->product->getRows($id); 
+         
+        // Get current user ID from the session (optional) 
+        $userID =  '8888';
+         
+        // Add fields to paypal form 
+        $this->paypal_lib->add_field('return', $returnURL); 
+        $this->paypal_lib->add_field('cancel_return', $cancelURL); 
+        $this->paypal_lib->add_field('notify_url', $notifyURL); 
+        $this->paypal_lib->add_field('order_number', '1'); 
+        // $this->paypal_lib->add_field('custom', $userID); 
+        // $this->paypal_lib->add_field('item_number',  2); 
+        // $this->paypal_lib->add_field('itemName',  '3'); 
+
+        // // $this->paypal_lib->add_field('item_name', 'suns beauty product'); 
+        // $this->paypal_lib->add_field('quantity',  5); 
+        // $this->paypal_lib->add_field('amount',  100); 
+
+        $this->paypal_lib->add_field('item_name', 'product-name');
+        $this->paypal_lib->add_field('custom', 'customer identification');
+        $this->paypal_lib->add_field('quantity',  2);
+        $this->paypal_lib->add_field('sample_field',  2);
+        $this->paypal_lib->add_field('item_number',  '111');
+        $this->paypal_lib->add_field('amount',  130);
+         
+        // Render paypal form 
+        $this->paypal_lib->paypal_auto_form(); 
+    } 
 
 }
 

@@ -8,8 +8,12 @@
 
             $(document).on('click','#mop',function(e){
                 e.preventDefault();
+
                 var mop = $(this).attr('pid');
-                $.redirect("<?=site_url('order/payment');?>", {'mop': mop});
+                var order_id = $(this).closest('div.card-services').attr('order_id');
+                // alert(order_id);
+
+                $.redirect("<?=site_url('order/payment');?>", {'mop': mop,'order_id':order_id});
 
             });
         })
