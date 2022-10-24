@@ -39,7 +39,7 @@
                                 <tbody>
                                   
                                   <?php  foreach ($order_listing->result() as $order){ ?>
-                                    <tr order_id="<?=$order->order_id?>">
+                                    <tr >
                                       <td><?=$order->order_id?></td>
                                       <td><?=$order->ITEM_COUNT?></td>
 
@@ -68,7 +68,7 @@
 
                                       <td>
 
-                                        <button id="btn_action_view" class="btn btn-sm btn-info"><i class="fa fa-close"></i> View</button>
+                                        <button id="btn_action_view" order_id="<?=$order->order_id?>" class="btn btn-sm btn-info"><i class="fa fa-close"></i> View</button>
                                         <button id="btn_action_ship" class="btn btn-sm btn-primary"><i class="fa fa-close"></i> Ship</button>
                                         <button id="btn_action_cancel" class="btn btn-sm btn-danger"><i class="fa fa-close"></i> Cancel</button>
 
@@ -97,7 +97,7 @@ $(function() {
 
       // /ON VIEW ORDER
       $(document).on('click','#btn_action_view',function(){
-          var order_id = $(this).closest('tr').attr('order_id');
+          var order_id = $(this).attr('order_id');
           $.redirect("<?=site_url('order/checkout');?>", {'order_id': order_id});
       });
 

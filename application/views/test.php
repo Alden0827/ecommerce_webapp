@@ -1,23 +1,4 @@
-
-
-sadasd
-sadasd
-sadasd
-sadasd
-sadasd
-sadasd
-sadasd
-sadasd
-sadasd
-sadasd
-sadasd
-sadasd
-sadasd
-sadasd
-sadasd
-sadasd
-sadasd
-sadasd
+. .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 
  <button class="btn btn-default" id="btn_place_order"><i class="fa fa-print"></i> Print</button>
 
  <script type="text/javascript">
