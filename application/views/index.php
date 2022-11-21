@@ -5,7 +5,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Featured Products</h3>
+                <h3>Featured Item</h3>
               </div>
 
               <div class="title_right">
@@ -64,8 +64,17 @@
 
                         <!-- START OF CARD -->
                         <a href="<?php echo site_url("Products/detail/$item->upc") ?>"> 
-                          <div class="col-md-3   widget widget_tally_box">
-                            <div class="x_panel ui-ribbon-container fixed_item_card_height fixed_item_card_width">
+                          <div class="col-md-3   
+                            widget 
+                            widget_tally_box
+                            ">
+                            <div class="
+                            x_panel 
+                            ui-ribbon-container 
+                            fixed_item_card_height 
+                            fixed_item_card_width
+
+                            ">
                               
                                 <?php if ($item->discount > 0): ?>
                                   <div class="ui-ribbon-wrapper">

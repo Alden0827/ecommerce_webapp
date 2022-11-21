@@ -1193,8 +1193,12 @@ body {
 .fixed_height_390 {
   height: 390px; }
 
-.fixed_item_card_height {height: 280px; } /* here  */
-.fixed_item_card_width {width: 310px; } /* here */
+/*.fixed_item_card_height {height: 280px; } /* here  */
+/*.fixed_item_card_width {width: 310px; } /* here */
+
+/*.fixed_item_card_height {height: 280px; } /* here  */*/
+.fixed_item_card_width {width: 100px; } /* here */
+
 
 .fixed_height_200 {
   height: 200px; }
@@ -3353,7 +3357,9 @@ ul.social li {
   margin-top: 0; }
 
 
-.widget {min-width: 156px; max-width: 156px; } /* here */
+/*.widget {min-width: 166px; max-width: 176px; } /* here */
+.widget {min-width: 190px; max-width: 190px; } /* adjust item width here */
+/*.widget {min-width: 120px; max-width: 120px; } /* adjust item width here */*/
 
 .widget_tally_box .btn-group button {
   text-align: center; }
@@ -3672,13 +3678,13 @@ ul.project_files li a i {
   overflow: hidden;
   width: 85px;
   height: 88px;
-  top: -1px;
+  top: -1px; 
   right: -100px; 
-  left: 45px;
+  left: 83px; /*adjust ribbin left here*/
 
 /*  border-style: solid;
-  border-width: 1px;*/
-
+  border-width: 1px;
+*/
 }
 
 .ui-ribbon-container.ui-ribbon-primary .ui-ribbon {
@@ -3686,6 +3692,7 @@ ul.project_files li a i {
 
 
 .ui-ribbon-container .ui-ribbon {
+
   position: relative;
   display: block;
   text-align: center;
@@ -3698,7 +3705,7 @@ ul.project_files li a i {
   left: -5px; /**/
   top: 15px; /**/
   width: 120px; /**/
-  line-height: 10px; /*ribbon width*/
+  line-height: 10px; /*ribbon tickness*/
   background-color: #555;
   -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
           box-shadow: 0 0 3px rgba(0, 0, 0, 0.3); 
@@ -3707,8 +3714,9 @@ ul.project_files li a i {
 
 .image_zindex {
     z-index: -1;
-    width: 123px;
-    height: 123px;
+    width: 153px; /*adjust image size here*/
+    height: 153px;  /*adjust image size here*/
+    /*border-style: solid;*/
  }
 /*-------------------------------------*/
 

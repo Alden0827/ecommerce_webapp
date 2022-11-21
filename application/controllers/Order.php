@@ -26,11 +26,18 @@ class Order extends CI_Controller {
     }
 
     public function checkout(){
+
+
+          // echo "just a test1";
+          // return;
+
+
         $this->user_auth_model->login_required();
         $data['item_categories'] = $this->library_model->get_product_categories();
 
         #IF CHECKOUT LOADS FROM CART PAGE
         if($this->input->post('submit') != NULL ){
+
             $chkout_items = $this->input->post();
             $shipment_info = $this->shipment_model->fetch_default()[0];
             $data['shipment_info'] = $shipment_info;
@@ -80,12 +87,18 @@ class Order extends CI_Controller {
              $this->load->view('js/place_order');
 
          } else {
+
+
+
             #IF CHECKOUT LOADS FROM MY PURCHASES PAGE
             #INDER CONSTRUCTION
-            $order_id = $this->input->post()['order_id'];
-            $order_info = (object) $this->order_model->get_order_by_id($order_id)[0];
-            $data['shipment_info'] = $this->shipment_model->fetch_by_id($order_info->shipment_id)[0];
+            // $order_id = $this->input->post()['order_id'];
+
+            $order_id = $this->uri->segment(3);
+            $order_info =  $this->order_model->get_order_by_id($order_id);
+            $data['shipment_info'] = $this->shipment_model->fetch_by_id($order_info[0]->shipment_id)[0];
             $data['cart_entries'] = $this->order_model->get_order_detail($order_id);
+
 
             // print('<pre>');
             // print_r($data['cart_entries']);
@@ -266,9 +279,6 @@ class Order extends CI_Controller {
        $order_id = $data['order_id'];
        $mop = $data['mop'];
        $this->mop_paypal(1);
-
-
-
        print_r($data);
     }
 

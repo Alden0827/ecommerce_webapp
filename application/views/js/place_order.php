@@ -69,7 +69,8 @@
                           });
                     }else if (response.result === 'success'){
                       //redirect with post
-                      $.redirect("<?=site_url('order/checkout');?>", {'order_id': response.order_id});
+                      // $.redirect("<?=site_url('order/checkout');?>", {'order_id': response.order_id});
+                      window.location.href = "<?=site_url('order/checkout/');?>" + response.order_id;
                     }
                   }
 
