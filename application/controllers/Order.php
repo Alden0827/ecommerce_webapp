@@ -16,6 +16,7 @@ class Order extends CI_Controller {
        $this->load->helper('form');
 
        $this->load->library('paypal_lib'); 
+       $this->load->helper('cookie');
        // $this->load->model('product'); 
 
        
@@ -105,6 +106,25 @@ class Order extends CI_Controller {
             // print('</pre>');
 
 
+// =======
+//             ;   
+
+//             //Redirect of the post to prevent browser from asking for resubmission of post data.       
+//             if (!empty($this->input->post())) {
+//                 $data = $this->input->post();
+//                 setcookie('checkout_order_id',$data['order_id']);
+//                 print('redirect');
+//                 redirect(site_url('order/checkout'), 'refresh');
+//                 return;
+//             }
+//             $order_id = $this->input->cookie('checkout_order_id',TRUE);
+
+//             //load data
+//             $order_info = (object) $this->order_model->get_order_by_id($order_id)[0];
+//             $data['shipment_info'] = $this->shipment_model->fetch_by_id($order_info->shipment_id)[0];
+//             $data['cart_entries'] = $this->order_model->get_order_detail($order_id);
+
+// >>>>>>> 3f0c07464beea9663730d39bb78afe693f68e49c
            //get total
             $sub_total = 0;
             $shipping_total = 0;

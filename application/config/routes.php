@@ -7,3 +7,6 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['logout'] = 'home/logout';
 $route['test'] = 'tests/test1';
+
+$route['make-stripe-payment'] = "StripePaymentController";
+$route['handleStripePayment']['post'] = "StripePaymentController/handlePayment";

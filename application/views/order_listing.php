@@ -39,7 +39,7 @@
                                 <tbody>
                                   
                                   <?php  foreach ($order_listing->result() as $order){ ?>
-                                    <tr order_id="<?=$order->order_id?>">
+                                    <tr >
                                       <td><?=$order->order_id?></td>
                                       <td><?=$order->ITEM_COUNT?></td>
 
