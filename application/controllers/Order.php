@@ -298,7 +298,8 @@ class Order extends CI_Controller {
        $data = $this->input->post();
        $order_id = $data['order_id'];
        $mop = $data['mop'];
-       $this->mop_paypal(1);
+
+       $this->mop_paypal($order_id);
        print_r($data);
     }
 
@@ -334,7 +335,7 @@ class Order extends CI_Controller {
         // $this->paypal_lib->add_field('quantity',  5); 
         // $this->paypal_lib->add_field('amount',  100); 
 
-        $this->paypal_lib->add_field('item_name', 'product-name');
+        $this->paypal_lib->add_field('item_name', 'order');
         $this->paypal_lib->add_field('custom', 'customer identification');
         $this->paypal_lib->add_field('quantity',  2);
         $this->paypal_lib->add_field('sample_field',  2);

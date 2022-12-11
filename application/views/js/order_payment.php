@@ -11,19 +11,11 @@
 
                 var mop = $(this).attr('pid');
                 var order_id = $(this).closest('div.card-services').attr('order_id');
-                if (mop === 0) {
-                  // alert(order_id);
-
+                if (mop == 0) {
                   $.redirect("<?=site_url('order/payment');?>", {'mop': mop,'order_id':order_id});                  
                 }else{
-                  //stripe
                   $.redirect("<?=site_url('stripepaymentcontroller');?>", {'mop': mop,'order_id':order_id});                  
-                  
-
                 }
-
-
-
             });
         })
         </script>
