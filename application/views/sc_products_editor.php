@@ -1,178 +1,184 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <!-- page content -->
-        <div class="right_col" role="main">
-          <div class="">
+<!-- Page Content -->
+<div class="right_col" role="main">
+  <div class="">
+    <div class="clearfix"></div>
+    
+    <div class="row">
+      <div class="col-md-12 col-sm-12">
+        <div class="x_panel">
+          
+          <!-- Panel Header -->
+          <div class="x_title">
+            <h2>ITEM #<?= $new_upc ?><small>...</small></h2>
+            <ul class="nav navbar-right panel_toolbox">
+              <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                  <i class="fa fa-wrench"></i>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="#">Settings 1</a>
+                  <a class="dropdown-item" href="#">Settings 2</a>
+                </div>
+              </li>
+              <li><a class="close-link"><i class="fa fa-close"></i></a></li>
+            </ul>
             <div class="clearfix"></div>
-              <div class="row">
-                <div class="col-md-12 col-sm-12 ">
-                  <div class="x_panel">
-                    <div class="x_title">
-                      <h2>ITEM #<?=$new_upc?><small>...</small></h2>
-                      <ul class="nav navbar-right panel_toolbox">
-                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                        </li>
-                        <li class="dropdown">
-                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                              <a class="dropdown-item" href="#">Settings 1</a>
-                              <a class="dropdown-item" href="#">Settings 2</a>
-                            </div>
-                        </li>
-                        <li><a class="close-link"><i class="fa fa-close"></i></a>
-                        </li>
-                      </ul>
-                      <div class="clearfix"></div>
+          </div>
+
+          <!-- Panel Content -->
+          <div class="x_content">
+            <?php 
+              echo form_open('item_listing/products_save', 'enctype="multipart/form-data"'); 
+              echo "<input type='hidden' name='upc' id='upc' value='$new_upc'>"; 
+            ?>        
+
+            <div class="row">
+
+              <!-- Left Column -->
+              <div class="col-md-8 col-sm-8">
+
+                <!-- Item Caption -->
+                <div class="form-group">
+                  <label for="item_caption">Item Caption</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-product-hunt"></i></span>
                     </div>
-                    <div class="x_content">      
-                     <?php 
-                        // echo form_open('item_listing/products_save','enctype="multipart/form-data"'); 
-                        echo form_open('item_listing/products_save','enctype="multipart/form-data"'); 
-                        echo "<input type='hidden' name='upc' id='upc' value='$new_upc'> ";
+                    <input id="item_caption" name="item_caption" type="text" class="form-control" required value="sample_data1">
+                  </div>
+                </div>
 
-                     ?>        
-                      <div class="row" rem="two column container">
-                        <div class="col-md-8 col-sm-8 ">
-                         
-                            <div class="form-group">
-                              <label for="item_caption">Item Caption</label> 
-                              <div class="input-group">
-                                <div class="input-group-prepend">
-                                  <div class="input-group-text">
-                                    <i class="fa fa-product-hunt"></i>
-                                  </div>
-                                </div> 
-                                <input id="item_caption" value="sample_data1" name="item_caption" type="text" required="required" class="form-control">
-                              </div>
-                            </div>
+                <!-- Short Description -->
+                <div class="form-group">
+                  <label for="item_desc">Short Description</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-product-hunt"></i></span>
+                    </div>
+                    <input id="item_desc" name="item_desc" type="text" class="form-control" required value="sample_data1">
+                  </div>
+                </div>
 
-                            <div class="form-group">
-                              <label for="item_description">Short Description</label> 
-                              <div class="input-group">
-                                <div class="input-group-prepend">
-                                  <div class="input-group-text">
-                                    <i class="fa fa-product-hunt"></i>
-                                  </div>
-                                </div> 
-                                <input id="item_desc" value="sample_data1" name="item_desc" type="text" required="required" class="form-control">
-                              </div>
-                            </div>                            
-                            <div class="form-group">
-                              <label for="item_specs">Specification</label> 
-                              <textarea id="item_specs" name="item_specs" cols="40" rows="5" required="required" class="form-control">adasdad
-                              </textarea>
-                            </div>
-                            <div class="form-group">
-                              <label for="brand">Brand</label> 
-                              <div class="input-group">
-                                <div class="input-group-prepend">
-                                  <div class="input-group-text">
-                                    <i class="fa fa-audio-description"></i>
-                                  </div>
-                                </div> 
-                                <input id="brand" name="brand" value="sample_data2" type="text" required="required" class="form-control" value="No Brand">
-                              </div>
-                            </div>
-                            <div class="form-group">
-                              <label for="category">Category</label> 
-                              <div>
-                                <select id="category" name="cat_id" required="required" class="custom-select">
-                                  <?php foreach ($res_product_category->result() as $row) {?>
-                                    <option value="<?=$row->cat_id?>"><?=$row->category?></option>
-                                  <?php  } ?>
-                                </select>
-                              </div>
-                            </div>
-                            <div class="form-group">
-                              <label for="stock">Available Stock</label> 
-                              <div class="input-group">
-                                <div class="input-group-prepend">
-                                  <div class="input-group-text">
-                                    <i class="fa fa-scribd"></i>
-                                  </div>
-                                </div> 
-                                <input id="stock" name="stock" type="text" value="1" required="required" class="form-control">
-                              </div>
-                            </div>
-                            <div class="form-group">
-                              <label for="price">Price</label> 
-                              <div class="input-group">
-                                <div class="input-group-prepend">
-                                  <div class="input-group-text">
-                                    <i class="fa fa-dollar"></i>
-                                  </div>
-                                </div> 
-                                <input id="unit_price" name="unit_price" value="12" type="number" required="required" class="form-control"> 
-                                <div class="input-group-append">
-                                  <div class="input-group-text">.00</div>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="form-group">
-                              <label for="discount_perc">Discount</label> 
-                              <div class="input-group">
-                                <div class="input-group-prepend">
-                                  <div class="input-group-text">
-                                    <i class="fa fa-percent"></i>
-                                  </div>
-                                </div> 
-                                <input id="discount" name="discount" type="number" value="0" class="form-control">
-                              </div>
-                            </div>
-                            <div class="form-group">
-                              <div>
-                                <div class="custom-control custom-checkbox custom-control-inline">
-                                  <input name="status_id" id="is_posted" type="checkbox" class="form-control"> 
-                                  <label for="status_id" class="">Post this product in your store now!</label>
-                                </div>
-                              </div>
-                            </div>                             
-                            <div class="form-group">
-                              <button name="submit" type="submit" class="btn btn-primary">Save</button>
-                            </div>
-                          
-                        </div>
-                        <div class="col-md-4 col-sm-4" rem="photo section">
-                          <div class="col-md-12">
-                            <div class="x_panel">
-                              <div class="x_title">
-                                <h2>Cover Photo 
-                                </h2>
-                                <div class="clearfix"></div>
-                              </div>
-                              <div class="x_content bs-example-popovers">
-                                <div class="alert alert-info alert-dismissible " role="alert">
-                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">×</span>
-                                  </button>
-                                  <strong>Note:</strong> You may upload multiple files. The first image will be the main cover photo of the product page.
-                                </div>
-                                  <div class="upload__box">
-                                    <div class="upload__btn-box">
-                                      <label class="upload__btn">
-                                        <p>Upload images</p>
-                                        <input type="file" multiple="" data-max_length="20" id="product_photos" name="product_photos[]" class="form-control ">
-                                      </label>
-                                    </div>
-                                    <div class="upload__img-wrap"></div>
-                                  </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      </form>    
+                <!-- Specification -->
+                <div class="form-group">
+                  <label for="item_specs">Specification</label>
+                  <textarea id="item_specs" name="item_specs" class="form-control" rows="5" required>adasdad</textarea>
+                </div>
+
+                <!-- Brand -->
+                <div class="form-group">
+                  <label for="brand">Brand</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-audio-description"></i></span>
+                    </div>
+                    <input id="brand" name="brand" type="text" class="form-control" required value="sample_data2">
+                  </div>
+                </div>
+
+                <!-- Category -->
+                <div class="form-group">
+                  <label for="category">Category</label>
+                  <select id="category" name="cat_id" class="custom-select" required>
+                    <?php foreach ($res_product_category->result() as $row): ?>
+                      <option value="<?= $row->cat_id ?>"><?= $row->category ?></option>
+                    <?php endforeach; ?>
+                  </select>
+                </div>
+
+                <!-- Stock -->
+                <div class="form-group">
+                  <label for="stock">Available Stock</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-scribd"></i></span>
+                    </div>
+                    <input id="stock" name="stock" type="text" class="form-control" required value="1">
+                  </div>
+                </div>
+
+                <!-- Price -->
+                <div class="form-group">
+                  <label for="unit_price">Price</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-dollar"></i></span>
+                    </div>
+                    <input id="unit_price" name="unit_price" type="number" class="form-control" required value="12">
+                    <div class="input-group-append">
+                      <span class="input-group-text">.00</span>
                     </div>
                   </div>
+                </div>
+
+                <!-- Discount -->
+                <div class="form-group">
+                  <label for="discount">Discount (%)</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-percent"></i></span>
+                    </div>
+                    <input id="discount" name="discount" type="number" class="form-control" value="0">
+                  </div>
+                </div>
+
+                <!-- Post Checkbox -->
+                <div class="form-group">
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="form-control" id="is_posted" name="status_id">
+                    <label for="is_posted">Post this product in your store now!</label>
+                  </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="form-group">
+                  <button type="submit" class="btn btn-primary">Save</button>
+                </div>
               </div>
 
+              <!-- Right Column - Photo Upload -->
+              <div class="col-md-4 col-sm-4">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Cover Photo</h2>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content bs-example-popovers">
+                    <div class="alert alert-info alert-dismissible" role="alert">
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                      <strong>Note:</strong> You may upload multiple files. The first image will be the main cover photo.
+                    </div>
+                    <div class="upload__box">
+                      <div class="upload__btn-box">
+                        <label class="upload__btn">
+                          <p>Upload images</p>
+                          <input type="file" id="product_photos" name="product_photos[]" class="form-control" multiple data-max_length="20">
+                        </label>
+                      </div>
+                      <div class="upload__img-wrap"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
+            </div> <!-- /.row -->
+
+            </form>
+          </div> <!-- /.x_content -->
+
+        </div> <!-- /.x_panel -->
+      </div>
+    </div>
+
+  </div>
 </div>
+<!-- /Page Content -->
 
-
-          </div>
-        </div>
-        <!-- /page content -->
 
 
 <script type="text/javascript">
